@@ -7,9 +7,15 @@ use spoteezer;
    id_type_user INT AUTO_INCREMENT,
    name_type_user VARCHAR(50)  NOT NULL,
    PRIMARY KEY(id_type_user)
+);*/
+
+CREATE TABLE Groupe(
+   id_group INT AUTO_INCREMENT,
+   name_group VARCHAR(500)  NOT NULL,
+   PRIMARY KEY(id_group)
 );
 
-CREATE TABLE Title(
+/*CREATE TABLE Title(
    id_title INT AUTO_INCREMENT,
    name_title VARCHAR(50)  NOT NULL,
    time_title VARCHAR(50)  NOT NULL,
@@ -69,18 +75,26 @@ ADD FOREIGN KEY (id_album) REFERENCES album(id_album);
 ALTER TABLE album
 ADD COLUMN id_artist INT,
 ADD COLUMN id_title INT,
+ADD COLUMN id_group INT,
+ADD COLUMN id_genre INT,
 ADD FOREIGN KEY (id_artist) REFERENCES artist(id_artist),
-ADD FOREIGN KEY (id_title) REFERENCES title(id_title);
+ADD FOREIGN KEY (id_title) REFERENCES title(id_title),
+ADD FOREIGN KEY (id_group) REFERENCES groupe(id_group),
+ADD FOREIGN KEY (id_genre) REFERENCES music_genre(id_genre);
 
 ALTER TABLE artist
 ADD COLUMN id_album INT,
 ADD COLUMN id_title INT,
+ADD COLUMN id_group INT,
 ADD FOREIGN KEY (id_album) REFERENCES album(id_album),
-ADD FOREIGN KEY (id_title) REFERENCES title(id_title);
+ADD FOREIGN KEY (id_title) REFERENCES title(id_title),
+ADD FOREIGN KEY (id_group) REFERENCES groupe(id_group);
 
 ALTER TABLE music_genre
 ADD COLUMN id_title INT,
-ADD FOREIGN KEY (id_title) REFERENCES title(id_title);
+ADD COLUMN id_album INT,
+ADD FOREIGN KEY (id_title) REFERENCES title(id_title)
+ADD FOREIGN KEY (id_album) REFERENCES album(id_album);
 
 ALTER TABLE users
 ADD COLUMN id_playlist INT,
@@ -93,3 +107,7 @@ ADD COLUMN id_user INT,
 ADD COLUMN id_title INT,
 ADD FOREIGN KEY (id_title) REFERENCES Title(id_title),
 ADD FOREIGN KEY (id_user) REFERENCES users(id_user);*/
+
+ALTER TABLE groupe
+ADD COLUMN id_artist INT,
+ADD FOREIGN KEY (id_artist) REFERENCES artist(id_artist);
