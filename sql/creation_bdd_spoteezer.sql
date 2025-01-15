@@ -3,33 +3,7 @@ use spoteezer;
 
 -- Création des tables
 
-/*CREATE TABLE User_type(
-   id_type_user INT AUTO_INCREMENT,
-   name_type_user VARCHAR(50)  NOT NULL,
-   PRIMARY KEY(id_type_user)
-);
-
-CREATE TABLE Groupe(
-   id_group INT AUTO_INCREMENT,
-   name_group VARCHAR(500)  NOT NULL,
-   PRIMARY KEY(id_group)
-);
-
-CREATE TABLE Title(
-   id_title INT AUTO_INCREMENT,
-   name_title VARCHAR(50)  NOT NULL,
-   time_title VARCHAR(50)  NOT NULL,
-   publication_date_title DATE NOT NULL,
-   PRIMARY KEY(id_title)
-);
-
-CREATE TABLE Album(
-   id_album INT AUTO_INCREMENT,
-   name_album VARCHAR(50) ,
-   publication_date_album DATE NOT NULL,
-   PRIMARY KEY(id_album)
-);
-
+/*
 CREATE TABLE Artist(
    id_artist INT AUTO_INCREMENT,
    firstname_artist VARCHAR(50) ,
@@ -39,19 +13,16 @@ CREATE TABLE Artist(
    PRIMARY KEY(id_artist)
 );
 
+CREATE TABLE User_type(
+   id_type_user INT AUTO_INCREMENT,
+   name_type_user VARCHAR(50)  NOT NULL,
+   PRIMARY KEY(id_type_user)
+);
+
 CREATE TABLE Music_Genre(
    id_genre INT AUTO_INCREMENT,
    name_genre VARCHAR(50)  NOT NULL,
    PRIMARY KEY(id_genre)
-);
-
-CREATE TABLE Users(
-   id_user INT AUTO_INCREMENT,
-   Username VARCHAR(50)  NOT NULL,
-   password VARCHAR(50)  NOT NULL,
-   firstname_user VARCHAR(50)  NOT NULL,
-   lastname_user VARCHAR(50)  NOT NULL,
-   PRIMARY KEY(id_user)
 );
 
 CREATE TABLE Playlist(
@@ -60,56 +31,59 @@ CREATE TABLE Playlist(
    PRIMARY KEY(id_playlist)
 );
 
--- ALTER TABLE pour ajouter les foreign key
+CREATE TABLE Groupe(
+   id_groupe INT AUTO_INCREMENT,
+   name_groupe VARCHAR(500)  NOT NULL,
+   PRIMARY KEY(id_groupe)
+);
 
-ALTER TABLE title
-ADD COLUMN id_artist INT,
-ADD COLUMN id_genre INT,
-ADD COLUMN id_album INT,
-ADD COLUMN id_playlist INT,
-ADD FOREIGN KEY (id_artist) REFERENCES artist(id_artist),
-ADD FOREIGN KEY (id_genre) REFERENCES music_genre(id_genre),
-ADD FOREIGN KEY (id_playlist) REFERENCES Playlist(id_playlist),
-ADD FOREIGN KEY (id_album) REFERENCES album(id_album);
+CREATE TABLE Album(
+   id_album INT AUTO_INCREMENT,
+   name_album VARCHAR(50) ,
+   publication_date_album DATE NOT NULL,
+   id_groupe INT,
+   id_genre INT,
+   id_artist INT,
+   PRIMARY KEY(id_album),
+   FOREIGN KEY(id_groupe) REFERENCES Groupe(id_groupe),
+   FOREIGN KEY(id_genre) REFERENCES Music_Genre(id_genre),
+   FOREIGN KEY(id_artist) REFERENCES Artist(id_artist)
+);
 
-ALTER TABLE album
-ADD COLUMN id_artist INT,
-ADD COLUMN id_title INT,
-ADD COLUMN id_group INT,
-ADD COLUMN id_genre INT,
-ADD FOREIGN KEY (id_artist) REFERENCES artist(id_artist),
-ADD FOREIGN KEY (id_title) REFERENCES title(id_title),
-ADD FOREIGN KEY (id_group) REFERENCES groupe(id_group),
-ADD FOREIGN KEY (id_genre) REFERENCES music_genre(id_genre);
+CREATE TABLE Users(
+   id_user INT AUTO_INCREMENT,
+   Username VARCHAR(50)  NOT NULL,
+   password VARCHAR(50)  NOT NULL,
+   firstname_user VARCHAR(50)  NOT NULL,
+   lastname_user VARCHAR(50)  NOT NULL,
+   id_playlist INT NOT NULL,
+   id_type_user INT NOT NULL,
+   PRIMARY KEY(id_user),
+   FOREIGN KEY(id_playlist) REFERENCES Playlist(id_playlist),
+   FOREIGN KEY(id_type_user) REFERENCES User_type(id_type_user)
+);
 
-ALTER TABLE artist
-ADD COLUMN id_album INT,
-ADD COLUMN id_title INT,
-ADD COLUMN id_group INT,
-ADD FOREIGN KEY (id_album) REFERENCES album(id_album),
-ADD FOREIGN KEY (id_title) REFERENCES title(id_title),
-ADD FOREIGN KEY (id_group) REFERENCES groupe(id_group);
+CREATE TABLE Title(
+   id_title INT AUTO_INCREMENT,
+   name_title VARCHAR(50)  NOT NULL,
+   time_title VARCHAR(50)  NOT NULL,
+   publication_date_title DATE NOT NULL,
+   id_playlist INT,
+   id_album INT,
+   id_genre INT,
+   id_artist INT,
+   PRIMARY KEY(id_title),
+   FOREIGN KEY(id_playlist) REFERENCES Playlist(id_playlist),
+   FOREIGN KEY(id_album) REFERENCES Album(id_album),
+   FOREIGN KEY(id_genre) REFERENCES Music_Genre(id_genre),
+   FOREIGN KEY(id_artist) REFERENCES Artist(id_artist)
+);
 
-ALTER TABLE music_genre
-ADD COLUMN id_title INT,
-ADD COLUMN id_album INT,
-ADD FOREIGN KEY (id_title) REFERENCES title(id_title),
-ADD FOREIGN KEY (id_album) REFERENCES album(id_album);
-
-ALTER TABLE users
-ADD COLUMN id_playlist INT,
-ADD COLUMN id_type_user INT,
-ADD FOREIGN KEY (id_playlist) REFERENCES playlist(id_playlist),
-ADD FOREIGN KEY (id_type_user) REFERENCES user_type(id_type_user);
-
-ALTER TABLE playlist
-ADD COLUMN id_user INT,
-ADD COLUMN id_title INT,
-ADD FOREIGN KEY (id_title) REFERENCES Title(id_title),
-ADD FOREIGN KEY (id_user) REFERENCES users(id_user);
-
-ALTER TABLE groupe
-ADD COLUMN id_artist INT,
-ADD COLUMN id_album INT,
-ADD FOREIGN KEY (id_artist) REFERENCES artist(id_artist),
-ADD FOREIGN KEY (id_album) REFERENCES album(id_album);*/
+CREATE TABLE Artist_Group(
+   id_artist INT,
+   id_groupe INT,
+   PRIMARY KEY(id_artist, id_groupe),
+   FOREIGN KEY(id_artist) REFERENCES Artist(id_artist),
+   FOREIGN KEY(id_groupe) REFERENCES Groupe(id_groupe)
+);
+*/
