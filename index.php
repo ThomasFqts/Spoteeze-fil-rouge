@@ -34,14 +34,14 @@
     <main id="partiePrincipale">
 
         <article>
-            <img src="Style/img/pop.png" sizes width="150" height="70">
-            <img src="Style/img/PNG.png" sizes width="150" height="70">
-            <img src="Style/img/RAP.png" sizes width="150" height="70">
-            <img src="Style/img/WORKOUT.png" sizes width="150" height="70">
-            <img src="Style/img/RAP US.png" sizes width="150" height="70">
-            <img src="Style/img/dance.png" sizes width="150" height="70">
-            <img src="Style/img/funk.png" sizes width="150" height="70">
-            <img src="Style/img/LOFI.png" sizes width="150" height="70">
+            <img src="Style/img/pop.png" sizes width="150" height="70" id="boutonMusiquePop">
+            <img src="Style/img/PNG.png" sizes width="150" height="70" id="boutonMusiqueRock">
+            <img src="Style/img/RAP.png" sizes width="150" height="70" id="boutonMusiqueRap">
+            <img src="Style/img/WORKOUT.png" sizes width="150" height="70" id="boutonMusiqueWorkout">
+            <img src="Style/img/RAP US.png" sizes width="150" height="70" id="boutonMusiqueRapUs">
+            <img src="Style/img/dance.png" sizes width="150" height="70" id="boutonMusiqueDance">
+            <img src="Style/img/funk.png" sizes width="150" height="70" id="boutonMusiqueFunk">
+            <img src="Style/img/LOFI.png" sizes width="150" height="70" id="boutonMusiqueLofi">
         </article>
 
     </main>
