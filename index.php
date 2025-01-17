@@ -21,27 +21,30 @@
         </article>
 
         <!-- BOUTONS Y SONT LA !!!!!!!!!!!!!! ousa ? Jsplus -->
+
         <article id="boutons">
-            <button id="seCo"></button>
-            <button id="taPlaylist"></button>
+            <button id="seCo" style="width: 150px; height: 30px;">Se Connecter</button>
+            <button id="taPlaylist" style="width: 150px; height: 30px;">Ta Playlist</button>
         </article>
 
         <article id="recherche">
-            <input id="barreDeRecherche" type="">
+            <input id="barreDeRecherche" type="text" placeholder="Rechercher..." style="width: 150px; height: 30px;">
         </article>
 
     </header>
     <main id="partiePrincipale">
 
         <article>
-            <img src="Style/img/pop.png" sizes width="150" height="70">
-            <img src="Style/img/PNG.png" sizes width="150" height="70">
-            <img src="Style/img/RAP.png" sizes width="150" height="70">
-            <img src="Style/img/WORKOUT.png" sizes width="150" height="70">
-            <img src="Style/img/RAP US.png" sizes width="150" height="70">
-            <img src="Style/img/dance.png" sizes width="150" height="70">
-            <img src="Style/img/funk.png" sizes width="150" height="70">
-            <img src="Style/img/LOFI.png" sizes width="150" height="70">
+            <bouton>
+                <img src="Style/img/pop.png" sizes width="150" height="70" id="boutonMusiquePop">
+            </bouton>
+            <bouton><img src="Style/img/PNG.png" sizes width="150" height="70" id="boutonMusiqueRock"></bouton>
+            <bouton><img src="Style/img/RAP.png" sizes width="150" height="70" id="boutonMusiqueRap"></bouton>
+            <bouton><img src="Style/img/WORKOUT.png" sizes width="150" height="70" id="boutonMusiqueWorkout"></bouton>
+            <bouton><img src="Style/img/RAP US.png" sizes width="150" height="70" id="boutonMusiqueRapUs"></bouton>
+            <bouton><img src="Style/img/dance.png" sizes width="150" height="70" id="boutonMusiqueDance"></bouton>
+            <bouton><img src="Style/img/funk.png" sizes width="150" height="70" id="boutonMusiqueFunk"></bouton>
+            <bouton><img src="Style/img/LOFI.png" sizes width="150" height="70" id="boutonMusiqueLofi"></bouton>
         </article>
 
     </main>
