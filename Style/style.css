@@ -43,3 +43,7 @@ body {
 #taPlaylist {
     
 } */
+
+#article {
+    display : flex; justify-content: space-around;
+}
