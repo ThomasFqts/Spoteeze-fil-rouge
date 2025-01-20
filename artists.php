@@ -33,7 +33,8 @@ $requete->closeCursor();
             ?>
             <tr>
                 <td><?= $artist->id_artist ?></td>
-                <td><?= $artist->alias_artist ?></td>
+                <td><?= $artist->firstname_artist ?></td>
+                <td><?= $artist->lastname_artist ?></td>
             </tr>
         <?php endforeach; ?>
     </table>
