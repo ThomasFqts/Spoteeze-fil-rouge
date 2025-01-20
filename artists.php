@@ -1,4 +1,5 @@
 <?php
+include "index.php";
 // on importe le contenu du fichier "db.php"
 include "db.php";
 // on exécute la méthode de connexion à notre BDD
@@ -28,7 +29,7 @@ $requete->closeCursor();
             <th>Nom</th>
         </tr>
         <?php foreach ($tableau as $artist): ?>
-            <?php var_dump($artist); // Le var_dump() est écrit à titre informatif 
+            <?php // var_dump($artist); // Le var_dump() est écrit à titre informatif 
             ?>
             <tr>
                 <td><?= $artist->id_artist ?></td>
