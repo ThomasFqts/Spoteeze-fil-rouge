@@ -1,58 +1,74 @@
-use spoteezer;
+-- Use the spoteezer database
+USE spoteezer;
+/*
+-- Populate the Album table
+INSERT INTO Album (id_album, name_album, publication_date_album)
+VALUES
+    (1,'Random Access Memories', '2013-05-17'),
+    (2,'Abbey Road', '1969-09-26'),
+    (3,'Thriller', '1982-11-30'),
+    (4,'The Dark Side of the Moon', '1973-03-01'),
+    (5,'25', '2015-11-20');
 
-/*insert into artist(alias_artist) values ("stromae");
-insert into artist(alias_artist) values ("imagine dragon");
-insert into artist(alias_artist) values ("eminem");
-insert into artist(alias_artist) values ("gims");
-insert into artist(alias_artist) values ("black m");
-insert into artist(alias_artist) values ("colonel reyel");
-insert into artist(alias_artist) values ("u2");*/
+-- Populate the User_type table
+INSERT INTO User_type (id_type_user, name_type_user)
+VALUES
+	(1, 'Admin'),
+    (2,'Free'),
+    (3,'Premium'),
+    (4,'Student');
 
-/*insert into music_genre(id_genre,name_genre) values
-(1,"Rock"),
-(2,"pop"),
-(3,"lofi");*/
+-- Populate the Music_Genre table
+INSERT INTO Music_Genre (id_genre, name_genre)
+VALUES
+    (1, 'Pop'),
+    (2,'Rock'),
+    (3,'Electronic'),
+    (4,'Hip-Hop'),
+    (5,'Funk'),
+    (6,'Workout'),
+    (7,"Rap"),
+    (8,"Dance"),
+    (9,"Rap US"),
+    (10,"Lofi"),
+    (11,'Classical');
 
-/*insert into album(id_album,name_album,publication_date_album,id_artist) values 
-(1,"Multitude","2022-03-04",1);
+-- Populate the Type_Artist table
+INSERT INTO Type_Artist (id_type_artist	, libelle_type_artist)
+VALUES
+    (1,'Artist Solo'),
+    (2,'Group'),
+    (3,'DJ'),
+    (4,'Orchestre');
 
-insert into album(id_album,name_album,publication_date_album,id_artist) values 
-(2,"Evolve","2017-06-23",2);
+-- Populate the Title table
+INSERT INTO Title (id_title, name_title, time_title, publication_date_title, id_genre)
+VALUES
+    (1, 'Get Lucky', '06:09', '2013-04-19', 3),
+    (2,'Come Together', '04:20', '1969-09-26', 2),
+    (3,'Billie Jean', '04:54', '1983-01-02', 1),
+    (4,'Time', '07:05', '1973-03-01', 2),
+    (5,'Hello', '04:55', '2015-10-23', 1);
 
-insert into album(id_album,name_album,publication_date_album,id_artist) values 
-(3,"Death of Slim Shady (Coup de Grâce)","2022-07-12",3);*/
+-- Populate the Artist table
+INSERT INTO Artist (id_artist, firstname_artist, lastname_artist, id_type_artist)
+VALUES
+    (1, 'Thomas', 'Bangalter', 3),
+    (2,'Paul', 'McCartney', 1),
+    (3,'Michael', 'Jackson', 1),
+    (4,'David', 'Gilmour', 1),
+    (5,'Adele', NULL, 1);
 
-/*insert into title(id_title,name_title,time_title,publication_date_title,id_artist,id_album) values 
-(1,"Fils de joie","3:15","2022-03-04",1,1);
 
-insert into title(id_title,name_title,time_title,publication_date_title,id_artist,id_album) values 
-(2,"Mon amour","2:52","2022-03-04",1,1);
+-- Link Titles to Albums (assuming one-to-many relationship)
+INSERT INTO Title (id_title, name_title, time_title, publication_date_title, id_genre)
+VALUES
+    (6,'Digital Love', '05:00', '2001-03-12', 3);
 
-insert into title(id_title,name_title,time_title,publication_date_title,id_artist,id_album) values 
-(3,"Believer","3:24","2017-02-01",2,2);
-
-insert into title(id_title,name_title,time_title,publication_date_title,id_artist,id_album) values 
-(4,"Thunder","3:07","2017-04-27",2,2);
-
-insert into title(id_title,name_title,time_title,publication_date_title,id_artist,id_album) values 
-(5,"Houdini","3:48","2022-07-12",3,3);
-
-insert into title(id_title,name_title,time_title,publication_date_title,id_artist,id_album) values 
-(6,"Habits","4:59","2022-07-12",3,3);*/
-
-/*insert into user_type(id_type_user,name_type_user) values 
-(1,"Visiteur"),
-(2,"Utilisateur"),
-(3,"Administrateur");*/
-
-/*insert into users(id_user,Username,password,firstname_user,lastname_user,id_type_user) values
-(1,"Froggy","testsql","ugo","quemeneur",2);
-
-insert into users(id_user,Username,password,firstname_user,lastname_user,id_type_user) values
-(2,"Rikette","testsql","helene","",1);
-
-insert into users(id_user,Username,password,firstname_user,lastname_user,id_type_user) values
-(3,"Heo","testsql","thomas","fouquet",3);*/
-
-/*insert into playlist(id_playlist,name_playlist,id_user,id_title) values 
-(1,"random",1,1);*/
+INSERT INTO users (id_user, Username, firstname_user, lastname_user, password, id_playlist, id_type_user)
+VALUES
+    (1, 'user1', 'Ugo', 'Quemeneur', 'password123', 1, 2),
+    (2,'user2', 'Thomas', 'Fouquet', 'password456', 2, 3),
+    (3,'user3', 'Helene', 'Jesaispas', 'password789', 3, 4),
+    (4,'user4', 'Guillaume', 'Delacroix', 'password000', 4, 4);
+*/
