@@ -23,7 +23,7 @@ addEventListener (click, butDance, [sortirPlaylistPop]);
 addEventListener (click, butFunk, [sortirPlaylistPop]);
 addEventListener (click, butLofi, [sortirPlaylistPop]);
 
-/* Playlists par défaut */
+/* Playlists par défauts */
 
 function sortirPlaylistPop (nom) {
     let nom = "pop";
