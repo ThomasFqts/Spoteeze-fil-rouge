@@ -1,4 +1,4 @@
-/* farfadet */
+
 /*------------------------------ Responsive --------------------------*/
 /* Large screen */
 @media screen and (min-width: 992px) {}
@@ -26,24 +26,6 @@ body {
     align-items: center;
 }
 
-/* #enTete {
-
-} */
-
-/* boutons du header */
-
-#boutons {
-    display: flex,;
-}
-
-/* #seCo {
-    
-}
-
-#taPlaylist {
-    
-} */
-
-#article {
-    display : flex; justify-content: space-around;
-}
+img {display: flex;
+    justify-content: space-around
+    }
