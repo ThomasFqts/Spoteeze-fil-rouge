@@ -34,7 +34,7 @@
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 Dropdown
-                            </a>
+                                "" </a>
                             <ul class="dropdown-menu">
                                 <li><a class="dropdown-item" href="#">Action</a></li>
                                 <li><a class="dropdown-item" href="#">Another action</a></li>
@@ -53,7 +53,7 @@
         </nav>
 
         <article id="logo">
-            <img src="Style/img/logo.png" alt="Spoteezer" width="450" height="350">
+            <img src="Style/img/logo.png" alt="Spoteezer" width="250" height="150">
         </article>
 
         <!-------------------------------------------- Boutons Header ----------------------------------------------->
