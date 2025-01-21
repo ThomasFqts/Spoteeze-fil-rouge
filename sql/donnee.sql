@@ -65,10 +65,10 @@ INSERT INTO Title (id_title, name_title, time_title, publication_date_title, id_
 VALUES
     (6,'Digital Love', '05:00', '2001-03-12', 3);
 
-INSERT INTO users (id_user, Username, firstname_user, lastname_user, password, id_playlist, id_type_user)
+INSERT INTO users (id_user, Username, firstname_user, lastname_user, password, id_type_user)
 VALUES
-    (1, 'user1', 'Ugo', 'Quemeneur', 'password123', 1, 2),
-    (2,'user2', 'Thomas', 'Fouquet', 'password456', 2, 3),
-    (3,'user3', 'Helene', 'Jesaispas', 'password789', 3, 4),
-    (4,'user4', 'Guillaume', 'Delacroix', 'password000', 4, 4);
+    (1, 'user1', 'Ugo', 'Quemeneur', 'password123', 2),
+    (2,'user2', 'Thomas', 'Fouquet', 'password456', 3),
+    (3,'user3', 'Helene', 'Jesaispas', 'password789', 4),
+    (4,'user4', 'Guillaume', 'Delacroix', 'password000', 4);
 */
