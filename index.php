@@ -13,14 +13,12 @@
 
 </head>
 
-<body> <!--  Tomas est agressif -->
+<body>
     <header id="enTete">
 
         <article id="logo">
             <img src="Style/img/logo.png" alt="Spoteezer" width="450" height="350">
         </article>
-
-        <!-- BOUTONS Y SONT LA !!!!!!!!!!!!!! ousa ? Jsplus -->
 
         <article id="boutons">
             <button id="seCo" style="width: 150px; height: 30px;">Se Connecter</button>

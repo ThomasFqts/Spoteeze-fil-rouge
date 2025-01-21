@@ -2,7 +2,7 @@
 USE spoteezer;
 /*
 -- Populate the Album table
-INSERT INTO Album (id_album, name_album, publication_date_album)
+INSERT INTO album (id_album, name_album, publication_date_album)
 VALUES
     (1,'Random Access Memories', '2013-05-17'),
     (2,'Abbey Road', '1969-09-26'),
@@ -11,7 +11,7 @@ VALUES
     (5,'25', '2015-11-20');
 
 -- Populate the User_type table
-INSERT INTO User_type (id_type_user, name_type_user)
+INSERT INTO user_type (id_type_user, name_type_user)
 VALUES
 	(1, 'Admin'),
     (2,'Free'),
@@ -19,7 +19,7 @@ VALUES
     (4,'Student');
 
 -- Populate the Music_Genre table
-INSERT INTO Music_Genre (id_genre, name_genre)
+INSERT INTO music_Genre (id_genre, name_genre)
 VALUES
     (1, 'Pop'),
     (2,'Rock'),
@@ -34,7 +34,7 @@ VALUES
     (11,'Classical');
 
 -- Populate the Type_Artist table
-INSERT INTO Type_Artist (id_type_artist	, libelle_type_artist)
+INSERT INTO type_artist (id_type_artist	, libelle_type_artist)
 VALUES
     (1,'Artist Solo'),
     (2,'Group'),
@@ -42,7 +42,7 @@ VALUES
     (4,'Orchestre');
 
 -- Populate the Title table
-INSERT INTO Title (id_title, name_title, time_title, publication_date_title, id_genre)
+INSERT INTO title (id_title, name_title, time_title, publication_date_title, id_genre)
 VALUES
     (1, 'Get Lucky', '06:09', '2013-04-19', 3),
     (2,'Come Together', '04:20', '1969-09-26', 2),
@@ -51,7 +51,7 @@ VALUES
     (5,'Hello', '04:55', '2015-10-23', 1);
 
 -- Populate the Artist table
-INSERT INTO Artist (id_artist, firstname_artist, lastname_artist, id_type_artist)
+INSERT INTO artist (id_artist, firstname_artist, lastname_artist, id_type_artist)
 VALUES
     (1, 'Thomas', 'Bangalter', 3),
     (2,'Paul', 'McCartney', 1),
@@ -61,7 +61,7 @@ VALUES
 
 
 -- Link Titles to Albums (assuming one-to-many relationship)
-INSERT INTO Title (id_title, name_title, time_title, publication_date_title, id_genre)
+INSERT INTO title (id_title, name_title, time_title, publication_date_title, id_genre)
 VALUES
     (6,'Digital Love', '05:00', '2001-03-12', 3);
 
