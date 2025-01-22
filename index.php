@@ -40,6 +40,10 @@ include "header.php"
             <img src="Style/img/LOFI.png" sizes width="150" height="70" alt="Musique Lofi">
         </a>
     </article>
+    
+    <article>
+        <button>Créer playlist</button>
+    </article>
 
 </main>
 
