@@ -125,16 +125,7 @@ body {
 
 /*------------------------------------------------------------------------*/
 
-th {
-    color: white;
-}
-
-td {
-    color: white;
-}
-
-.txt,
-label {
+th, td, .txt, label, ul, li, p {
     color: white;
 }
 

@@ -1,11 +1,15 @@
 <?php
 function ConnexionBase()
 {
+    $host = 'localhost';
+    $dbname = 'spoteezer';
+    $username = 'root';
+    $password = '';
     try {
         $connexion = new PDO(
-            'mysql:host=localhost;charset=utf8;dbname=spoteezer',
-            'root',
-            ''
+            "mysql:host=$host;dbname=$dbname;charset=utf8mb4",
+            $username,
+            $password
         );
         $connexion->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         return $connexion;
@@ -15,4 +19,3 @@ function ConnexionBase()
         die("Fin du script");
     }
 }
-?>

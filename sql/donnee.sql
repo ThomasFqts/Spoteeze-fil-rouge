@@ -30,14 +30,14 @@ VALUES
     (3,'Premium'),
     (4,'Student');
 
-    
+
 -- Insertion des données dans la table "users"
-INSERT INTO users (id_user, username, password, firstname_user, lastname_user, id_type_user)
+INSERT INTO users (id_user, username, email ,password, firstname_user, lastname_user, id_type_user, genre_user)
 VALUES
-    (1, 'thomas', 'password123', 'Thomas', 'Fouquet', 1),
-    (2, 'adelefan', 'password456', 'Adele', 'Fan', 2),
-    (3, 'rocklover', 'password789', 'David', 'Rocker', 2),
-    (4, 'queenbey', 'password000', 'Beyoncé', 'Knowles', 3);
+    (1, 'thomas', "thomasfouquet@gmail.com" ,'password123', 'Thomas', 'Fouquet', 1, "Homme"),
+    (2, 'adelefan', "adelefan@gmail.com" ,'password456', 'Adele', 'Fan', 2, "Femme"),
+    (3, 'rocklover', "davidrocker@gmail.com" ,'password789', 'David', 'Rocker', 2, "Homme"),
+    (4, 'queenbey', "beyonceknowles@gmail.com" ,'password000', 'Beyoncé', 'Knowles', 3, "Femme");
     
     -- Insertion des données dans la table "artist"
 INSERT INTO artist (id_artist, firstname_artist, lastname_artist, alias_artist, description_artist, id_type_artist)
