@@ -5,40 +5,25 @@ include "header.php"
 <!-------------------------------------------- Boutons Main ----------------------------------------------------->
 
 <main id="partiePrincipale">
+    <form action="" method="get">
+        <article id="boutons">
+            <button id="taPlaylist" style="width: 150px; height: 30px;">Playlist</button>
+        </article>
+
+        <article id="recherche">
+            <input id="barreDeRecherche" type="text" placeholder="Rechercher..." style="width: 150px; height: 30px;">
+        </article>
+
+        <article>
+            <label for="artist">Artist</label>
+            <input type="radio" name="artist" id="artistradio">
+
+            <label for="title">Titre</label>
+            <input type="radio" name="title" id="titleradio">
+        </article>
+    </form>
 
     <article>
-
-        <a href="pop">
-            <img src="Style/img/pop.png" width="150" height="70" alt="Musique Pop">
-        </a>
-
-        <a href="Rock">
-            <img src="Style/img/PNG.png" sizes width="150" height="70" alt="Musique Rock">
-        </a>
-
-        <a href="Rap">
-            <img src="Style/img/RAP.png" sizes width="150" height="70" alt="Musique Rap">
-        </a>
-
-        <a href="Workout">
-            <img src="Style/img/WORKOUT.png" sizes width="150" height="70" alt="Musique Workout">
-        </a>
-
-        <a href="RapUS">
-            <img src="Style/img/RAP US.png" sizes width="150" height="70" alt="Musique RapUs">
-        </a>
-
-        <a href="Dance">
-            <img src="Style/img/dance.png" sizes width="150" height="70" alt="Musique Dance">
-        </a>
-
-        <a href="Funk">
-            <img src="Style/img/funk.png" sizes width="150" height="70" alt="Musique Funk">
-        </a>
-
-        <a href="Lofi">
-            <img src="Style/img/LOFI.png" sizes width="150" height="70" alt="Musique Lofi">
-        </a>
     </article>
 
 </main>
