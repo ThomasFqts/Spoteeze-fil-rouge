@@ -2,43 +2,24 @@
 include "header.php"
 ?>
 
-<!-------------------------------------------- Boutons Main ----------------------------------------------------->
+<!------------------------------- Boutons Main ------------------------------------------------->
 
 <main id="partiePrincipale">
+    <!-- link bouton lumineux !-->
+<button class="button-85" role="button">Playlist</button>
 
     <article>
-
-        <a href="pop">
-            <img src="Style/img/pop.png" width="150" height="70" alt="Musique Pop">
-        </a>
-
-        <a href="Rock">
-            <img src="Style/img/PNG.png" sizes width="150" height="70" alt="Musique Rock">
-        </a>
-
-        <a href="Rap">
-            <img src="Style/img/RAP.png" sizes width="150" height="70" alt="Musique Rap">
-        </a>
-
-        <a href="Workout">
-            <img src="Style/img/WORKOUT.png" sizes width="150" height="70" alt="Musique Workout">
-        </a>
-
-        <a href="RapUS">
-            <img src="Style/img/RAP US.png" sizes width="150" height="70" alt="Musique RapUs">
-        </a>
-
-        <a href="Dance">
-            <img src="Style/img/dance.png" sizes width="150" height="70" alt="Musique Dance">
-        </a>
-
-        <a href="Funk">
-            <img src="Style/img/funk.png" sizes width="150" height="70" alt="Musique Funk">
-        </a>
-
-        <a href="Lofi">
-            <img src="Style/img/LOFI.png" sizes width="150" height="70" alt="Musique Lofi">
-        </a>
+        <div>
+        <button id="boutonMusiqueRock" style="width: 150px; height: 70px;">Rock</button>
+        <button id="boutonMusiquePop" style="width: 150px; height: 70px;">PoP</button>
+        <button id="boutonMusiqueFunk" style="width: 150px; height: 70px;">Funk</button>
+        <button id="boutonMusiqueLofi" style="width: 150px; height: 70px;">Lofi</button>
+        <button id="boutonMusiqueRap" style="width: 150px; height: 70px;">Rap</button>
+        <button id="boutonMusiqueRapUs" style="width: 150px; height: 70px;">Rap Us</button>
+        <button id="boutonMusiqueWorkout" style="width: 150px; height: 70px;">Workout</button>
+        <button id="boutonMusiqueDance" style="width: 150px; height: 70px;">Dance</button>
+        <button id="boutonMusiqueElectro" style="width: 150px; height: 70px;">Electro</button>
+        </div>
     </article>
     
     <article>

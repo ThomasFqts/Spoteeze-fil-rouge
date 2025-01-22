@@ -15,7 +15,7 @@
 
 </head>
 
-<body>
+<body>  <!----------------------------------Navbar Bootstrap------------------------------------->
     <header id="enTete">
         <nav class="navbar navbar-expand-lg bg-body-tertiary">
             <div class="container-fluid">
@@ -58,11 +58,7 @@
 
         <!-------------------------------------------- Boutons Header ----------------------------------------------->
 
-        <article id="boutons">
-            <button id="taPlaylist" style="width: 150px; height: 30px;">Playlist</button>
-        </article>
-
-        <article id="recherche">
+        <article id="recherche"> <!---barre de recherche --->
             <input id="barreDeRecherche" type="text" placeholder="Rechercher..." style="width: 150px; height: 30px;">
         </article>
 

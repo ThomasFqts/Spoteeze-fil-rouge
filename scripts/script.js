@@ -9,6 +9,7 @@ butRapUs = getElementById('boutonMusiqueRapUs');
 butDance = getElementById('boutonMusiqueDance');
 butFunk = getElementById('boutonMusiqueFunk');
 butLofi = getElementById('boutonMusiqueLofi');
+butElectro = getElementById('boutonMusiqueElectro');
 
 addEventListener (click, logo,  /* revenir à l'accueil */);
 addEventListener (click, butConnection,  /* page connection */);
