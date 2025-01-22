@@ -1,5 +1,5 @@
--- create database spoteezer;
-use spoteezer;
+ create database spoteezer;
+ use spoteezer;
 
 -- Création des tables
 
@@ -21,6 +21,12 @@ CREATE TABLE Music_Genre(
    id_genre INT AUTO_INCREMENT,
    name_genre VARCHAR(50)  NOT NULL,
    PRIMARY KEY(id_genre)
+);
+
+CREATE TABLE Playlist(
+   id_playlist INT AUTO_INCREMENT,
+   name_playlist VARCHAR(50)  NOT NULL,
+   PRIMARY KEY(id_playlist)
 );
 
 CREATE TABLE Type_Artist(
@@ -50,25 +56,25 @@ CREATE TABLE Artist(
    FOREIGN KEY(id_type_artist) REFERENCES Type_Artist(id_type_artist)
 );
 
-CREATE TABLE Playlist(
-   id_playlist INT AUTO_INCREMENT,
-   name_playlist VARCHAR(50)  NOT NULL,
-   id_title INT,
-   PRIMARY KEY(id_playlist),
-   FOREIGN KEY(id_title) REFERENCES Title(id_title)
-);
-
 CREATE TABLE Users(
    id_user INT AUTO_INCREMENT,
    Username VARCHAR(50)  NOT NULL,
    password VARCHAR(50)  NOT NULL,
    firstname_user VARCHAR(50)  NOT NULL,
    lastname_user VARCHAR(50)  NOT NULL,
-   id_playlist INT NOT NULL,
+   id_playlist INT,
    id_type_user INT NOT NULL,
    PRIMARY KEY(id_user),
    FOREIGN KEY(id_playlist) REFERENCES Playlist(id_playlist),
    FOREIGN KEY(id_type_user) REFERENCES User_type(id_type_user)
+);
+
+CREATE TABLE title_playlist(
+   id_title INT,
+   id_playlist INT,
+   PRIMARY KEY(id_title, id_playlist),
+   FOREIGN KEY(id_title) REFERENCES Title(id_title),
+   FOREIGN KEY(id_playlist) REFERENCES Playlist(id_playlist)
 );
 
 CREATE TABLE Production(

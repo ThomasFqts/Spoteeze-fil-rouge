@@ -41,3 +41,15 @@ img {
     display: flex;
     justify-content: space-around;
 }
+
+th {
+    color: white;
+}
+
+td {
+    color: white;
+}
+
+.txt, label {
+    color: white;
+}
