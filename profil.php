@@ -22,14 +22,14 @@
 
     <main>
         <div class="div">
-            
+
         <h2>Mes informations </h2>
         <h2>Connexion:</h2>
         <h2>Pseudo</h2>
         <h2>Email:</h2>
         <h2>Mot de passe</h2>
 
-
+        
         </div>
     </main>
 
