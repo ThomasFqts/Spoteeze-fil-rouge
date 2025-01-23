@@ -1,9 +1,6 @@
  create database spoteezer;
  use spoteezer;
 
--- Création des tables
-
-/*
 CREATE TABLE Album(
    id_album INT AUTO_INCREMENT,
    name_album VARCHAR(50) ,
@@ -63,11 +60,9 @@ CREATE TABLE Users(
    password VARCHAR(500)  NOT NULL,
    firstname_user VARCHAR(50)  NOT NULL,
    lastname_user VARCHAR(50)  NOT NULL,
-   id_playlist INT,
    id_type_user INT NOT NULL,
    genre_user VARCHAR(50) ,
    PRIMARY KEY(id_user),
-   FOREIGN KEY(id_playlist) REFERENCES Playlist(id_playlist),
    FOREIGN KEY(id_type_user) REFERENCES User_type(id_type_user)
 );
 
@@ -76,6 +71,14 @@ CREATE TABLE title_playlist(
    id_playlist INT,
    PRIMARY KEY(id_title, id_playlist),
    FOREIGN KEY(id_title) REFERENCES Title(id_title),
+   FOREIGN KEY(id_playlist) REFERENCES Playlist(id_playlist)
+);
+
+CREATE TABLE playlist_users(
+   id_user INT,
+   id_playlist INT,
+   PRIMARY KEY(id_user, id_playlist),
+   FOREIGN KEY(id_user) REFERENCES Users(id_user),
    FOREIGN KEY(id_playlist) REFERENCES Playlist(id_playlist)
 );
 
@@ -88,4 +91,3 @@ CREATE TABLE Production(
    FOREIGN KEY(id_album) REFERENCES Album(id_album),
    FOREIGN KEY(id_artist) REFERENCES Artist(id_artist)
 );
-*/

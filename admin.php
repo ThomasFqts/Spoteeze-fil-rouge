@@ -1,21 +1,19 @@
 <?php
-// session_start();
+session_start();
 
-// // Vérifiez si l'utilisateur est connecté et s'il a le rôle d'administrateur
-// if (!isset($_SESSION['user_type']) || $_SESSION['user_type'] !== 'Admin') {
-//     header('Location: index.php'); // Redirection pour les utilisateurs non autorisés
-//     exit();
-// }
+// Vérifiez si l'utilisateur est connecté et s'il a le rôle d'administrateur
+if (!isset($_SESSION['user_type']) || $_SESSION['user_type'] !== 'Admin') {
+    header('Location: index.php'); // Redirection pour les utilisateurs non autorisés
+    exit();
+}
 ?>
 
 <?php
 include "header.php";
-// on importe le contenu du fichier "db.php"
 include "db.php";
 
-// on exécute la méthode de connexion à notre BDD
-$db = connexionBase();
-// on lance une requête pour chercher toutes les fiches d'artistes
+$db = ConnexionBase();
+
 // Récupération des utilisateurs
 $usersrequest = $db->query("SELECT * FROM users");
 $users = $usersrequest->fetchAll(PDO::FETCH_ASSOC);
@@ -32,13 +30,32 @@ $titles = $titlesrequest->fetchAll(PDO::FETCH_ASSOC);
 $albumsrequest = $db->query("SELECT * FROM album");
 $albums = $albumsrequest->fetchAll(PDO::FETCH_ASSOC);
 ?>
+
 <h1>Admin Panel</h1>
 
 <section>
-    <form action="ajout_artist.php" method="get">
+    <form action="ajout.php" method="get">
         <button type="submit" class="btn btn-success">Ajouter</button>
     </form>
 </section><br>
+
+<!-- Formulaire pour sélectionner l'entité à modifier -->
+<h2>Modifier une entité</h2>
+<form action="edit.php" method="GET">
+    <label for="entity_type">Type d'entité :</label>
+    <select name="entity_type" id="entity_type">
+        <option value="user">Utilisateur</option>
+        <option value="artist">Artiste</option>
+        <option value="title">Titre</option>
+        <option value="album">Album</option>
+    </select>
+    <br><br>
+    <label for="entity_id">ID de l'entité :</label>
+    <input type="text" name="entity_id" id="entity_id" required>
+    <br><br>
+    <button type="submit">Modifier</button>
+</form><br>
+
 <h2>Liste des Utilisateurs</h2>
 <table border="1">
     <thead>
@@ -64,10 +81,6 @@ $albums = $albumsrequest->fetchAll(PDO::FETCH_ASSOC);
                     <form action="delete.php" method="POST" style="display:inline;">
                         <input type="hidden" name="id_user" value="<?= $user['id_user'] ?>">
                         <button type="submit" name="delete_user">Supprimer</button>
-                    </form>
-                    <form action="edit.php" method="GET" style="display:inline;">
-                        <input type="hidden" name="id" value="<?= $user['id_user'] ?>">
-                        <button type="submit">Modifier</button>
                     </form>
                 </td>
             </tr>
@@ -99,10 +112,7 @@ $albums = $albumsrequest->fetchAll(PDO::FETCH_ASSOC);
                         <input type="hidden" name="id_artist" value="<?= $artist['id_artist'] ?>">
                         <button type="submit" name="delete_artist">Supprimer</button>
                     </form>
-                    <form action="edit.php" method="GET" style="display:inline;">
-                        <input type="hidden" name="id" value="<?= $artist['id_artist'] ?>">
-                        <button type="submit">Modifier</button>
-                    </form>
+                </td>
             </tr>
         <?php endforeach; ?>
     </tbody>
@@ -128,10 +138,7 @@ $albums = $albumsrequest->fetchAll(PDO::FETCH_ASSOC);
                         <input type="hidden" name="id_album" value="<?= $album['id_album'] ?>">
                         <button type="submit" name="delete_album">Supprimer</button>
                     </form>
-                    <form action="edit.php" method="GET" style="display:inline;">
-                        <input type="hidden" name="id" value="<?= $album['id_album'] ?>">
-                        <button type="submit">Modifier</button>
-                    </form>
+                </td>
             </tr>
         <?php endforeach; ?>
     </tbody>
@@ -153,21 +160,17 @@ $albums = $albumsrequest->fetchAll(PDO::FETCH_ASSOC);
                 <td><?= htmlspecialchars($title['id_title']) ?></td>
                 <td><?= htmlspecialchars($title['name_title']) ?></td>
                 <td><?= htmlspecialchars($title['time_title']) ?></td>
+                <td><?= htmlspecialchars($title['id_genre']) ?></td>
                 <td>
                     <form action="delete.php" method="POST" style="display:inline;">
                         <input type="hidden" name="id_title" value="<?= $title['id_title'] ?>">
                         <button type="submit" name="delete_title">Supprimer</button>
                     </form>
-                    <form action="edit.php" method="GET" style="display:inline;">
-                        <input type="hidden" name="id" value="<?= $title['id_title'] ?>">
-                        <button type="submit">Modifier</button>
-                    </form>
+                </td>
             </tr>
         <?php endforeach; ?>
     </tbody>
 </table>
-
-<br><br>
 
 </body>
 

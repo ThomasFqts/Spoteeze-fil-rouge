@@ -1,5 +1,4 @@
 <?php
-
 include "db.php";
 $db = ConnexionBase();
 
@@ -10,10 +9,7 @@ if (isset($_POST['delete_user'])) {
         $db->beginTransaction();
 
         // Supprime l'utilisateur
-        $stmt = $db->prepare("
-            DELETE FROM users 
-            WHERE id_user = :id_user
-        ");
+        $stmt = $db->prepare("DELETE FROM Users WHERE id_user = :id_user");
         $stmt->execute([':id_user' => $id_user]);
 
         $db->commit();
@@ -31,40 +27,20 @@ if (isset($_POST['delete_artist'])) {
     try {
         $db->beginTransaction();
 
-        // Supprimer les relations dans `production` (liens entre titres/albums et artistes)
-        $stmt = $db->prepare("
-            DELETE FROM production 
-            WHERE id_artist = :id_artist
-        ");
+        // Supprimer les relations dans `Production` (liens entre titres/albums et artistes)
+        $stmt = $db->prepare("DELETE FROM Production WHERE id_artist = :id_artist");
         $stmt->execute([':id_artist' => $id_artist]);
 
         // Supprimer les titres associés à l'artiste
-        $stmt = $db->prepare("
-            DELETE FROM title 
-            WHERE id_title IN (
-                SELECT id_title 
-                FROM production 
-                WHERE id_artist = :id_artist
-            )
-        ");
+        $stmt = $db->prepare("DELETE FROM Title WHERE id_title IN (SELECT id_title FROM Production WHERE id_artist = :id_artist)");
         $stmt->execute([':id_artist' => $id_artist]);
 
         // Supprimer les albums associés à l'artiste
-        $stmt = $db->prepare("
-            DELETE FROM album 
-            WHERE id_album IN (
-                SELECT id_album 
-                FROM production 
-                WHERE id_artist = :id_artist
-            )
-        ");
+        $stmt = $db->prepare("DELETE FROM Album WHERE id_album IN (SELECT id_album FROM Production WHERE id_artist = :id_artist)");
         $stmt->execute([':id_artist' => $id_artist]);
 
         // Supprimer l'artiste
-        $stmt = $db->prepare("
-            DELETE FROM artist 
-            WHERE id_artist = :id_artist
-        ");
+        $stmt = $db->prepare("DELETE FROM Artist WHERE id_artist = :id_artist");
         $stmt->execute([':id_artist' => $id_artist]);
 
         $db->commit(); // Valider la transaction
@@ -75,7 +51,6 @@ if (isset($_POST['delete_artist'])) {
     }
 }
 
-
 // Suppression d'un titre seulement
 if (isset($_POST['delete_title'])) {
     $id_title = intval($_POST['id_title']); // Récupére l'ID du titre à supprimer
@@ -83,16 +58,16 @@ if (isset($_POST['delete_title'])) {
     try {
         $db->beginTransaction();
 
-        // Supprime le titre dans la table `production` (relation entre titre, album et artiste)
-        $stmt = $db->prepare("DELETE FROM production WHERE id_title = :id_title");
+        // Supprime le titre dans la table `Production` (relation entre titre, album et artiste)
+        $stmt = $db->prepare("DELETE FROM Production WHERE id_title = :id_title");
         $stmt->execute([':id_title' => $id_title]);
 
         // Supprime les relations dans `title_playlist`
         $stmt = $db->prepare("DELETE FROM title_playlist WHERE id_title = :id_title");
         $stmt->execute([':id_title' => $id_title]);
 
-        // Supprime le titre dans la table `title`
-        $stmt = $db->prepare("DELETE FROM title WHERE id_title = :id_title");
+        // Supprime le titre dans la table `Title`
+        $stmt = $db->prepare("DELETE FROM Title WHERE id_title = :id_title");
         $stmt->execute([':id_title' => $id_title]);
 
         $db->commit();
@@ -110,12 +85,12 @@ if (isset($_POST['delete_album'])) {
     try {
         $db->beginTransaction();
 
-        // Supprime les relations dans la table `production` (lien entre titres et albums)
-        $stmt = $db->prepare("DELETE FROM production WHERE id_album = :id_album");
+        // Supprime les relations dans la table `Production` (lien entre titres et albums)
+        $stmt = $db->prepare("DELETE FROM Production WHERE id_album = :id_album");
         $stmt->execute([':id_album' => $id_album]);
 
-        // Supprime l'album dans la table `album`
-        $stmt = $db->prepare("DELETE FROM album WHERE id_album = :id_album");
+        // Supprime l'album dans la table `Album`
+        $stmt = $db->prepare("DELETE FROM Album WHERE id_album = :id_album");
         $stmt->execute([':id_album' => $id_album]);
 
         $db->commit();
@@ -125,3 +100,4 @@ if (isset($_POST['delete_album'])) {
         echo "Erreur : " . $e->getMessage();
     }
 }
+?>

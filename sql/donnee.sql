@@ -1,93 +1,127 @@
 -- Utilisation de la base de données
 USE spoteezer;
-/*
--- Insertion des données dans la table "music_genre"
-INSERT INTO music_genre (id_genre, name_genre)
-VALUES
-    (1, 'Pop'),
-    (2, 'Rock'),
-    (3, 'Electronic'),
-    (4, 'Hip-Hop'),
-    (5, 'Funk'),
-    (6, 'Workout'),
-    (7, 'Rap'),
-    (8, 'Dance'),
-    (9, 'Rap US'),
-    (10, 'Lofi');
 
--- Insertion des données dans la table "type_artist"
-INSERT INTO type_artist (id_type_artist, libelle_type_artist)
-VALUES
-    (1, 'Chanteur Solo'),
-    (2, 'Groupe'),
-    (3, 'DJ'),
-    (4, 'Compositeur');
+-- Insertion des données dans la table Album
+INSERT INTO Album (name_album, publication_date_album) VALUES
+('Thriller', '1982-11-30'),
+('Back in Black', '1980-07-25'),
+('The Dark Side of the Moon', '1973-03-01'),
+('Abbey Road', '1969-09-26'),
+('Hotel California', '1976-12-08'),
+('Rumours', '1977-02-04'),
+('The Wall', '1979-11-30'),
+('Born in the U.S.A.', '1984-06-04'),
+('Purple Rain', '1984-06-25'),
+('Nevermind', '1991-09-24');
 
-INSERT INTO user_type (id_type_user, name_type_user)
-VALUES
-	(1, 'Admin'),
-    (2,'Free'),
-    (3,'Premium'),
-    (4,'Student');
+-- Insertion des données dans la table User_type
+INSERT INTO User_type (name_type_user) VALUES
+('Admin'),
+('Invite'),
+('Free'),
+('Premium'),
+('Student');
 
+-- Insertion des données dans la table Music_Genre
+INSERT INTO Music_Genre (name_genre) VALUES
+('Pop'),
+('Rock'),
+('Electronic'),
+('Hip-Hop'),
+('Funk'),
+('Workout'),
+('Rap'),
+('Dance'),
+('Rap US'),
+('Lofi');
 
--- Insertion des données dans la table "users"
-INSERT INTO users (id_user, username, email ,password, firstname_user, lastname_user, id_type_user, genre_user)
-VALUES
-    (1, 'thomas', "thomasfouquet@gmail.com" ,'password123', 'Thomas', 'Fouquet', 1, "Homme"),
-    (2, 'adelefan', "adelefan@gmail.com" ,'password456', 'Adele', 'Fan', 2, "Femme"),
-    (3, 'rocklover', "davidrocker@gmail.com" ,'password789', 'David', 'Rocker', 2, "Homme"),
-    (4, 'queenbey', "beyonceknowles@gmail.com" ,'password000', 'Beyoncé', 'Knowles', 3, "Femme");
-    
-    -- Insertion des données dans la table "artist"
-INSERT INTO artist (id_artist, firstname_artist, lastname_artist, alias_artist, description_artist, id_type_artist)
-VALUES
-    (1, 'Thomas', 'Bangalter', 'Thomas', 'Membre du groupe Daft Punk', 3),
-    (2, 'Guy-Manuel', 'de Homem-Christo', 'Guy-Manuel', 'Autre membre de Daft Punk', 3),
-    (3, 'Adele', NULL, NULL, 'Chanteuse britannique célèbre', 1),
-    (4, 'David', 'Bowie', NULL, 'Icône du rock', 1),
-    (5, 'Beyoncé', 'Knowles', NULL, 'Chanteuse pop américaine', 1);
-    
-    -- Insertion des données dans la table "title"
-INSERT INTO title (id_title, name_title, time_title, publication_date_title, id_genre)
-VALUES
-    (1, 'Get Lucky', '06:09', '2013-04-19', 3),
-    (2, 'Rolling in the Deep', '03:48', '2010-11-29', 1),
-    (3, 'Space Oddity', '05:15', '1969-07-11', 2),
-    (4, 'Crazy in Love', '03:56', '2003-05-18', 1),
-    (5, 'Harder Better Faster Stronger', '03:44', '2001-10-13', 3);
+-- Insertion des données dans la table Playlist
+INSERT INTO Playlist (name_playlist) VALUES
+('Top Hits 2023'),
+('Classic Rock'),
+('Jazz Vibes'),
+('Pop Essentials'),
+('Hip Hop Beats'),
+('Electronic Dance'),
+('Country Roads'),
+('Reggae Rhythms');
 
--- Insertion des données dans la table "album"
-INSERT INTO album (id_album, name_album, publication_date_album)
-VALUES
-    (1, 'Random Access Memories', '2013-05-17'),
-    (2, '21', '2011-01-24'),
-    (3, 'The Rise and Fall of Ziggy Stardust', '1972-06-16'),
-    (4, 'Dangerously in Love', '2003-06-24'),
-    (5, 'Discovery', '2001-03-12');
+-- Insertion des données dans la table Type_Artist
+INSERT INTO Type_Artist (libelle_type_artist) VALUES
+('Chanteur Solo'),
+('Groupe'),
+('DJ'),
+('Compositeur');
 
--- Insertion des données dans la table "playlist"
-INSERT INTO playlist (id_playlist, name_playlist)
-VALUES
-    (1, 'Workout Jams'),
-    (2, 'Relaxing Vibes'),
-    (3, 'Party Hits');
+-- Insertion des données dans la table Title
+INSERT INTO Title (name_title, time_title, publication_date_title, id_genre) VALUES
+('Billie Jean', '4:54', '1982-11-30', 2),
+('Back in Black', '4:15', '1980-07-25', 1),
+('Money', '6:22', '1973-03-01', 1),
+('Come Together', '4:19', '1969-09-26', 1),
+('Hotel California', '6:30', '1976-12-08', 1),
+('Go Your Own Way', '3:38', '1977-02-04', 1),
+('Another Brick in the Wall', '3:59', '1979-11-30', 1),
+('Born in the U.S.A.', '4:39', '1984-06-04', 1),
+('Purple Rain', '8:41', '1984-06-25', 2),
+('Smells Like Teen Spirit', '5:01', '1991-09-24', 1);
 
--- Insertion des données dans la table "title_playlist"
-INSERT INTO title_playlist (id_title, id_playlist)
-VALUES
-    (1, 1),
-    (2, 2),
-    (3, 2),
-    (4, 3),
-    (5, 3);
+-- Insertion des données dans la table Artist
+INSERT INTO Artist (firstname_artist, lastname_artist, alias_artist, description_artist, id_type_artist) VALUES
+('Michael', 'Jackson', 'MJ', 'King of Pop', 1),
+('Angus', 'Young', 'AC/DC', 'Lead guitarist of AC/DC', 2),
+('David', 'Gilmour', 'Pink Floyd', 'Guitarist and co-lead vocalist of Pink Floyd', 2),
+('John', 'Lennon', 'The Beatles', 'Member of The Beatles', 2),
+('Don', 'Henley', 'Eagles', 'Lead vocalist of Eagles', 2),
+('Stevie', 'Nicks', 'Fleetwood Mac', 'Vocalist of Fleetwood Mac', 2),
+('Bruce', 'Springsteen', 'The Boss', 'American rock singer-songwriter', 1),
+('Prince', 'Rogers Nelson', 'Prince', 'American singer-songwriter', 1),
+('Kurt', 'Cobain', 'Nirvana', 'Lead vocalist of Nirvana', 2);
 
--- Insertion des données dans la table "production"
-INSERT INTO production (id_title, id_album, id_artist)
-VALUES
-    (1, 1, 1),
-    (2, 2, 3),
-    (3, 3, 4),
-    (4, 4, 5),
-    (5, 5, 1);
-*/
+-- Insertion des données dans la table Users
+INSERT INTO Users (Username, email, password, firstname_user, lastname_user, id_type_user, genre_user) VALUES
+('john_doe', 'john.doe@example.com', 'password1', 'John', 'Doe', 2, 'Rock'),
+('jane_smith', 'jane.smith@example.com', 'password2', 'Jane', 'Smith', 2, 'Pop'),
+('bob_jazz', 'bob.jazz@example.com', 'password3', 'Bob', 'Jazz', 2, 'Jazz'),
+('alice_rock', 'alice.rock@example.com', 'password4', 'Alice', 'Rock', 2, 'Rock'),
+('charlie_hiphop', 'charlie.hiphop@example.com', 'password5', 'Charlie', 'HipHop', 2, 'Hip Hop'),
+('dave_electro', 'dave.electro@example.com', 'password6', 'Dave', 'Electro', 2, 'Electronic'),
+('eve_country', 'eve.country@example.com', 'password7', 'Eve', 'Country', 2, 'Country'),
+('frank_reggae', 'frank.reggae@example.com', 'password8', 'Frank', 'Reggae', 2, 'Reggae');
+
+-- Insertion des données dans la table title_playlist
+INSERT INTO title_playlist (id_title, id_playlist) VALUES
+(1, 1),
+(2, 2),
+(3, 3),
+(4, 4),
+(5, 5),
+(6, 6),
+(7, 7),
+(8, 8),
+(9, 1),
+(10, 2);
+
+-- Insertion des données dans la table playlist_users
+INSERT INTO playlist_users (id_user, id_playlist) VALUES
+(1, 1),
+(2, 2),
+(2, 3),
+(3, 4),
+(4, 5),
+(5, 6),
+(6, 7),
+(7, 8);
+
+-- Insertion des données dans la table Production
+INSERT INTO Production (id_title, id_album, id_artist) VALUES
+(1, 1, 1),
+(2, 2, 2),
+(3, 3, 3),
+(4, 4, 4),
+(5, 5, 5),
+(6, 6, 6),
+(7, 7, 3),
+(8, 8, 7),
+(9, 9, 8),
+(10, 10, 9);
