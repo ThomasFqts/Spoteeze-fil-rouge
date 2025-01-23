@@ -36,7 +36,7 @@
             <img src="Style/img/logo.png" alt="Spoteezer" width="250" height="150">
         </article>
 
-        <!-------------------------------------------- Boutons Header ----------------------------------------------->
+        <!--------------------------------- Boutons Header ----------------------------->
 
         <article id="recherche"> <!---barre de recherche --->
             <input id="barreDeRecherche" type="text" placeholder="Rechercher..." style="width: 150px; height: 30px;">
