@@ -36,20 +36,14 @@ body {
 
 #barreDeRecherche {
     width: 250px;
-    /*Largeur */
     height: 30px;
-    /*Hauteur */
     padding: 5px;
-    /*Espacement interne */
-    border-radius: 5px;
-    /*Coins arrondis*/
+    border-radius: 5px; /*Coins arrondis*/
     border: 1px solid #ccc;
-    /*Bordure légère */
     font-size: 16px;
-    /* Taille de la police */
 }
 
-/*----------------------Bouton coloré playlist-----------------------------------*/
+/*----------------------Bouton coloré pour la playlist -----------------------------------*/
 .button-85 {
     padding: 0.6em 2em;
     border: none;
@@ -58,13 +52,9 @@ body {
     background: #111;
     cursor: pointer;
     position: fixed;
-    /* Utilisation de position fixe pour qu'il reste en haut à droite même lors du défilement */
     top: 10px;
-    /* Distance du bord supérieur */
     right: 10px;
-    /* Distance du bord droit */
     z-index: 1000;
-    /* Assurez-vous que le bouton est au-dessus des autres éléments */
     border-radius: 10px;
     user-select: none;
     -webkit-user-select: none;
@@ -123,7 +113,7 @@ body {
     border-radius: 10px;
 }
 
-/*------------------------------------------------------------------------*/
+/*--------------------------------- couleur text toute page --------------------------------------*/
 
 th {
     color: white;
@@ -138,9 +128,9 @@ label {
     color: white;
 }
 
-/*----------------------------------------------------------*/
+/*-------------------------couleur Bouton index---------------------------------*/
 
-div {
+.colorbuton {
    display: flex;
    justify-content: space-around;
 }
@@ -150,41 +140,47 @@ div {
 }
 
 #boutonMusiquePop{
-    background-color:#14e6db
+    background-color:#6786f8
 
 }
 
 #boutonMusiqueFunk{
-    background-color:#14e6db
+    background-color:#9253f2
 
 }
 
 #boutonMusiqueLofi{
-    background-color:#14e6db
+    background-color:#ef1fd8
 
 }
 
 #boutonMusiqueRap{
-    background-color:#14e6db
+    background-color:#ff259e
 
 }
 
 #boutonMusiqueRapUs{
-    background-color:#14e6db
+    background-color:#ff5946
 
 }
 
 #boutonMusiqueWorkout{
-    background-color:#14e6db
+    background-color:#ffaf21
 
 }
 
 #boutonMusiqueDance{
-    background-color:#14e6db
+    background-color:#ffe327
 
 }
 
 #boutonMusiqueElectro{
     background-color:#14e6db
 
+}
+
+/*--------------------------------------------------------------------*/
+
+.textmid {
+    
 }

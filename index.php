@@ -9,7 +9,7 @@ include "header.php"
 <button class="button-85" role="button">Playlist</button>
 
     <article>
-        <div>
+        <div class="colorbuton">
         <button id="boutonMusiqueRock" style="width: 150px; height: 70px;">Rock</button>
         <button id="boutonMusiquePop" style="width: 150px; height: 70px;">PoP</button>
         <button id="boutonMusiqueFunk" style="width: 150px; height: 70px;">Funk</button>

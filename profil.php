@@ -11,7 +11,7 @@
 <body>
 
     <header>
-        <div class="container">
+        <div class="texttop">
 
         <h2> Mes Informations </h2>
         <h2>Préférance de notifications </h2>
@@ -21,7 +21,7 @@
     </header>
 
     <main>
-        <div class="div">
+        <div class="textmid">
             
         <h2>Mes informations </h2>
         <h2>Connexion:</h2>
