@@ -115,16 +115,7 @@ body {
 
 /*--------------------------------- couleur text toute page --------------------------------------*/
 
-th {
-    color: white;
-}
-
-td {
-    color: white;
-}
-
-.txt,
-label {
+th, td, .txt, label, ul, li, p {
     color: white;
 }
 

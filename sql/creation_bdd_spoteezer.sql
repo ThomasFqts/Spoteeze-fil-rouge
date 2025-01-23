@@ -59,11 +59,13 @@ CREATE TABLE Artist(
 CREATE TABLE Users(
    id_user INT AUTO_INCREMENT,
    Username VARCHAR(50)  NOT NULL,
+   email VARCHAR(100)  NOT NULL,
    password VARCHAR(50)  NOT NULL,
    firstname_user VARCHAR(50)  NOT NULL,
    lastname_user VARCHAR(50)  NOT NULL,
    id_playlist INT,
    id_type_user INT NOT NULL,
+   genre_user VARCHAR(50) ,
    PRIMARY KEY(id_user),
    FOREIGN KEY(id_playlist) REFERENCES Playlist(id_playlist),
    FOREIGN KEY(id_type_user) REFERENCES User_type(id_type_user)

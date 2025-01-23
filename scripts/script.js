@@ -16,15 +16,13 @@ addEventListener (click, butConnection,  /* page connection */);
 addEventListener (click, butPlaylist,  /* ? */);
 
 addEventListener (click, butPop, [sortirPlaylistPop]);
-addEventListener (click, butRock, [sortirPlaylistPop]);
-addEventListener (click, butRap, [sortirPlaylistPop]);
-addEventListener (click, butWorkout, [sortirPlaylistPop]);
-addEventListener (click, butRapUs, [sortirPlaylistPop]);
-addEventListener (click, butDance, [sortirPlaylistPop]);
-addEventListener (click, butFunk, [sortirPlaylistPop]);
-addEventListener (click, butLofi, [sortirPlaylistPop]);
-addEventListener (click, butElectro, [sortirPlaylistPop]);
-
+addEventListener (click, butRock, [sortirPlaylistRock]);
+addEventListener (click, butRap, [sortirPlaylistRap]);
+addEventListener (click, butWorkout, [sortirPlaylistWorkout]);
+addEventListener (click, butRapUs, [sortirPlaylistRapUs]);
+addEventListener (click, butDance, [sortirPlaylistDance]);
+addEventListener (click, butFunk, [sortirPlaylistFunk]);
+addEventListener (click, butLofi, [sortirPlaylistLofi]);
 
 /* Playlists par défauts */
 
@@ -33,8 +31,43 @@ function sortirPlaylistPop (nom) {
     sortirLaPlaylist (nom);
 };
 
+function sortirPlaylistRock (nom) {
+    let nom = "rock";
+    sortirLaPlaylist (nom);
+};
+
+function sortirPlaylistRap (nom) {
+    let nom = "rap";
+    sortirLaPlaylist (nom);
+};
+
+function sortirPlaylistWorkout (nom) {
+    let nom = "workout";
+    sortirLaPlaylist (nom);
+};
+
+function sortirPlaylistRapUs (nom) {
+    let nom = "rapus";
+    sortirLaPlaylist (nom);
+};
+
+function sortirPlaylistDance (nom) {
+    let nom = "dance";
+    sortirLaPlaylist (nom);
+};
+
+function sortirPlaylistFunk (nom) {
+    let nom = "funk";
+    sortirLaPlaylist (nom);
+};
+
+function sortirPlaylistLofi (nom) {
+    let nom = "lofi";
+    sortirLaPlaylist (nom);
+};
+
 function sortirLaPlaylist (nom_) {
     fetch
-
+/* php */
     innerhtml
 };

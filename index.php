@@ -21,6 +21,10 @@ include "header.php"
         <button id="boutonMusiqueElectro" style="width: 150px; height: 70px;">Electro</button>
         </div>
     </article>
+    
+    <article>
+        <button>Créer playlist</button>
+    </article>
 
 </main>
 
