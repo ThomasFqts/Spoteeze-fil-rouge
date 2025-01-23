@@ -60,7 +60,7 @@ CREATE TABLE Users(
    id_user INT AUTO_INCREMENT,
    Username VARCHAR(50)  NOT NULL,
    email VARCHAR(100)  NOT NULL,
-   password VARCHAR(50)  NOT NULL,
+   password VARCHAR(500)  NOT NULL,
    firstname_user VARCHAR(50)  NOT NULL,
    lastname_user VARCHAR(50)  NOT NULL,
    id_playlist INT,
