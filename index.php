@@ -6,22 +6,30 @@ include "header.php"
 
 <main id="partiePrincipale">
     <!-- link bouton lumineux !-->
-<button class="button-85" role="button">Playlist</button>
+    <button class="button-85" role="button">Playlist</button>
 
     <article>
         <div class="colorbuton">
-        <button id="boutonMusiqueRock" style="width: 150px; height: 70px;">Rock</button>
-        <button id="boutonMusiquePop" style="width: 150px; height: 70px;">PoP</button>
-        <button id="boutonMusiqueFunk" style="width: 150px; height: 70px;">Funk</button>
-        <button id="boutonMusiqueLofi" style="width: 150px; height: 70px;">Lofi</button>
-        <button id="boutonMusiqueRap" style="width: 150px; height: 70px;">Rap</button>
-        <button id="boutonMusiqueRapUs" style="width: 150px; height: 70px;">Rap Us</button>
-        <button id="boutonMusiqueWorkout" style="width: 150px; height: 70px;">Workout</button>
-        <button id="boutonMusiqueDance" style="width: 150px; height: 70px;">Dance</button>
-        <button id="boutonMusiqueElectro" style="width: 150px; height: 70px;">Electro</button>
+            <a href="playlist_default.php?genre=Rock"><button id="boutonMusiqueRock" style="width: 150px; height: 70px;">Rock</button> </a>
+            <a href="playlist_default.php?genre=Pop"> <button id="boutonMusiquePop" style="width: 150px; height: 70px;">PoP</button>
+            </a>
+            <a href="playlist_default.php?genre=Funk"> <button id="boutonMusiqueFunk" style="width: 150px; height: 70px;">Funk</button>
+            </a>
+            <a href="playlist_default.php?genre=Lofi"> <button id="boutonMusiqueLofi" style="width: 150px; height: 70px;">Lofi</button>
+            </a>
+            <a href="playlist_default.php?genre=Rap"> <button id="boutonMusiqueRap" style="width: 150px; height: 70px;">Rap</button>
+            </a>
+            <a href="playlist_default.php?genre=RapUs"> <button id="boutonMusiqueRapUs" style="width: 150px; height: 70px;">Rap Us</button>
+            </a>
+            <a href="playlist_default.php?genre=Workout"> <button id="boutonMusiqueWorkout" style="width: 150px; height: 70px;">Workout</button>
+            </a>
+            <a href="playlist_default.php?genre=Dance"> <button id="boutonMusiqueDance" style="width: 150px; height: 70px;">Dance</button>
+            </a>
+            <a href="playlist_default.php?genre=Electro"> <button id="boutonMusiqueElectro" style="width: 150px; height: 70px;">Electro</button>
+            </a>
         </div>
     </article>
-    
+
     <article>
         <button>Créer playlist</button>
     </article>

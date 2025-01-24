@@ -32,7 +32,7 @@
             </div>
         </nav>
 
-        <!-- <article id="logo">
+        <article id="logo">
             <img src="Style/img/logo.png" alt="Spoteezer" width="250" height="150">
         </article>
 
