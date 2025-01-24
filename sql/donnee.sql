@@ -79,15 +79,15 @@ INSERT INTO Artist (firstname_artist, lastname_artist, alias_artist, description
 ('Kurt', 'Cobain', 'Nirvana', 'Lead vocalist of Nirvana', 2);
 
 -- Insertion des données dans la table Users
-INSERT INTO Users (Username, email, password, firstname_user, lastname_user, id_type_user, genre_user) VALUES
-('john_doe', 'john.doe@example.com', 'password1', 'John', 'Doe', 2, 'Rock'),
-('jane_smith', 'jane.smith@example.com', 'password2', 'Jane', 'Smith', 2, 'Pop'),
-('bob_jazz', 'bob.jazz@example.com', 'password3', 'Bob', 'Jazz', 2, 'Jazz'),
-('alice_rock', 'alice.rock@example.com', 'password4', 'Alice', 'Rock', 2, 'Rock'),
-('charlie_hiphop', 'charlie.hiphop@example.com', 'password5', 'Charlie', 'HipHop', 2, 'Hip Hop'),
-('dave_electro', 'dave.electro@example.com', 'password6', 'Dave', 'Electro', 2, 'Electronic'),
-('eve_country', 'eve.country@example.com', 'password7', 'Eve', 'Country', 2, 'Country'),
-('frank_reggae', 'frank.reggae@example.com', 'password8', 'Frank', 'Reggae', 2, 'Reggae');
+INSERT INTO Users (Username, email, password, firstname_user, lastname_user, id_type_user, sexe_user) VALUES
+('john_doe', 'john.doe@example.com', 'password1', 'John', 'Doe', 2, 'Homme'),
+('jane_smith', 'jane.smith@example.com', 'password2', 'Jane', 'Smith', 2, 'Femme'),
+('bob_jazz', 'bob.jazz@example.com', 'password3', 'Bob', 'Jazz', 2, 'Homme'),
+('alice_rock', 'alice.rock@example.com', 'password4', 'Alice', 'Rock', 2, 'Femme'),
+('charlie_hiphop', 'charlie.hiphop@example.com', 'password5', 'Charlie', 'HipHop', 2, 'Homme'),
+('dave_electro', 'dave.electro@example.com', 'password6', 'Dave', 'Electro', 2, 'Homme'),
+('eve_country', 'eve.country@example.com', 'password7', 'Eve', 'Country', 2, 'Femme'),
+('frank_reggae', 'frank.reggae@example.com', 'password8', 'Frank', 'Reggae', 2, 'Homme');
 
 -- Insertion des données dans la table title_playlist
 INSERT INTO title_playlist (id_title, id_playlist) VALUES

@@ -61,7 +61,7 @@ CREATE TABLE Users(
    firstname_user VARCHAR(50)  NOT NULL,
    lastname_user VARCHAR(50)  NOT NULL,
    id_type_user INT NOT NULL,
-   genre_user VARCHAR(50) ,
+   sexe_user VARCHAR(50) ,
    PRIMARY KEY(id_user),
    FOREIGN KEY(id_type_user) REFERENCES User_type(id_type_user)
 );
