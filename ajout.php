@@ -1,14 +1,24 @@
 <?php
+session_start();
+
+// Vérifie si l'utilisateur est connecté et s'il a le rôle d'administrateur
+if (!isset($_SESSION['user_type']) || $_SESSION['user_type'] !== 'Admin') {
+    header('Location: index.php'); // Redirection pour les utilisateurs non autorisés
+    exit();
+}
+?>
+
+<?php
 include "header.php";
 include "db.php";
 $db = ConnexionBase(); // Connexion à la base de données
 
 // Types d'utilisateur (Admin, Free, etc.)
-$user_types = $db->query("SELECT * FROM User_type")->fetchAll(PDO::FETCH_ASSOC);
+$user_types = $db->query("SELECT * FROM user_type")->fetchAll(PDO::FETCH_ASSOC);
 
 // Récupére les genres musicaux et les types d'artistes pour les sélecteurs
-$music_genres = $db->query("SELECT * FROM Music_Genre")->fetchAll(PDO::FETCH_ASSOC);
-$type_artists = $db->query("SELECT * FROM Type_Artist")->fetchAll(PDO::FETCH_ASSOC);
+$music_genres = $db->query("SELECT * FROM music_genre")->fetchAll(PDO::FETCH_ASSOC);
+$type_artists = $db->query("SELECT * FROM yype_artist")->fetchAll(PDO::FETCH_ASSOC);
 
 // Traitement des soumissions de formulaires
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -19,7 +29,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $description_artist = $_POST['description_artist'];
         $id_type_artist = $_POST['id_type_artist'];
 
-        $stmt = $db->prepare("INSERT INTO Artist (firstname_artist, lastname_artist, alias_artist, description_artist, id_type_artist) VALUES (?, ?, ?, ?, ?)");
+        $stmt = $db->prepare("INSERT INTO artist (firstname_artist, lastname_artist, alias_artist, description_artist, id_type_artist) VALUES (?, ?, ?, ?, ?)");
         $stmt->execute([$firstname_artist, $lastname_artist, $alias_artist, $description_artist, $id_type_artist]);
         echo "Artiste ajouté avec succès.";
     } elseif (isset($_POST['add_user'])) {
@@ -31,7 +41,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $id_type_user = $_POST['id_type_user'];
         $genre_user = $_POST['genre_user'];
 
-        $stmt = $db->prepare("INSERT INTO Users (Username, email, password, firstname_user, lastname_user, id_type_user, genre_user) VALUES (?, ?, ?, ?, ?, ?, ?)");
+        $stmt = $db->prepare("INSERT INTO users (Username, email, password, firstname_user, lastname_user, id_type_user, genre_user) VALUES (?, ?, ?, ?, ?, ?, ?)");
         $stmt->execute([$username, $email, $password, $firstname_user, $lastname_user, $id_type_user, $genre_user]);
         echo "Utilisateur ajouté avec succès.";
     } elseif (isset($_POST['add_title'])) {
@@ -40,14 +50,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $publication_date_title = $_POST['publication_date_title'];
         $id_genre = $_POST['id_genre'];
 
-        $stmt = $db->prepare("INSERT INTO Title (name_title, time_title, publication_date_title, id_genre) VALUES (?, ?, ?, ?)");
+        $stmt = $db->prepare("INSERT INTO title (name_title, time_title, publication_date_title, id_genre) VALUES (?, ?, ?, ?)");
         $stmt->execute([$name_title, $time_title, $publication_date_title, $id_genre]);
         echo "Titre ajouté avec succès.";
     } elseif (isset($_POST['add_album'])) {
         $name_album = $_POST['name_album'];
         $publication_date_album = $_POST['publication_date_album'];
 
-        $stmt = $db->prepare("INSERT INTO Album (name_album, publication_date_album) VALUES (?, ?)");
+        $stmt = $db->prepare("INSERT INTO album (name_album, publication_date_album) VALUES (?, ?)");
         $stmt->execute([$name_album, $publication_date_album]);
         echo "Album ajouté avec succès.";
     }

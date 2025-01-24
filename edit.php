@@ -1,22 +1,32 @@
 <?php
+session_start();
+
+// Vérifie si l'utilisateur est connecté et s'il a le rôle d'administrateur
+if (!isset($_SESSION['user_type']) || $_SESSION['user_type'] !== 'Admin') {
+    header('Location: index.php'); // Redirection pour les utilisateurs non autorisés
+    exit();
+}
+?>
+
+<?php
 include "header.php";
 include "db.php";
 $db = ConnexionBase(); // Connexion à la base de données
 
-// Récupérer toutes les entités nécessaires pour les sélecteurs
-$users = $db->query("SELECT * FROM Users")->fetchAll(PDO::FETCH_ASSOC);
-$artists = $db->query("SELECT * FROM Artist")->fetchAll(PDO::FETCH_ASSOC);
-$titles = $db->query("SELECT * FROM Title")->fetchAll(PDO::FETCH_ASSOC);
-$albums = $db->query("SELECT * FROM Album")->fetchAll(PDO::FETCH_ASSOC);
+// Récupére toutes les entités nécessaires pour les sélecteurs
+$users = $db->query("SELECT * FROM users")->fetchAll(PDO::FETCH_ASSOC);
+$artists = $db->query("SELECT * FROM artist")->fetchAll(PDO::FETCH_ASSOC);
+$titles = $db->query("SELECT * FROM title")->fetchAll(PDO::FETCH_ASSOC);
+$albums = $db->query("SELECT * FROM album")->fetchAll(PDO::FETCH_ASSOC);
 
 // Types d'utilisateur (Admin, Free, etc.)
-$user_types = $db->query("SELECT * FROM User_type")->fetchAll(PDO::FETCH_ASSOC);
+$user_types = $db->query("SELECT * FROM user_type")->fetchAll(PDO::FETCH_ASSOC);
 
-// Récupérer les genres musicaux et les types d'artistes pour les sélecteurs
-$music_genres = $db->query("SELECT * FROM Music_Genre")->fetchAll(PDO::FETCH_ASSOC);
-$type_artists = $db->query("SELECT * FROM Type_Artist")->fetchAll(PDO::FETCH_ASSOC);
+// Récupére les genres musicaux et les types d'artistes pour les sélecteurs
+$music_genres = $db->query("SELECT * FROM music_genre")->fetchAll(PDO::FETCH_ASSOC);
+$type_artists = $db->query("SELECT * FROM type_artist")->fetchAll(PDO::FETCH_ASSOC);
 
-// Récupérer les données de l'entité à modifier
+// Récupére les données de l'entité à modifier
 $entity_type = $_GET['entity_type'] ?? null;
 $entity_id = $_GET['entity_id'] ?? null;
 $entity_data = null;
@@ -24,22 +34,22 @@ $entity_data = null;
 if ($entity_type && $entity_id) {
     switch ($entity_type) {
         case 'user':
-            $stmt = $db->prepare("SELECT * FROM Users WHERE id_user = ?");
+            $stmt = $db->prepare("SELECT * FROM users WHERE id_user = ?");
             $stmt->execute([$entity_id]);
             $entity_data = $stmt->fetch(PDO::FETCH_ASSOC);
             break;
         case 'artist':
-            $stmt = $db->prepare("SELECT * FROM Artist WHERE id_artist = ?");
+            $stmt = $db->prepare("SELECT * FROM artist WHERE id_artist = ?");
             $stmt->execute([$entity_id]);
             $entity_data = $stmt->fetch(PDO::FETCH_ASSOC);
             break;
         case 'title':
-            $stmt = $db->prepare("SELECT * FROM Title WHERE id_title = ?");
+            $stmt = $db->prepare("SELECT * FROM title WHERE id_title = ?");
             $stmt->execute([$entity_id]);
             $entity_data = $stmt->fetch(PDO::FETCH_ASSOC);
             break;
         case 'album':
-            $stmt = $db->prepare("SELECT * FROM Album WHERE id_album = ?");
+            $stmt = $db->prepare("SELECT * FROM album WHERE id_album = ?");
             $stmt->execute([$entity_id]);
             $entity_data = $stmt->fetch(PDO::FETCH_ASSOC);
             break;
@@ -56,7 +66,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $description_artist = $_POST['description_artist'];
         $id_type_artist = $_POST['id_type_artist'];
 
-        $stmt = $db->prepare("UPDATE Artist SET firstname_artist = ?, lastname_artist = ?, alias_artist = ?, description_artist = ?, id_type_artist = ? WHERE id_artist = ?");
+        $stmt = $db->prepare("UPDATE artist SET firstname_artist = ?, lastname_artist = ?, alias_artist = ?, description_artist = ?, id_type_artist = ? WHERE id_artist = ?");
         $stmt->execute([$firstname_artist, $lastname_artist, $alias_artist, $description_artist, $id_type_artist, $artist_id]);
         echo "Artiste mis à jour avec succès.";
     } elseif (isset($_POST['update_user'])) {
@@ -69,7 +79,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $id_type_user = $_POST['id_type_user'];
         $genre_user = $_POST['genre_user'];
 
-        $stmt = $db->prepare("UPDATE Users SET Username = ?, email = ?, password = ?, firstname_user = ?, lastname_user = ?, id_type_user = ?, genre_user = ? WHERE id_user = ?");
+        $stmt = $db->prepare("UPDATE users SET Username = ?, email = ?, password = ?, firstname_user = ?, lastname_user = ?, id_type_user = ?, genre_user = ? WHERE id_user = ?");
         $stmt->execute([$username, $email, $password, $firstname_user, $lastname_user, $id_type_user, $genre_user, $user_id]);
         echo "Utilisateur mis à jour avec succès.";
     } elseif (isset($_POST['update_title'])) {
@@ -79,7 +89,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $publication_date_title = $_POST['publication_date_title'];
         $id_genre = $_POST['id_genre'];
 
-        $stmt = $db->prepare("UPDATE Title SET name_title = ?, time_title = ?, publication_date_title = ?, id_genre = ? WHERE id_title = ?");
+        $stmt = $db->prepare("UPDATE title SET name_title = ?, time_title = ?, publication_date_title = ?, id_genre = ? WHERE id_title = ?");
         $stmt->execute([$name_title, $time_title, $publication_date_title, $id_genre, $title_id]);
         echo "Titre mis à jour avec succès.";
     } elseif (isset($_POST['update_album'])) {
@@ -87,7 +97,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $name_album = $_POST['name_album'];
         $publication_date_album = $_POST['publication_date_album'];
 
-        $stmt = $db->prepare("UPDATE Album SET name_album = ?, publication_date_album = ? WHERE id_album = ?");
+        $stmt = $db->prepare("UPDATE album SET name_album = ?, publication_date_album = ? WHERE id_album = ?");
         $stmt->execute([$name_album, $publication_date_album, $album_id]);
         echo "Album mis à jour avec succès.";
     }
