@@ -114,7 +114,7 @@ body {
     border-radius: 10px;
 }
 
-/*--------------------------------- couleur text toute page --------------------------------------*/
+/*--------------------------------- couleur text toute page --------------------------*/
 
 th,
 td,
@@ -169,7 +169,7 @@ p {
     background-color: #14e6db
 }
 
-/*-------------------------------texte dans le resctangle page profile-------------------------------------*/
+/*-------------------------texte dans le resctangle page profile----------------------*/
 
 .texttop {
     color: #ccc;
@@ -182,8 +182,6 @@ p {
     color: #8b8b8b;
     border: thick solid;
     border-radius: 20px;
-    -moz-border-radius: 20px;
-    -webkit-border-radius: 20px;
     display: flex; 
     justify-content: center;
     
@@ -350,4 +348,86 @@ h2 {
     border-color: #666666;
     background: #da4646;
   }
+
+  /*--------------------------------------Bouton Menu Page playlist--------------------------------------------*/
+
+  .Menu {
+    padding: 15px 30px;
+    border: 2px solid #2c2c2c;
+    background-color: #1a1a1a;
+    color: #ffffff;
+    font-size: 1.2rem;
+    cursor: pointer;
+    border-radius: 30px;
+    transition: all 0.4s ease;
+    outline: none;
+    position: relative;
+    overflow: hidden;
+    font-weight: bold;
+    flex-direction: row end;
+
+  }
+  
+  .Menu::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(
+      circle,
+      rgba(255, 255, 255, 0.25) 0%,
+      rgba(255, 255, 255, 0) 70%
+    );
+    transform: scale(0);
+    transition: transform 0.5s ease;
+  }
+  
+  .Menu:hover::after {
+    transform: scale(4);
+  }
+  
+  .Menu:hover {
+    border-color: #666666;
+    background: #cec041;
+  }
+
+/*---------------------------------page playlist------------------------------------*/
+
+.round-rectangle1 {
+    color: #8b8b8b;
+    border: thick solid;
+    border-radius: 20px;
+    display: flex; 
+    justify-content: center;
+    background-color: #8b8b8b;
+    padding: 50px 30px;
+    margin: 10%;
+}
+
+.round-rectangle2 {
+    color: #8b8b8b;
+    border: thick solid;
+    border-radius: 20px;
+    display: flex; 
+    justify-content: center;
+    background-color: #8b8b8b;
+    padding: 50px 30px;
+    margin: 10%;
+}
+
+.round-rectangle3 {
+    color: #8b8b8b;
+    border: thick solid;
+    border-radius: 20px;
+    display: flex; 
+    justify-content: center;
+    background-color: #8b8b8b;
+    padding: 50px 30px;
+    margin: 10%;
+}
+
+
+
 

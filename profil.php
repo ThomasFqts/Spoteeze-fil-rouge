@@ -33,37 +33,31 @@
                     <h2>Mes informations</h2>
                     <h2>Connexion:</h2>
                     <h2>Email:</h2>
-                    <input type="text" id="email" name="email" required minlength="4" maxlength="8" size="10" placeholder="Email"/>
+                    <input type="text" id="email" name="email" required minlength="4" maxlength="8" size="10" placeholder="Email" style="font-size:20px" />
                     <h2>Mot de passe:</h2>
-                    <input type="text" id="mdp" name="mdp" required minlength="4" maxlength="8" size="10" placeholder="Mot de passe"/>
+                    <input type="text" id="mdp" name="mdp" required minlength="4" maxlength="8" size="10" placeholder="Mot de passe" style="font-size:20px" />
                 </article>
 
             </div>
         </div>
 
         <h1>Information Spoteezer visibles par les internautes</h1>
-        <h2>Je me definie comme :</h2>
-        <h2>femme</h2>
-        <h2>homme</h2>
-        <h2>Non Binaire</h2>
+
+        <label for="gender-select" style="font-size:30px">Choissisez votre genre:</label>
+        <select name="gender" id="gender-select" style="width: 200px; height: 70px; font-size:20px;">
+            <option value="">--Please choose an option--</option>
+            <option value="Femme">Femme</option>
+            <option value="Homme">Homme</option>
+            <option value="Non-Binaire">Non-Binaire</option>
+        </select>
 
         <h2>Votre Pseudo</h2>
-        <input type="text" id="Pseudo" name="Pseudo" required minlength="4" maxlength="8" size="10" placeholder="Votre Pseudo"/>
-
-        <h1>Information Privée</h1>
-
-        <h2>Date de naissance</h2>
-
-        <h2>Langues</h2>
-        <input type="text" id="Langues" name="Langues" required minlength="4" maxlength="8" size="10" placeholder="langue"/>
-
+        <input type="text" id="Pseudo" name="Pseudo" required minlength="4" maxlength="8" size="10" placeholder="Votre Pseudo" style="font-size:20px"/>
     </main>
 
     <footer>
-
-    <button class="Enregister">Enregister</button>
-    <button class="SuprimerMonCompte">Suprimer mon compte</button>
-
+        <button class="Enregister">Enregister</button>
+        <button class="SuprimerMonCompte">Suprimer mon compte</button>
     </footer>
 </body>
 
