@@ -8,6 +8,10 @@ include "header.php"
     <!-- link bouton lumineux !-->
     <button class="button-85" role="button">Playlist</button>
 
+    <article id="recherche"> <!---barre de recherche --->
+        <input id="barreDeRecherche" type="text" placeholder="Rechercher..." style="width: 150px; height: 30px;">
+    </article>
+
     <article>
         <div class="colorbuton">
             <a href="playlist_default.php?genre=Rock"><button id="boutonMusiqueRock" style="width: 150px; height: 70px;">Rock</button> </a>

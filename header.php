@@ -38,8 +38,4 @@
 
         <!--------------------------------- Boutons Header ----------------------------->
 
-        <article id="recherche"> <!---barre de recherche --->
-            <input id="barreDeRecherche" type="text" placeholder="Rechercher..." style="width: 150px; height: 30px;">
-        </article>
-
     </header>
