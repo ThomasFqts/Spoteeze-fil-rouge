@@ -25,7 +25,7 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <div class="d-flex">
-                        <a href="Connections.php" class="btn btn-outline-primary me-2">Se connecter</a>
+                        <a href="connection.php" class="btn btn-outline-primary me-2">Se connecter</a>
                         <a href="inscription.php" class="btn btn-primary">S'inscrire</a>
                     </div>
                 </div>
