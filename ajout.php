@@ -82,7 +82,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </script>
 </head>
 
-<body
+<body>
     <h1 class="text-center">Ajouter une entité</h1>
 
     <!-- Sélecteur de type d'entité -->
