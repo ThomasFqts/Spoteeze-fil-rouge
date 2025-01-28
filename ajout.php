@@ -15,9 +15,13 @@ $user_types = $db->query("SELECT * FROM user_type")->fetchAll(PDO::FETCH_ASSOC);
 $music_genres = $db->query("SELECT * FROM music_genre")->fetchAll(PDO::FETCH_ASSOC);
 $type_artists = $db->query("SELECT * FROM type_artist")->fetchAll(PDO::FETCH_ASSOC);
 
+// Récupére les artistes et les albums pour les sélecteurs
+$artists = $db->query("SELECT * FROM artist")->fetchAll(PDO::FETCH_ASSOC);
+$albums = $db->query("SELECT * FROM album")->fetchAll(PDO::FETCH_ASSOC);
+
 // Traitement des soumissions de formulaires
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    if (isset($_POST['add_artist' /* Nom du bouton */])) {
+    if (isset($_POST['add_artist'])) {
         // Déclaration des variables qui contiendront ce que l'admin a entré
         $firstname_artist = $_POST['firstname_artist'];
         $lastname_artist = $_POST['lastname_artist'];
@@ -28,8 +32,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $stmt = $db->prepare("INSERT INTO artist (firstname_artist, lastname_artist, alias_artist, description_artist, id_type_artist) VALUES (?, ?, ?, ?, ?)"); // Variable qui contient la préparation de la requête SQL
         $stmt->execute([$firstname_artist, $lastname_artist, $alias_artist, $description_artist, $id_type_artist]);
         echo "Artiste ajouté avec succès.";
-    } 
-    elseif (isset($_POST['add_user'  /* Nom du bouton */])) {
+    } elseif (isset($_POST['add_user'])) {
         // Déclaration des variables qui contiendront ce que l'admin a entré
         $username = $_POST['username'];
         $email = $_POST['email'];
@@ -42,23 +45,34 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $stmt = $db->prepare("INSERT INTO users (Username, email, password, firstname_user, lastname_user, id_type_user, sexe_user) VALUES (?, ?, ?, ?, ?, ?, ?)");  // Variable qui contient la préparation de la requête SQL
         $stmt->execute([$username, $email, $password, $firstname_user, $lastname_user, $id_type_user, $sexe_user]);
         echo "Utilisateur ajouté avec succès.";
-    } 
-    elseif (isset($_POST['add_title' /* Nom du bouton */])) {
+    } elseif (isset($_POST['add_title'])) {
         $name_title = $_POST['name_title'];
         $time_title = $_POST['time_title'];
         $publication_date_title = $_POST['publication_date_title'];
         $id_genre = $_POST['id_genre'];
+        $id_artist = $_POST['id_artist'];
+        $id_album = $_POST['id_album'];
 
         $stmt = $db->prepare("INSERT INTO title (name_title, time_title, publication_date_title, id_genre) VALUES (?, ?, ?, ?)");  // Variable qui contient la préparation de la requête SQL
         $stmt->execute([$name_title, $time_title, $publication_date_title, $id_genre]);
+
+        $id_title = $db->lastInsertId();
+        $stmt = $db->prepare("INSERT INTO Production (id_title, id_album, id_artist) VALUES (?, ?, ?)");
+        $stmt->execute([$id_title, $id_album, $id_artist]);
+
         echo "Titre ajouté avec succès.";
-    } 
-    elseif (isset($_POST['add_album' /* Nom du bouton */])) {
+    } elseif (isset($_POST['add_album'])) {
         $name_album = $_POST['name_album'];
         $publication_date_album = $_POST['publication_date_album'];
+        $id_artist = $_POST['id_artist'];
 
         $stmt = $db->prepare("INSERT INTO album (name_album, publication_date_album) VALUES (?, ?)");  // Variable qui contient la préparation de la requête SQL
         $stmt->execute([$name_album, $publication_date_album]);
+
+        $id_album = $db->lastInsertId();
+        $stmt = $db->prepare("INSERT INTO Production (id_title, id_album, id_artist) VALUES (NULL, ?, ?)");
+        $stmt->execute([$id_album, $id_artist]);
+
         echo "Album ajouté avec succès.";
     }
 }
@@ -178,14 +192,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <?php endforeach; ?>
         </select>
         <br><br>
-        <button type="submit" name="add_title">Ajouter le titre</button>
-    </form>
-
-    <!-- Formulaire pour ajouter un album -->
-    <form id="form_album" style="display: none;" action="" method="POST">
-        <h2>Ajouter un album</h2>
-        <label for="name_album">Nom de l'album :</label>
-        <input type="text" name="name_album" id="name_album" required>
+        <label for="id_artist">Artiste :</label>
+        <select name="id_artist" id="id_artist" required>
+            <?php foreach ($artists as $artist): ?>
+                <option value="<?= $artist['id_artist'] ?>"><?= htmlspecialchars($artist['alias_artist'] ?: $artist['firstname_artist'] . ' ' . $artist['lastname_artist']) ?></option>
+            <?php endforeach; ?>
+        </select>
+        <br><br>
+        <label for="id_album">Album :</label>
+        <select name="id_album" id="id_album" required>
+            <?php foreach ($albums as $album): ?>
+                <option value="<?= $album['id_album'] ?>"><?= htmlspecialchars($album['name_album']) ?></option>
+            <?php endforeach; ?>
+        </select>
         <br><br>
         <button type="submit" name="add_title">Ajouter le titre</button>
     </form>
@@ -195,12 +214,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <h2>Ajouter un album</h2>
         <label for="name_album">Nom de l'album :</label>
         <input type="text" name="name_album" id="name_album" required>
-        <br>
-        <br>
+        <br><br>
         <label for="publication_date_album">Date de publication :</label>
         <input type="date" name="publication_date_album" id="publication_date_album" required>
-        <br>
-        <br>
+        <br><br>
+        <label for="id_artist">Artiste :</label>
+        <select name="id_artist" id="id_artist" required>
+            <?php foreach ($artists as $artist): ?>
+                <option value="<?= $artist['id_artist'] ?>"><?= htmlspecialchars($artist['alias_artist'] ?: $artist['firstname_artist'] . ' ' . $artist['lastname_artist']) ?></option>
+            <?php endforeach; ?>
+        </select>
+        <br><br>
         <button type="submit" name="add_album">Ajouter l'album</button>
     </form>
 
