@@ -18,7 +18,7 @@ $user_types = $db->query("SELECT * FROM user_type")->fetchAll(PDO::FETCH_ASSOC);
 
 // Récupére les genres musicaux et les types d'artistes pour les sélecteurs
 $music_genres = $db->query("SELECT * FROM music_genre")->fetchAll(PDO::FETCH_ASSOC);
-$type_artists = $db->query("SELECT * FROM yype_artist")->fetchAll(PDO::FETCH_ASSOC);
+$type_artists = $db->query("SELECT * FROM type_artist")->fetchAll(PDO::FETCH_ASSOC);
 
 // Traitement des soumissions de formulaires
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -153,7 +153,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <?php endforeach; ?>
         </select>
         <br><br>
-        <label for="genre_user">Genre :</label>
+        <label for="genre_user">Sexe :</label>
         <input type="text" name="genre_user" id="genre_user">
         <br><br>
         <button type="submit" name="add_user">Ajouter l'utilisateur</button>
