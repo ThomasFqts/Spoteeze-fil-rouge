@@ -5,10 +5,7 @@ if (!isset($_SESSION['user_type']) || $_SESSION['user_type'] !== 'Admin') {
     header('Location: index.php'); // Redirection pour les utilisateurs non autorisés
     exit();
 }
-?>
 
-<?php
-include "header.php";
 $db = ConnexionBase(); // Connexion à la base de données
 
 // Types d'utilisateur (Admin, Free, etc.)
