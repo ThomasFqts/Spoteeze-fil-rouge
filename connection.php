@@ -1,5 +1,18 @@
 <?php
 include 'header.php';
+include 'db.php';
+$dp = ConnexionBase();
+?>
+
+<?php
+
+// Vérification si l'utilisateur est déjà connecté
+if (isset($_SESSION['user_id'])) {
+    header('Location : index.php');
+    exit();
+}
+
+
 ?>
 
 <main>
