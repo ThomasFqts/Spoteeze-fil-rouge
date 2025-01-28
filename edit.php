@@ -1,5 +1,5 @@
 <?php
-session_start();
+include "header.php";
 
 // Vérifie si l'utilisateur est connecté et s'il a le rôle d'administrateur
 if (!isset($_SESSION['user_type']) || $_SESSION['user_type'] !== 'Admin') {
@@ -9,8 +9,7 @@ if (!isset($_SESSION['user_type']) || $_SESSION['user_type'] !== 'Admin') {
 ?>
 
 <?php
-include "header.php";
-include "db.php";
+
 $db = ConnexionBase(); // Connexion à la base de données
 
 // Récupére toutes les entités nécessaires pour les sélecteurs
@@ -77,10 +76,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $firstname_user = $_POST['firstname_user'];
         $lastname_user = $_POST['lastname_user'];
         $id_type_user = $_POST['id_type_user'];
-        $genre_user = $_POST['genre_user'];
+        $sexe_user = $_POST['sexe_user'];
 
-        $stmt = $db->prepare("UPDATE users SET Username = ?, email = ?, password = ?, firstname_user = ?, lastname_user = ?, id_type_user = ?, genre_user = ? WHERE id_user = ?");
-        $stmt->execute([$username, $email, $password, $firstname_user, $lastname_user, $id_type_user, $genre_user, $user_id]);
+        $stmt = $db->prepare("UPDATE users SET Username = ?, email = ?, password = ?, firstname_user = ?, lastname_user = ?, id_type_user = ?, sexe_user = ? WHERE id_user = ?");
+        $stmt->execute([$username, $email, $password, $firstname_user, $lastname_user, $id_type_user, $sexe_user, $user_id]);
         echo "Utilisateur mis à jour avec succès.";
     } elseif (isset($_POST['update_title'])) {
         $title_id = $_POST['title_id'];
@@ -170,8 +169,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <?php endforeach; ?>
         </select>
         <br><br>
-        <label for="genre_user">Genre :</label>
-        <input type="text" name="genre_user" id="genre_user" value="<?= $entity_data['genre_user'] ?? '' ?>">
+        <label for="sexe_user">Genre :</label>
+        <input type="text" name="sexe_user" id="sexe_user" value="<?= $entity_data['sexe_user'] ?? '' ?>">
         <br><br>
         <button type="submit" name="update_user">Modifier l'utilisateur</button>
     </form>

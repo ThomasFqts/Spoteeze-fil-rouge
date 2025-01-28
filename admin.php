@@ -1,5 +1,5 @@
 <?php
-session_start();
+include "header.php";
 
 // Vérifie si l'utilisateur est connecté et s'il a le rôle d'administrateur
 if (!isset($_SESSION['user_type']) || $_SESSION['user_type'] !== 'Admin') {
@@ -9,8 +9,7 @@ if (!isset($_SESSION['user_type']) || $_SESSION['user_type'] !== 'Admin') {
 ?>
 
 <?php
-include "header.php";
-include "db.php";
+
 
 $db = ConnexionBase();
 

@@ -1,5 +1,5 @@
 <?php
-include "header.php"
+include('header.php');
 ?>
 
 <!------------------------------- Boutons Main ------------------------------------------------->
@@ -7,6 +7,10 @@ include "header.php"
 <main id="partiePrincipale">
     <!-- link bouton lumineux !-->
     <button class="button-85" role="button">Playlist</button>
+
+    <article id="recherche"> <!---barre de recherche --->
+        <input id="barreDeRecherche" type="text" placeholder="Rechercher..." style="width: 150px; height: 30px;">
+    </article>
 
     <article>
         <div class="colorbuton">

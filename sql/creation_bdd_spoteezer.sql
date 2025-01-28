@@ -55,12 +55,12 @@ CREATE TABLE Artist(
 
 CREATE TABLE Users(
    id_user INT AUTO_INCREMENT,
+   id_type_user INT NOT NULL,
    Username VARCHAR(50)  NOT NULL,
    email VARCHAR(100)  NOT NULL,
    password VARCHAR(500)  NOT NULL,
    firstname_user VARCHAR(50)  NOT NULL,
    lastname_user VARCHAR(50)  NOT NULL,
-   id_type_user INT NOT NULL,
    sexe_user VARCHAR(50) ,
    PRIMARY KEY(id_user),
    FOREIGN KEY(id_type_user) REFERENCES User_type(id_type_user)

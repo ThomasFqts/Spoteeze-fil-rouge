@@ -1,6 +1,5 @@
 <?php 
 include "header.php";
-include "db.php";
 ?>
 <?php
 // Vérification si l'utilisateur est déjà connecté

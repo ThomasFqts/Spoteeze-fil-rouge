@@ -1,3 +1,52 @@
+<?php
+session_start();
+
+function ConnexionBase()
+{
+    $host = 'localhost';
+    $dbname = 'spoteezer';
+    $username = 'root';
+    $password = '';
+    try {
+        $connexion = new PDO(
+            "mysql:host=$host;dbname=$dbname;charset=utf8mb4",
+            $username,
+            $password
+        );
+        $connexion->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        return $connexion;
+    } catch (Exception $e) {
+        echo "Erreur : " . $e->getMessage() . "<br>";
+        echo "N° : " . $e->getCode();
+        die("Fin du script");
+    }
+}
+$db = ConnexionBase();
+
+// Vérifie si l'utilisateur est connecté
+$username = null;
+if (isset($_SESSION['user_id'])) {
+    $userId = $_SESSION['user_id'];
+    $userTypeS = $_SESSION['user_type'];
+
+    // Récupération des informations de l'utilisateur
+    $stmtUser = $db->prepare("SELECT * FROM users WHERE id_user = :userId");
+    $stmtUser->execute(['userId' => $userId]);
+    $user = $stmtUser->fetch(PDO::FETCH_ASSOC);
+
+    // $stmtType = $db->prepare("SELECT * FROM user_type WHERE name_type_user = :userTypeS");
+    // $stmtType->execute(['userTypeS' => $userTypeS]);
+    // $user_type = $stmtType->fetch(PDO::FETCH_ASSOC);
+
+    if ($user) {
+        $username = $user['firstname_user'];
+    }
+}
+
+// Vérifie si l'utilisateur est admin
+$isAdmin = isset($_SESSION['user_type']) && in_array($_SESSION['user_type'], ['Admin']);
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -15,7 +64,7 @@
 
 </head>
 
-<body>  <!----------------------------------Navbar Bootstrap------------------------------------->
+<body> <!----------------------------------Navbar Bootstrap------------------------------------->
     <header id="enTete">
         <nav class="navbar navbar-expand-lg bg-body-tertiary">
             <div class="container-fluid">
@@ -24,9 +73,21 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <?php if ($isAdmin): ?>
+                            <li class="nav-item">
+                                <a class="nav-link" href="admin.php">Admin Panel</a>
+                            </li>
+                        <?php endif; ?>
+                    </ul>
                     <div class="d-flex">
-                        <a href="Connections.php" class="btn btn-outline-primary me-2">Se connecter</a>
-                        <a href="inscription.php" class="btn btn-primary">S'inscrire</a>
+                        <?php if ($username) : ?>
+                            <span class="navbar-text me-3">Bienvenue, <?= htmlentities($username) ?>!</span>
+                            <a href="deconnexion.php" class="btn btn-outline-primary me-2">Se déconnecter</a>
+                        <?php else : ?>
+                            <a href="connection.php" class="btn btn-outline-primary me-2">Se connecter</a>
+                            <a href="inscription.php" class="btn btn-primary">S'inscrire</a>
+                        <?php endif ?>
                     </div>
                 </div>
             </div>
@@ -34,12 +95,6 @@
 
         <article id="logo">
             <img src="Style/img/logo.png" alt="Spoteezer" width="250" height="150">
-        </article>
-
-        <!--------------------------------- Boutons Header ----------------------------->
-
-        <article id="recherche"> <!---barre de recherche --->
-            <input id="barreDeRecherche" type="text" placeholder="Rechercher..." style="width: 150px; height: 30px;">
         </article>
 
     </header>
