@@ -44,7 +44,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         // Redirection vers la page de connexion ou d'accueil après l'inscription
         header('Location: index.php');
         exit();
-    } else {
+    } 
+    else {
         echo "<p>Veuillez remplir correctement tous les champs et accepter les conditions.</p>";
     }
 }

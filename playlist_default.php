@@ -15,7 +15,7 @@ $stmt = $db->prepare("SELECT t.name_title, t.time_title, t.publication_date_titl
     WHERE t.id_genre = (SELECT id_genre FROM Music_Genre WHERE name_genre = ?)
 ");
 $stmt->execute([$genre]);
-$titles = $stmt->fetchAll(PDO::FETCH_ASSOC);
+$titles = $stmt->fetchAll(PDO::FETCH_ASSOC); //Création du tableau de titres
 ?>
 
 <!DOCTYPE html>
@@ -24,13 +24,13 @@ $titles = $stmt->fetchAll(PDO::FETCH_ASSOC);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Playlist - <?= htmlspecialchars($genre) ?></title>
+    <title> Playlist - <?= htmlspecialchars($genre) ?></title> <!-- Affichage du genre dans l'onglet -->
     <link rel="stylesheet" href="Style/style.css">
 </head>
 
 <body>
     <main>
-        <h1>Playlist - <?= htmlspecialchars($genre) ?></h1>
+        <h1> Playlist - <?= htmlspecialchars($genre) ?></h1> <!-- Affichage du genre dans la page -->
         <table border="1">
             <thead>
                 <tr>
@@ -41,14 +41,14 @@ $titles = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 </tr>
             </thead>
             <tbody>
-                <?php foreach ($titles as $title): ?>
+                 <?php foreach ($titles as $title): ?> <!-- Affichage des titres  -->
                     <tr>
                         <td><?= htmlspecialchars($title['name_title']) ?></td>
                         <td><?= htmlspecialchars($title['time_title']) ?></td>
                         <td><?= htmlspecialchars($title['publication_date_title']) ?></td>
-                        <td><?= htmlspecialchars($title['alias_artist'] ?: $title['firstname_artist'] . ' ' . $title['lastname_artist']) ?></td>
+                        <td><?= htmlspecialchars($title['alias_artist'] ?: $title['firstname_artist'] . ' ' . $title['lastname_artist']) ?></td> <!-- Gère le cas où il n'y a pas d'alias en mettant le nom et prénom de l'artiste à la place -->
                     </tr>
-                <?php endforeach; ?>
+                 <?php endforeach; ?> <!-- Sortie de la boucle  -->
             </tbody>
         </table>
     </main>

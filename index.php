@@ -30,10 +30,21 @@ include "header.php"
         </div>
     </article>
 
+    <!-- Liste playlists perso -->
+    <h3>Vos playlists</h3>
     <article>
-        <button>Créer playlist</button>
+        <form>
+            <button onclick=""   class="Enregister"> Créer playlist </button>   
+        </form>
     </article>
+    <article>
+        <form>
+            <button onclick=""   class="SuprimerMonCompte"> Supprimer playlist </button>
+        </form>
+    </article>
+    <?php
 
+    ?>
 </main>
 
 <footer>
