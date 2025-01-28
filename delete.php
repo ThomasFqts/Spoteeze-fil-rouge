@@ -9,7 +9,7 @@ if (!isset($_SESSION['user_type']) || $_SESSION['user_type'] !== 'Admin') {
 ?>
 
 <?php
-include "db.php";
+include 'header.php';
 $db = ConnexionBase();
 
 if (isset($_POST['delete_user'])) {

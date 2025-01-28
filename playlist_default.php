@@ -1,6 +1,5 @@
 <?php
 include "header.php";
-include "db.php";
 
 $db = ConnexionBase(); // Connexion à la base de données
 

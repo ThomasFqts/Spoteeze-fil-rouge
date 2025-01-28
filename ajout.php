@@ -10,7 +10,6 @@ if (!isset($_SESSION['user_type']) || $_SESSION['user_type'] !== 'Admin') {
 
 <?php
 include "header.php";
-include "db.php";
 $db = ConnexionBase(); // Connexion à la base de données
 
 // Types d'utilisateur (Admin, Free, etc.)
@@ -39,10 +38,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $firstname_user = $_POST['firstname_user'];
         $lastname_user = $_POST['lastname_user'];
         $id_type_user = $_POST['id_type_user'];
-        $genre_user = $_POST['genre_user'];
+        $sexe_user = $_POST['sexe_user'];
 
-        $stmt = $db->prepare("INSERT INTO users (Username, email, password, firstname_user, lastname_user, id_type_user, genre_user) VALUES (?, ?, ?, ?, ?, ?, ?)");
-        $stmt->execute([$username, $email, $password, $firstname_user, $lastname_user, $id_type_user, $genre_user]);
+        $stmt = $db->prepare("INSERT INTO users (Username, email, password, firstname_user, lastname_user, id_type_user, sexe_user) VALUES (?, ?, ?, ?, ?, ?, ?)");
+        $stmt->execute([$username, $email, $password, $firstname_user, $lastname_user, $id_type_user, $sexe_user]);
         echo "Utilisateur ajouté avec succès.";
     } elseif (isset($_POST['add_title'])) {
         $name_title = $_POST['name_title'];
@@ -153,8 +152,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <?php endforeach; ?>
         </select>
         <br><br>
-        <label for="genre_user">Sexe :</label>
-        <input type="text" name="genre_user" id="genre_user">
+        <label for="sexe_user">Sexe :</label>
+        <input type="text" name="sexe_user" id="sexe_user">
         <br><br>
         <button type="submit" name="add_user">Ajouter l'utilisateur</button>
     </form>

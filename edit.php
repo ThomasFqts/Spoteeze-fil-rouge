@@ -10,7 +10,6 @@ if (!isset($_SESSION['user_type']) || $_SESSION['user_type'] !== 'Admin') {
 
 <?php
 include "header.php";
-include "db.php";
 $db = ConnexionBase(); // Connexion à la base de données
 
 // Récupére toutes les entités nécessaires pour les sélecteurs
