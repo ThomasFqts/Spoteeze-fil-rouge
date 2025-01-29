@@ -32,7 +32,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $stmt = $db->prepare("INSERT INTO artist (firstname_artist, lastname_artist, alias_artist, description_artist, id_type_artist) VALUES (?, ?, ?, ?, ?)"); // Variable qui contient la préparation de la requête SQL
         $stmt->execute([$firstname_artist, $lastname_artist, $alias_artist, $description_artist, $id_type_artist]);
         echo "Artiste ajouté avec succès.";
-    } elseif (isset($_POST['add_user'])) {
+    } 
+    elseif (isset($_POST['add_user'])) {
         // Déclaration des variables qui contiendront ce que l'admin a entré
         $username = $_POST['username'];
         $email = $_POST['email'];
@@ -45,7 +46,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $stmt = $db->prepare("INSERT INTO users (Username, email, password, firstname_user, lastname_user, id_type_user, sexe_user) VALUES (?, ?, ?, ?, ?, ?, ?)");  // Variable qui contient la préparation de la requête SQL
         $stmt->execute([$username, $email, $password, $firstname_user, $lastname_user, $id_type_user, $sexe_user]);
         echo "Utilisateur ajouté avec succès.";
-    } elseif (isset($_POST['add_title'])) {
+    } 
+    elseif (isset($_POST['add_title'])) {
         $name_title = $_POST['name_title'];
         $time_title = $_POST['time_title'];
         $publication_date_title = $_POST['publication_date_title'];
@@ -61,7 +63,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $stmt->execute([$id_title, $id_album, $id_artist]);
 
         echo "Titre ajouté avec succès.";
-    } elseif (isset($_POST['add_album'])) {
+    } 
+    elseif (isset($_POST['add_album'])) {
         $name_album = $_POST['name_album'];
         $publication_date_album = $_POST['publication_date_album'];
         $id_artist = $_POST['id_artist'];

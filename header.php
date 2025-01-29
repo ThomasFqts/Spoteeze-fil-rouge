@@ -1,21 +1,21 @@
 <?php
-session_start();
+session_start(); // Commencer une session, fonction native
 
 function ConnexionBase()
-{
+{ // Infos pour trouver la BDD
     $host = 'localhost';
     $dbname = 'spoteezer';
     $username = 'root';
     $password = '';
     try {
-        $connexion = new PDO(
+        $connexion = new PDO( // Connexion entre PHP et la BDD
             "mysql:host=$host;dbname=$dbname;charset=utf8mb4",
             $username,
             $password
         );
-        $connexion->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $connexion->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION); // Juste pour une erreur 
         return $connexion;
-    } catch (Exception $e) {
+    } catch (Exception $e) { // Attraper l'exception, si ça ne se connecte pas à la BDD
         echo "Erreur : " . $e->getMessage() . "<br>";
         echo "N° : " . $e->getCode();
         die("Fin du script");
@@ -63,7 +63,7 @@ $isAdmin = isset($_SESSION['user_type']) && in_array($_SESSION['user_type'], ['A
 <body> <!----------------------------------Navbar Bootstrap------------------------------------->
     <header id="enTete">
         <nav class="navbar navbar-expand-lg bg-body-tertiary">
-            <div class="container-fluid">
+            <section class="container-fluid">
                 <a class="navbar-brand" href="index.php">Accueil</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -86,7 +86,7 @@ $isAdmin = isset($_SESSION['user_type']) && in_array($_SESSION['user_type'], ['A
                         <?php endif ?>
                     </div>
                 </div>
-            </div>
+            </section>
         </nav>
 
         <article id="logo">
