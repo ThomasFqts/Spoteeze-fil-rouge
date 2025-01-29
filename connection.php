@@ -1,7 +1,7 @@
 <?php
 include 'header.php';
 
-$db = ConnexionBase();
+$db = ConnexionBase(); // Connexion à la base de données
 
 // Vérification si l'utilisateur est déjà connecté
 if (isset($_SESSION['user_id'])) {
@@ -16,7 +16,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $stmt = $db->prepare("SELECT * FROM users WHERE email = :email");
     $stmt->bindValue(':email', $email);
     $stmt->execute();
-    $user = $stmt->fetch(PDO::FETCH_ASSOC);
+    $user = $stmt->fetch(PDO::FETCH_ASSOC); /* Récupération des infos de l'utilisateur selon son email dans les variables de session */
 
     if ($user && password_verify($password, $user['password'])) {
         $_SESSION['user_id'] = $user['id_user'];
@@ -25,39 +25,40 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $stmt = $db->prepare("SELECT * FROM user_type WHERE id_type_user = :typeuser");
         $stmt->bindValue(':typeuser', $user['id_type_user']);
         $stmt->execute();
-        $usertype = $stmt->fetch(PDO::FETCH_ASSOC);
+        $usertype = $stmt->fetch(PDO::FETCH_ASSOC); /* Récupération des infos du type de l'utilisateur dans les variables de session */
         $_SESSION['user_type'] = $usertype['name_type_user'];
         $_SESSION['logged_in'] = true;
-        header('Location: index.php');
+        header('Location: index.php'); /* Renvoie à la page index */
         exit();
-    } else {
+    } 
+    else {
         $error_msg = "Email ou mot de passe incorrect.";
     }
 }
 ?>
 
-<main>
+<main> <!--  Message d'erreur  -->
     <?php if (isset($error_msg)) : ?>
-        <p><?= $error_msg ?></p>
+        <p><?= $error_msg ?></p> 
     <?php endif ?>
-    <form method="POST">
-        <article id="identifiants">
+
+    <form method="POST"> <!-- Formulaire de connection -->
+        <section id="identifiants">
             <p class="txt">Connection :</p>
             <p class="txt">Email :</p>
-            <div class="input-group flex-nowrap">
-                <span class="input-group-text" id="addon-wrapping">@</span>
+            <article class="input-group flex-nowrap">
+                <span class="input-group-text" id="addon-wrapping">@</span> obliger
                 <input type="text" class="form-control" placeholder="Email" name="email">
-            </div>
+            </article>
             <p class="txt">Mot de passe :</p>
-            <div class="input-group flex-nowrap">
-                <span class="input-group-text" id="addon-wrapping">@</span>
+            <article class="input-group flex-nowrap">
                 <input type="text" class="form-control" placeholder="Mot de passe" name="password">
-            </div>
-        </article><br>
-        <button type="submit">Valider</button>
+            </article>
+        </section>
+        <br>
+        <button type="submit">Valider</button> <!-- Bouton pour confirmer les infos -->
     </form>
     
-
     </body>
 
     </html>

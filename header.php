@@ -21,7 +21,7 @@ function ConnexionBase()
         die("Fin du script");
     }
 }
-$db = ConnexionBase();
+$db = ConnexionBase(); // Connexion à la base de données
 
 // Vérifie si l'utilisateur est connecté
 $username = null;

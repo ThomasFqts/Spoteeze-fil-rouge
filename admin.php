@@ -6,12 +6,9 @@ if (!isset($_SESSION['user_type']) || $_SESSION['user_type'] !== 'Admin') {
     header('Location: index.php'); // Redirection pour les utilisateurs non autorisés
     exit();
 }
-?>
-
-<?php
 
 
-$db = ConnexionBase();
+$db = ConnexionBase(); // Connexion à la base de données
 
 // Récupération des utilisateurs
 $usersrequest = $db->query("SELECT * FROM users");
@@ -30,6 +27,7 @@ $albumsrequest = $db->query("SELECT * FROM album");
 $albums = $albumsrequest->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
+
 <h1>Admin Panel</h1>
 
 <section>
@@ -43,7 +41,7 @@ $albums = $albumsrequest->fetchAll(PDO::FETCH_ASSOC);
 <h2>Modifier une entité</h2>
 <form action="edit.php" method="GET">
     <label for="entity_type">Type d'entité :</label>
-    <select name="entity_type" id="entity_type">
+    <select name="entity_type" id="entity_type"> <!-- Sélecteur d'entité  -->
         <option value="user">Utilisateur</option>
         <option value="artist">Artiste</option>
         <option value="title">Titre</option>
@@ -52,7 +50,7 @@ $albums = $albumsrequest->fetchAll(PDO::FETCH_ASSOC);
     <br>
     <br>
     <label for="entity_id">ID de l'entité :</label>
-    <input type="text" name="entity_id" id="entity_id" required>
+    <input type="text" name="entity_id" id="entity_id" required> <!-- Nom de l'entité -->
     <br>
     <br>
     <button type="submit">Modifier</button> <!--  Récupérer les infos de la BDD pour les envoyer sur la bonne page  -->
@@ -61,10 +59,10 @@ $albums = $albumsrequest->fetchAll(PDO::FETCH_ASSOC);
 
 <!-- Tableau pour modifier l'utilisateur -->
 <h2>Liste des Utilisateurs avec leurs infos</h2>
-<table border="1">
+<table class="">
     <thead>
-        <tr>
-            <th>ID User</th> <!-- Titres des lignes -->
+        <tr> <!-- Titres des lignes -->
+            <th>ID User</th>
             <th>Username</th>
             <th>Prenom Utilisateur</th>
             <th>Nom Utilisateur</th>
@@ -97,7 +95,7 @@ $albums = $albumsrequest->fetchAll(PDO::FETCH_ASSOC);
 
 <!-- Tableau pour modifier l'artiste -->
 <h2>Liste des Artistes</h2>
-<table border="1">
+<table class="">
     <thead>
         <tr>
             <th>ID Artiste</th> <!-- Titres des lignes -->
@@ -109,7 +107,7 @@ $albums = $albumsrequest->fetchAll(PDO::FETCH_ASSOC);
     </thead>
     <tbody>
         <?php foreach ($artists as $artist): ?> <!-- On sort les artistes de la BDD -->
-            <tr>
+            <tr> <!-- Retranscription en HTML -->
                 <td><?= htmlspecialchars($artist['id_artist']) ?></td>
                 <td><?= htmlspecialchars($artist['firstname_artist']) ?></td>
                 <td><?= htmlspecialchars($artist['lastname_artist']) ?></td>
@@ -128,7 +126,7 @@ $albums = $albumsrequest->fetchAll(PDO::FETCH_ASSOC);
 
 <!-- Tableau pour modifier l'album -->
 <h2>Liste des Albums</h2>
-<table border="1">
+<table class>
     <thead>
         <tr>
             <th>ID Album</th> <!-- Titres des lignes -->
@@ -138,7 +136,7 @@ $albums = $albumsrequest->fetchAll(PDO::FETCH_ASSOC);
     </thead>
     <tbody>
         <?php foreach ($albums as $album): ?><!-- On sort les albums de la BDD -->
-            <tr>
+            <tr> <!-- Retranscription en HTML -->
                 <td><?= htmlspecialchars($album['id_album']) ?></td>
                 <td><?= htmlspecialchars($album['name_album']) ?></td>
                 <td><?= htmlspecialchars($album['publication_date_album']) ?></td>
@@ -155,7 +153,7 @@ $albums = $albumsrequest->fetchAll(PDO::FETCH_ASSOC);
 
 <!-- Tableau pour modifier les titres -->
 <h2>Liste des Titres</h2>
-<table border="1">
+<table class>
     <thead>
         <tr>
             <th>ID Title</th> <!-- Titres des lignes -->
@@ -166,7 +164,7 @@ $albums = $albumsrequest->fetchAll(PDO::FETCH_ASSOC);
     </thead>
     <tbody>
         <?php foreach ($titles as $title): ?> <!-- On sort les titres de la BDD -->
-            <tr>
+            <tr> <!-- Retranscription en HTML -->
                 <td><?= htmlspecialchars($title['id_title']) ?></td>
                 <td><?= htmlspecialchars($title['name_title']) ?></td>
                 <td><?= htmlspecialchars($title['time_title']) ?></td>

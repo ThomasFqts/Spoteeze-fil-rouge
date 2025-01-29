@@ -6,11 +6,9 @@ if (!isset($_SESSION['user_type']) || $_SESSION['user_type'] !== 'Admin') {
     header('Location: index.php'); // Redirection pour les utilisateurs non autorisés
     exit();
 }
-?>
 
-<?php
-include 'header.php';
-$db = ConnexionBase();
+
+$db = ConnexionBase(); // Connexion à la base de données
 
 if (isset($_POST['delete_user'])) {
     $id_user = intval($_POST['id_user']); // ID de l'utilisateur à supprimer
