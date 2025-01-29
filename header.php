@@ -34,10 +34,6 @@ if (isset($_SESSION['user_id'])) {
     $stmtUser->execute(['userId' => $userId]);
     $user = $stmtUser->fetch(PDO::FETCH_ASSOC);
 
-    // $stmtType = $db->prepare("SELECT * FROM user_type WHERE name_type_user = :userTypeS");
-    // $stmtType->execute(['userTypeS' => $userTypeS]);
-    // $user_type = $stmtType->fetch(PDO::FETCH_ASSOC);
-
     if ($user) {
         $username = $user['firstname_user'];
     }
