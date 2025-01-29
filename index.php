@@ -6,18 +6,6 @@ include('header.php');
 
 <main id="partiePrincipale">
 
-    <article id="recherche"> <!---barre de recherche --->
-        <form action="search.php" method="get">
-            <input id="barreDeRecherche" type="search" placeholder="Rechercher..."  class="form-control mr-sm-2">
-            <button type="submit" class="btn btn-primary">Rechercher</button>
-        </form>
-        
-        <label><input type="radio" name="type_entity" value="artist"> Artiste </label>
-        <label><input type="radio" name="type_entity" value="title"> Titre </label>
-        <label><input type="radio" name="type_entity" value="album"> Album </label>
-        
-    </article>
-
     <article>
         <div class="colorbuton">
             <a href="playlist_default.php?genre=Rock"><button id="boutonMusiqueRock" style="width: 150px; height: 70px;">Rock</button> </a>

@@ -1,5 +1,12 @@
 <?php
-include "header.php"
+include "header.php";
+
+$db = ConnexionBase(); // Connexion à la base de données
+
+// Récupére les artistes, les titres et les albums
+$artists = $db->query("SELECT * FROM artist")->fetchAll(PDO::FETCH_ASSOC);
+$titles = $db->query("SELECT * FROM title")->fetchAll(PDO::FETCH_ASSOC);
+$albums = $db->query("SELECT * FROM album")->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
 <!DOCTYPE html>
@@ -13,20 +20,17 @@ include "header.php"
 </head>
 
 <body>
-    <header>
-        <img src="Style/img/logo.png" alt="logo" width="300px" height="200px">
-        <form action="index.php" method="get">
-            <button class="Menu">Menu</button>
-        </form>
-    </header>
 
     <main>
 
-        <div class="round-rectangle1"></div>
-
-        <div class="round-rectangle2"></div>
-
-        <div class="round-rectangle3"></div>
+    <form action="search.php" method="GET">
+            <input id="barreDeRecherche" type="search" placeholder="Rechercher..."  class="form-control mr-sm-2">
+            <button type="submit" class="btn btn-primary">Rechercher</button>
+        </form>
+        
+        <label><input type="radio" name="type_entity" value="artist"> Artiste </label>
+        <label><input type="radio" name="type_entity" value="title"> Titre </label>
+        <label><input type="radio" name="type_entity" value="album"> Album </label>
 
     </main>
 

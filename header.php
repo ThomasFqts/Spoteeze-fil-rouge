@@ -70,6 +70,7 @@ $isAdmin = isset($_SESSION['user_type']) && in_array($_SESSION['user_type'], ['A
                 </button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <a class="nav-link" href="search.php">Rechercher</a>
                         <?php if ($isAdmin): ?>
                             <li class="nav-item">
                                 <a class="nav-link" href="admin.php">Admin Panel</a>
@@ -81,7 +82,7 @@ $isAdmin = isset($_SESSION['user_type']) && in_array($_SESSION['user_type'], ['A
                             <span class="navbar-text me-3">Bienvenue, <?= htmlentities($username) ?>!</span>
                             <a href="deconnexion.php" class="btn btn-outline-primary me-2">Se déconnecter</a>
                         <?php else : ?>
-                            <a href="connection.php" class="btn btn-outline-primary me-2">Se connecter</a>
+                            <a href="connexion.php" class="btn btn-outline-primary me-2">Se connecter</a>
                             <a href="inscription.php" class="btn btn-primary">S'inscrire</a>
                         <?php endif ?>
                     </div>

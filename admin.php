@@ -61,7 +61,7 @@ $albums = $albumsrequest->fetchAll(PDO::FETCH_ASSOC);
 
 <!-- Tableau pour modifier l'utilisateur -->
 <h2>Liste des Utilisateurs avec leurs infos</h2>
-<table border="1">
+<table>
     <thead>
         <tr>
             <th>ID User</th> <!-- Titres des lignes -->
@@ -97,7 +97,7 @@ $albums = $albumsrequest->fetchAll(PDO::FETCH_ASSOC);
 
 <!-- Tableau pour modifier l'artiste -->
 <h2>Liste des Artistes</h2>
-<table border="1">
+<table>
     <thead>
         <tr>
             <th>ID Artiste</th> <!-- Titres des lignes -->
@@ -128,7 +128,7 @@ $albums = $albumsrequest->fetchAll(PDO::FETCH_ASSOC);
 
 <!-- Tableau pour modifier l'album -->
 <h2>Liste des Albums</h2>
-<table border="1">
+<table>
     <thead>
         <tr>
             <th>ID Album</th> <!-- Titres des lignes -->
@@ -155,7 +155,7 @@ $albums = $albumsrequest->fetchAll(PDO::FETCH_ASSOC);
 
 <!-- Tableau pour modifier les titres -->
 <h2>Liste des Titres</h2>
-<table border="1">
+<table>
     <thead>
         <tr>
             <th>ID Title</th> <!-- Titres des lignes -->
