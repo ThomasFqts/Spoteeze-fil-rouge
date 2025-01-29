@@ -5,12 +5,11 @@ include('header.php');
 <!------------------------------- Boutons Main ------------------------------------------------->
 
 <main id="partiePrincipale">
-    <!-- link bouton lumineux !-->
-    <button class="button-85" role="button">Playlist</button>
 
-    <article id="recherche"> <!---barre de recherche --->
-        <input id="barreDeRecherche" type="text" placeholder="Rechercher..." style="width: 150px; height: 30px;">
-    </article>
+    <form action="search.php" method="GET" class="form-inline">
+        <input id="barreDeRecherche" type="search" name="search" placeholder="Rechercher..." class="form-control mr-sm-2">
+        <button type="submit" class="btn btn-primary">Rechercher</button>
+    </form>
 
     <article>
         <div class="colorbuton">
@@ -38,12 +37,12 @@ include('header.php');
     <h3>Vos playlists</h3>
     <article>
         <form>
-            <button onclick=""   class="Enregister"> Créer playlist </button>   
+            <button onclick="" class="Enregister"> Créer playlist </button>
         </form>
     </article>
     <article>
         <form>
-            <button onclick=""   class="SuprimerMonCompte"> Supprimer playlist </button>
+            <button onclick="" class="SuprimerMonCompte"> Supprimer playlist </button>
         </form>
     </article>
     <?php

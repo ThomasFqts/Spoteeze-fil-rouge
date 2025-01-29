@@ -9,12 +9,6 @@ if (!isset($_SESSION['user_type']) || $_SESSION['user_type'] !== 'Admin') {
 
 $db = ConnexionBase(); // Connexion à la base de données
 
-// Récupére toutes les entités nécessaires pour les sélecteurs
-$users = $db->query("SELECT * FROM users")->fetchAll(PDO::FETCH_ASSOC);
-$artists = $db->query("SELECT * FROM artist")->fetchAll(PDO::FETCH_ASSOC);
-$titles = $db->query("SELECT * FROM title")->fetchAll(PDO::FETCH_ASSOC);
-$albums = $db->query("SELECT * FROM album")->fetchAll(PDO::FETCH_ASSOC);
-
 // Types d'utilisateur (Admin, Free, etc.)
 $user_types = $db->query("SELECT * FROM user_type")->fetchAll(PDO::FETCH_ASSOC);
 

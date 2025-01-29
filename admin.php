@@ -59,7 +59,7 @@ $albums = $albumsrequest->fetchAll(PDO::FETCH_ASSOC);
 
 <!-- Tableau pour modifier l'utilisateur -->
 <h2>Liste des Utilisateurs avec leurs infos</h2>
-<table class="">
+<table>
     <thead>
         <tr> <!-- Titres des lignes -->
             <th>ID User</th>
@@ -68,6 +68,7 @@ $albums = $albumsrequest->fetchAll(PDO::FETCH_ASSOC);
             <th>Nom Utilisateur</th>
             <th>Email</th>
             <th>ID Type User</th>
+            <th></th>
         </tr>
     </thead>
     <tbody>
@@ -83,7 +84,7 @@ $albums = $albumsrequest->fetchAll(PDO::FETCH_ASSOC);
                 <td>
                     <form action="delete.php" method="POST" style="display:inline;">
                         <input type="hidden" name="id_user" value="<?php $user['id_user'] ?>"> <!-- Masquer l'input pour les autres utilisateurs  -->
-                        <button type="submit" name="delete_user">Supprimer</button>
+                        <button type="submit" name="delete_user" class="btn btn-danger">Supprimer</button>
                     </form>
                 </td>
             </tr>
@@ -95,7 +96,7 @@ $albums = $albumsrequest->fetchAll(PDO::FETCH_ASSOC);
 
 <!-- Tableau pour modifier l'artiste -->
 <h2>Liste des Artistes</h2>
-<table class="">
+<table>
     <thead>
         <tr>
             <th>ID Artiste</th> <!-- Titres des lignes -->
@@ -103,6 +104,7 @@ $albums = $albumsrequest->fetchAll(PDO::FETCH_ASSOC);
             <th>Nom Artiste</th>
             <th>Alias</th>
             <th>ID Type Artist</th>
+            <th></th>
         </tr>
     </thead>
     <tbody>
@@ -116,7 +118,7 @@ $albums = $albumsrequest->fetchAll(PDO::FETCH_ASSOC);
                 <td>
                     <form action="delete.php" method="POST" style="display:inline;">
                         <input type="hidden" name="id_artist" value="<?= $artist['id_artist'] ?>"> <!-- Masquer l'input pour les autres utilisateurs  -->
-                        <button type="submit" name="delete_artist">Supprimer</button>
+                        <button type="submit" name="delete_artist" class="btn btn-danger">Supprimer</button>
                     </form>
                 </td>
             </tr>
@@ -126,12 +128,13 @@ $albums = $albumsrequest->fetchAll(PDO::FETCH_ASSOC);
 
 <!-- Tableau pour modifier l'album -->
 <h2>Liste des Albums</h2>
-<table class>
+<table>
     <thead>
         <tr>
             <th>ID Album</th> <!-- Titres des lignes -->
             <th>Nom Album</th>
             <th>Date de publication</th>
+            <th></th>
         </tr>
     </thead>
     <tbody>
@@ -143,7 +146,7 @@ $albums = $albumsrequest->fetchAll(PDO::FETCH_ASSOC);
                 <td>
                     <form action="delete.php" method="POST" style="display:inline;">
                         <input type="hidden" name="id_album" value="<?= $album['id_album'] ?>"> <!-- Masquer l'input pour les autres utilisateurs  -->
-                        <button type="submit" name="delete_album">Supprimer</button>
+                        <button type="submit" name="delete_album" class="btn btn-danger">Supprimer</button>
                     </form>
                 </td>
             </tr>
@@ -153,13 +156,14 @@ $albums = $albumsrequest->fetchAll(PDO::FETCH_ASSOC);
 
 <!-- Tableau pour modifier les titres -->
 <h2>Liste des Titres</h2>
-<table class>
+<table>
     <thead>
         <tr>
             <th>ID Title</th> <!-- Titres des lignes -->
             <th>Nom Titre</th>
             <th>Durée du titre</th>
             <th>Id Genre</th>
+            <th></th>
         </tr>
     </thead>
     <tbody>
@@ -172,7 +176,7 @@ $albums = $albumsrequest->fetchAll(PDO::FETCH_ASSOC);
                 <td>
                     <form action="delete.php" method="POST" style="display:inline;">
                         <input type="hidden" name="id_title" value="<?= $title['id_title'] ?>"> <!-- Masquer l'input pour les autres utilisateurs  -->
-                        <button type="submit" name="delete_title">Supprimer</button>
+                        <button type="submit" name="delete_title" class="btn btn-danger">Supprimer</button>
                     </form>
                 </td>
             </tr>
