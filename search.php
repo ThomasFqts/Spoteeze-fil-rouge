@@ -17,8 +17,8 @@ if (!empty($search)) {
     (firstname_artist LIKE '%$search%') OR 
     (lastname_artist LIKE '%$search%') OR 
     (alias_artist LIKE '%$search%') OR 
-    (firstname_artist AND lastname_artist LIKE '%$search%') OR
-    (lastname_artist AND firstname_artist LIKE '%$search%')";
+    (CONCAT(firstname_artist , ' ' , lastname_artist) LIKE '%$search%') OR
+    (CONCAT(lastname_artist , ' ' , firstname_artist) LIKE '%$search%')";
 }
 
 $resultats = $db->query($request)->fetchAll(PDO::FETCH_ASSOC);
@@ -44,17 +44,30 @@ $resultats = $db->query($request)->fetchAll(PDO::FETCH_ASSOC);
         </form>
 
         <section>
-            <?php if (count($resultats) > 0): ?>
-                <?php foreach ($resultats as $resultat): ?>
-                    <div>
-                        <p><?= htmlentities($resultat['name_title']) ?></p>
-                        <p><?= htmlentities($resultat['time_title']) ?></p>
-                        <p><?= htmlentities($resultat['alias_artist']) ?></p>
-                    </div>
-                <?php endforeach ?>
-            <?php else: ?>
-                <p>Aucun artist, titre ou album trouvé</p>
-            <?php endif ?>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Titre musique :</th>
+                        <th>Temps :</th>
+                        <th>Artiste :</th>
+                        <th>Ajout à une playlist</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php if (count($resultats) > 0): ?>
+                        <?php foreach ($resultats as $resultat): ?>
+                            <tr>
+                                <td><?= htmlentities($resultat['name_title']) ?></td>
+                                <td><?= htmlentities($resultat['time_title']) ?></td>
+                                <td><?= htmlentities($resultat['alias_artist']) ?></td>
+                                <td><input type="button" value="Ajouter à une playlist" class="btn btn-success"></td>
+                            </tr>
+                        <?php endforeach ?>
+                    <?php else: ?>
+                        <p>Aucun artist, titre ou album trouvé</p>
+                    <?php endif ?>
+                </tbody>
+            </table>
         </section>
 
 

@@ -6,6 +6,11 @@ include('header.php');
 
 <main id="partiePrincipale">
 
+    <form action="search.php" method="GET" class="form-inline">
+        <input id="barreDeRecherche" type="search" name="search" placeholder="Rechercher..." class="form-control mr-sm-2">
+        <button type="submit" class="btn btn-primary">Rechercher</button>
+    </form>
+
     <article>
         <div class="colorbuton">
             <a href="playlist_default.php?genre=Rock"><button id="boutonMusiqueRock" style="width: 150px; height: 70px;">Rock</button> </a>
@@ -32,12 +37,12 @@ include('header.php');
     <h3>Vos playlists</h3>
     <article>
         <form>
-            <button onclick=""   class="Enregister"> Créer playlist </button>   
+            <button onclick="" class="Enregister"> Créer playlist </button>
         </form>
     </article>
     <article>
         <form>
-            <button onclick=""   class="SuprimerMonCompte"> Supprimer playlist </button>
+            <button onclick="" class="SuprimerMonCompte"> Supprimer playlist </button>
         </form>
     </article>
     <?php
