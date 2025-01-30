@@ -94,12 +94,6 @@ if ($_SERVER['REQUEST_METHOD'] === "GET") {
         <?php endforeach ?>
     </article>
 
-    <article> <!-- Afficher les playlists  -->
-        <?php foreach($playlists as $playlist): ?>
-            <a href="page_playlist.php?name_playlist=<?= $playlist['name_playlist']?>"><?= $playlist['name_playlist']?></a>
-        <?php endforeach ?>
-    </article>
-
 </main>
 
 <footer>
