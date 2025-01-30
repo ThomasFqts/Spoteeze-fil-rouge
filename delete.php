@@ -14,7 +14,7 @@ if (isset($_POST['delete_user'])) {
     $id_user = intval($_POST['id_user']); // ID de l'utilisateur à supprimer
 
     try {
-        $db->beginTransaction();
+        $db->beginTransaction(); // Fonction native : la transaction permet de tout arreter, et de supprimer ce qui a été commencé, si il y a un probléme qq part
 
         // Supprime l'utilisateur
         $stmt = $db->prepare("DELETE FROM Users WHERE id_user = :id_user");
@@ -33,7 +33,7 @@ if (isset($_POST['delete_artist'])) {
     $id_artist = intval($_POST['id_artist']); // Récupérer l'ID de l'artiste à supprimer
 
     try {
-        $db->beginTransaction();
+        $db->beginTransaction(); // Fonction native : la transaction permet de tout arreter, et de supprimer ce qui a été commencé, si il y a un probléme qq part
 
         // Supprimer les relations dans `Production` (liens entre titres/albums et artistes)
         $stmt = $db->prepare("DELETE FROM Production WHERE id_artist = :id_artist");
@@ -64,7 +64,7 @@ if (isset($_POST['delete_title'])) {
     $id_title = intval($_POST['id_title']); // Récupére l'ID du titre à supprimer
 
     try {
-        $db->beginTransaction();
+        $db->beginTransaction(); // Fonction native : la transaction permet de tout arreter, et de supprimer ce qui a été commencé, si il y a un probléme qq part
 
         // Supprime le titre dans la table `Production` (relation entre titre, album et artiste)
         $stmt = $db->prepare("DELETE FROM Production WHERE id_title = :id_title");
@@ -91,7 +91,7 @@ if (isset($_POST['delete_album'])) {
     $id_album = intval($_POST['id_album']); // Récupére l'ID de l'album à supprimer
 
     try {
-        $db->beginTransaction();
+        $db->beginTransaction(); // Fonction native : la transaction permet de tout arreter, et de supprimer ce qui a été commencé, si il y a un probléme qq part
 
         // Supprime les relations dans la table `Production` (lien entre titres et albums)
         $stmt = $db->prepare("DELETE FROM Production WHERE id_album = :id_album");

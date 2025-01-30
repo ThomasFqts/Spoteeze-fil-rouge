@@ -73,7 +73,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $stmt = $db->prepare("UPDATE users SET Username = ?, email = ?, password = ?, firstname_user = ?, lastname_user = ?, id_type_user = ?, sexe_user = ? WHERE id_user = ?"); // Modification des données dans la BDD
         $stmt->execute([$username, $email, $password, $firstname_user, $lastname_user, $id_type_user, $sexe_user, $user_id]);
         echo "Utilisateur mis à jour avec succès."; // Message de confirmation 
-    } 
+    }
     elseif (isset($_POST['update_title'])) {
         $title_id = $_POST['title_id'];
         $name_title = $_POST['name_title'];
@@ -84,7 +84,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $stmt = $db->prepare("UPDATE title SET name_title = ?, time_title = ?, publication_date_title = ?, id_genre = ? WHERE id_title = ?"); // Modification des données dans la BDD
         $stmt->execute([$name_title, $time_title, $publication_date_title, $id_genre, $title_id]);
         echo "Titre mis à jour avec succès."; // Message de confirmation 
-    } 
+    }
     elseif (isset($_POST['update_album'])) {
         $album_id = $_POST['album_id'];
         $name_album = $_POST['name_album'];
@@ -93,8 +93,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $stmt = $db->prepare("UPDATE album SET name_album = ?, publication_date_album = ? WHERE id_album = ?"); // Modification des données dans la BDD
         $stmt->execute([$name_album, $publication_date_album, $album_id]);
         echo "Album mis à jour avec succès."; // Message de confirmation 
-    }
-}
+    };
+};
 ?>
 
 <!DOCTYPE html>
@@ -133,11 +133,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <br>
         <label for="id_type_artist">Type d'artiste :</label>
         <select name="id_type_artist" id="id_type_artist" required>
-            <?php foreach ($type_artists as $type_artist): ?>
-                <option value="<?= $type_artist['id_type_artist'] ?>" <?= isset($entity_data['id_type_artist']) && $entity_data['id_type_artist'] == $type_artist['id_type_artist'] ? 'selected' : '' ?>><?= htmlspecialchars($type_artist['libelle_type_artist']) ?></option>
-            <?php endforeach; ?>
+            <?php foreach ($type_artists as $type_artist): ?> <!-- Entrée dans la boucle -->
+                <option value="<?= $type_artist['id_type_artist'] ?>" <?= isset($entity_data['id_type_artist']) && $entity_data['id_type_artist'] == $type_artist['id_type_artist'] ? 'selected' : '' ?>><?= htmlspecialchars($type_artist['libelle_type_artist']) ?></option> <!-- Convertir en HTML pour éviter les failles XSS -->
+            <?php endforeach; ?> <!-- Sortie de la boucle -->
         </select>
-        <br><br>
+        <br>
+        <br>
         <button type="submit" name="update_artist">Modifier l'artiste</button>
     </form>
 
@@ -147,29 +148,36 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <input type="hidden" name="user_id" value="<?= $entity_data['id_user'] ?? '' ?>">
         <label for="username">Nom d'utilisateur :</label>
         <input type="text" name="username" id="username" value="<?= $entity_data['Username'] ?? '' ?>" required>
-        <br><br>
+        <br>
+        <br>
         <label for="email">Email :</label>
         <input type="email" name="email" id="email" value="<?= $entity_data['email'] ?? '' ?>" required>
-        <br><br>
+        <br>
+        <br>
         <label for="password">Mot de passe :</label>
         <input type="password" name="password" id="password" required>
-        <br><br>
+        <br>
+        <br>
         <label for="firstname_user">Prénom :</label>
         <input type="text" name="firstname_user" id="firstname_user" value="<?= $entity_data['firstname_user'] ?? '' ?>" required>
-        <br><br>
+        <br>
+        <br>
         <label for="lastname_user">Nom :</label>
         <input type="text" name="lastname_user" id="lastname_user" value="<?= $entity_data['lastname_user'] ?? '' ?>" required>
-        <br><br>
+        <br>
+        <br>
         <label for="id_type_user">Type d'utilisateur :</label>
         <select name="id_type_user" id="id_type_user" required>
-            <?php foreach ($user_types as $type_user): ?>
-                <option value="<?= $type_user['id_type_user'] ?>" <?= isset($entity_data['id_type_user']) && $entity_data['id_type_user'] == $type_user['id_type_user'] ? 'selected' : '' ?>><?= htmlspecialchars($type_user['name_type_user']) ?></option>
-            <?php endforeach; ?>
+            <?php foreach ($user_types as $type_user): ?> <!-- Entrée dans la boucle -->
+                <option value="<?= $type_user['id_type_user'] ?>" <?= isset($entity_data['id_type_user']) && $entity_data['id_type_user'] == $type_user['id_type_user'] ? 'selected' : '' ?>><?= htmlspecialchars($type_user['name_type_user']) ?></option> <!-- Convertir en HTML pour éviter les failles XSS -->
+            <?php endforeach; ?> <!-- Sortie de la boucle -->
         </select>
-        <br><br>
+        <br>
+        <br>
         <label for="sexe_user">Genre :</label>
         <input type="text" name="sexe_user" id="sexe_user" value="<?= $entity_data['sexe_user'] ?? '' ?>">
-        <br><br>
+        <br>
+        <br>
         <button type="submit" name="update_user">Modifier l'utilisateur</button>
     </form>
 
@@ -179,20 +187,24 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <input type="hidden" name="title_id" value="<?= $entity_data['id_title'] ?? '' ?>">
         <label for="name_title">Nom du titre :</label>
         <input type="text" name="name_title" id="name_title" value="<?= $entity_data['name_title'] ?? '' ?>" required>
-        <br><br>
+        <br>
+        <br>
         <label for="time_title">Durée :</label>
         <input type="text" name="time_title" id="time_title" value="<?= $entity_data['time_title'] ?? '' ?>" required>
-        <br><br>
+        <br>
+        <br>
         <label for="publication_date_title">Date de publication :</label>
         <input type="date" name="publication_date_title" id="publication_date_title" value="<?= $entity_data['publication_date_title'] ?? '' ?>" required>
-        <br><br>
+        <br>
+        <br>
         <label for="id_genre">Genre :</label>
         <select name="id_genre" id="id_genre" required>
-            <?php foreach ($music_genres as $genre): ?>
-                <option value="<?= $genre['id_genre'] ?>" <?= isset($entity_data['id_genre']) && $entity_data['id_genre'] == $genre['id_genre'] ? 'selected' : '' ?>><?= htmlspecialchars($genre['name_genre']) ?></option>
-            <?php endforeach; ?>
+            <?php foreach ($music_genres as $genre): ?> <!-- Entrée dans la boucle -->
+                <option value="<?= $genre['id_genre'] ?>" <?= isset($entity_data['id_genre']) && $entity_data['id_genre'] == $genre['id_genre'] ? 'selected' : '' ?>><?= htmlspecialchars($genre['name_genre']) ?></option> <!-- Convertir en HTML pour éviter les failles XSS -->
+            <?php endforeach; ?> <!-- Sortie de la boucle -->
         </select>
-        <br><br>
+        <br>
+        <br>
         <button type="submit" name="update_title">Modifier le titre</button>
     </form>
 

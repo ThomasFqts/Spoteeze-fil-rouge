@@ -45,7 +45,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         exit();
     } 
     else {
-        echo "<p>Veuillez remplir correctement tous les champs et accepter les conditions.</p>";
+        echo "<p>Veuillez remplir correctement tous les champs et accepter les conditions.</p>"; // Message d'erreur
     }
 }
 ?>
@@ -70,7 +70,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </ul>
             </p>
         </article>
-    </section><br><br>
+    </section>
+    <br>
+    <br>
 
     <section>
         <article>
@@ -78,12 +80,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <p>Veuillez saisir votre nom et prenom</p>
             <label for="nom">Nom : </label>
             <input type="text" name="nom" id="">
-        </article><br><br>
+        </article>
+        <br>
+        <br>
 
         <article>
             <label for="prenom">Prenom : </label>
             <input type="text" name="prenom" id="">
-        </article><br><br>
+        </article>
+        <br>
+        <br>
 
         <article>
             <p>Veuillez saisir le pseudo que vous voulez utilisé.</p>
@@ -104,7 +110,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <option value="Pas_indication">Je ne souhaite pas l'indiquer</option>
             </select>
         </article>
-    </section><br><br>
+    </section>
+    <br>
+    <br>
 
     <section>
         <p>3. Conditions d'utilisation</p>
