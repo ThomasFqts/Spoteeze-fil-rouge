@@ -1,7 +1,7 @@
 <?php
-include "header.php"
+include "header.php";
 
-
+$db = ConnexionBase(); // Connexion à la base de données
 ?>
 
 <!DOCTYPE html>
@@ -15,13 +15,6 @@ include "header.php"
 </head>
 
 <body>
-    <header>
-        <img src="Style/img/logo.png" alt="logo" width="300px" height="200px">
-        <form action="index.php" method="get">
-            <button class="Menu">Menu</button>
-        </form>
-    </header>
-
     <main>
 
         <div class="round-rectangle1"></div>

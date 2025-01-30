@@ -11,7 +11,7 @@ JOIN artist a ON p.id_artist = a.id_artist
 JOIN album al ON p.id_album = al.id_album
 JOIN title t ON p.id_title = t.id_title ";
 
-if (!empty($search)) {
+if (!empty($search)) { // Recherche
     $request .= "WHERE (name_album LIKE '%$search%') OR 
     (name_title LIKE '%$search%') OR 
     (firstname_artist LIKE '%$search%') OR 
@@ -30,7 +30,7 @@ $resultats = $db->query($request)->fetchAll(PDO::FETCH_ASSOC);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Page_playlist</title>
+    <title>Reherche</title>
     <link rel="stylesheet" href="Style\style.css">
 </head>
 

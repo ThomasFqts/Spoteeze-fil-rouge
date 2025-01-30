@@ -8,6 +8,8 @@ if ($_SERVER['REQUEST_METHOD'] === "GET") {
         // Préparer et exécuter la requête SQL
         $stmt = $db->prepare("INSERT INTO playlist(name_playlist) VALUES (?)");
         $stmt->execute([$nomPlaylist]);
+        header('Location: index.php');
+        exit();
     }
 }
 ?>
@@ -60,7 +62,7 @@ if ($_SERVER['REQUEST_METHOD'] === "GET") {
             <button id="butCreer" class="Enregister" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modale"> Créer playlist </button>
         </form>
     </article>
-    <section>
+    <section> <!-- Modale pour création de playlist -->
         <div class="modal fade" id="modale" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -70,32 +72,36 @@ if ($_SERVER['REQUEST_METHOD'] === "GET") {
                     </div>
                     <form method="GET">
                         <div class="modal-body">
-                            <p>Veuillez saisir le nom que vous voulez donne à votre playlist !</p>
+                            <p>Veuillez saisir le nom que vous voulez donner à votre playlist :</p>
                             
                                 <input type="text" name="nomPlaylist" id="">
-                                <!-- php plus bas -->
+                                <!-- php l.95 -->
                             
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"> Fermer </button>
                             <button type="submit" class="btn btn-primary" name="playlistsubmit"> Créer </button>
                         </div>
                     </form>
                 </div>
             </div>
-        </div>
+        </div> 
     </section>
 
     <?php 
-    $sql = $db->prepare("SELECT * FROM playlist")->fetch(PDO::FETCH_ASSOC);
-    
-    
+    $playlists = $db->query("SELECT * FROM playlist")->fetchAll(PDO::FETCH_ASSOC);
     ?>
 
+    <article> <!-- Afficher les playlists  -->
+        <?php foreach($playlists as $playlist): ?>
+            <a href="page_playlist.php?name_playlist=<?= $playlist['name_playlist']?>"><?= $playlist['name_playlist']?></a>
+        <?php endforeach ?>
+    </article>
 
 </main>
 
 <footer>
+    <h3>Artiste du moment</h3>
 
     <article>
     </article>

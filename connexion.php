@@ -47,7 +47,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <p class="txt">Connection :</p>
             <p class="txt">Email :</p>
             <article class="input-group flex-nowrap">
-                <span class="input-group-text" id="addon-wrapping">@</span> obliger
+                <span class="input-group-text" id="addon-wrapping">@</span>
                 <input type="text" class="form-control" placeholder="Email" name="email">
             </article>
             <p class="txt">Mot de passe :</p>
