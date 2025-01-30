@@ -83,7 +83,7 @@ $albums = $albumsrequest->fetchAll(PDO::FETCH_ASSOC);
                 <td><?= htmlspecialchars($user['id_type_user']) ?></td>
                 <td>
                     <form action="delete.php" method="POST" style="display:inline;">
-                        <input type="hidden" name="id_user" value="<?php $user['id_user'] ?>"> <!-- Masquer l'input pour les autres utilisateurs  -->
+                        <input type="hidden" name="id_user" value="<?= $user['id_user'] ?>"> <!-- Masquer l'input pour les autres utilisateurs  -->
                         <button type="submit" name="delete_user" class="btn btn-danger">Supprimer</button>
                     </form>
                 </td>

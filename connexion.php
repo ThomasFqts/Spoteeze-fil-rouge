@@ -46,17 +46,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <section id="identifiants">
             <p class="txt">Connection :</p>
             <p class="txt">Email :</p>
-            <article class="input-group flex-nowrap">
-                <span class="input-group-text" id="addon-wrapping">@</span> obliger
+            <article class="">
                 <input type="text" class="form-control" placeholder="Email" name="email">
             </article>
             <p class="txt">Mot de passe :</p>
-            <article class="input-group flex-nowrap">
+            <article class="">
                 <input type="text" class="form-control" placeholder="Mot de passe" name="password">
             </article>
         </section>
         <br>
-        <button type="submit">Valider</button> <!-- Bouton pour confirmer les infos -->
+        <button type="submit" class="btn btn-success">Valider</button> <!-- Bouton pour confirmer les infos -->
     </form>
     
     </body>

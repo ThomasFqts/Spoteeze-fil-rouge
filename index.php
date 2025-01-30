@@ -1,6 +1,7 @@
 <?php
 include('header.php');
 $db = ConnexionBase();
+$playlists = $db->query("SELECT * FROM playlist")->fetchAll(PDO::FETCH_ASSOC);
 
 if ($_SERVER['REQUEST_METHOD'] === "GET") {
     if (isset($_GET['playlistsubmit'])) {
@@ -8,6 +9,7 @@ if ($_SERVER['REQUEST_METHOD'] === "GET") {
         // Préparer et exécuter la requête SQL
         $stmt = $db->prepare("INSERT INTO playlist(name_playlist) VALUES (?)");
         $stmt->execute([$nomPlaylist]);
+        header("Location: page_playlist.php?name_playlist=$nomPlaylist");
     }
 }
 ?>
@@ -86,11 +88,11 @@ if ($_SERVER['REQUEST_METHOD'] === "GET") {
         </div>
     </section>
 
-    <?php 
-    $sql = $db->prepare("SELECT * FROM playlist")->fetch(PDO::FETCH_ASSOC);
-    
-    
-    ?>
+    <article>
+        <?php foreach($playlists as $playlist): ?>
+            <a href="page_playlist.php?name_playlist=<?= $playlist['name_playlist']?>"><?= $playlist['name_playlist']?></a>
+        <?php endforeach ?>
+    </article>
 
 
 </main>

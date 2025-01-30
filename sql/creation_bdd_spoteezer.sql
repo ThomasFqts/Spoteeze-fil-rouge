@@ -66,7 +66,7 @@ CREATE TABLE Users(
    FOREIGN KEY(id_type_user) REFERENCES User_type(id_type_user)
 );
 
-CREATE TABLE title_playlist(
+CREATE TABLE playlist_title(
    id_title INT,
    id_playlist INT,
    PRIMARY KEY(id_title, id_playlist),

@@ -4,6 +4,7 @@ include "header.php";
 $db = ConnexionBase(); // Connexion à la base de données
 
 $search = isset($_GET['search']) ? $_GET['search'] : "";
+$playlists = $db->query("SELECT * FROM playlist")->fetchAll(PDO::FETCH_ASSOC);
 
 // Récupére les artistes, les titres et les albums
 $request = "SELECT * FROM production p 
@@ -60,7 +61,17 @@ $resultats = $db->query($request)->fetchAll(PDO::FETCH_ASSOC);
                                 <td><?= htmlentities($resultat['name_title']) ?></td>
                                 <td><?= htmlentities($resultat['time_title']) ?></td>
                                 <td><?= htmlentities($resultat['alias_artist']) ?></td>
-                                <td><input type="button" value="Ajouter à une playlist" class="btn btn-success"></td>
+                                <td>
+                                    <form action="">
+                                        <input type="hidden" name="id_title" value="<?= $resultat['id_title'] ?>">
+                                        <input type="button" name="add_title_in_playlist" value="Ajouter à une playlist" class="btn btn-success">
+                                    </form>
+                                    <p>Veuillez choisir la ou les playlists auquelle vous voulez ajouter la musique !</p>
+                                    <?php foreach ($playlists as $playlist): ?>
+                                        <input type="checkbox" name="<?= $playlist['name_playlist'] ?>" id="">
+                                        <label for="<?= $playlist['name_playlist'] ?>"><?= $playlist['name_playlist'] ?></label>
+                                    <?php endforeach ?>
+                                </td>
                             </tr>
                         <?php endforeach ?>
                     <?php else: ?>

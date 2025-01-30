@@ -90,7 +90,7 @@ INSERT INTO Users (Username, email, password, firstname_user, lastname_user, id_
 ('frank_reggae', 'frank.reggae@example.com', 'password8', 'Frank', 'Reggae', 4, 'Homme');
 
 -- Insertion des données dans la table title_playlist
-INSERT INTO title_playlist (id_title, id_playlist) VALUES
+INSERT INTO playlist_title (id_title, id_playlist) VALUES
 (1, 1),
 (2, 2),
 (3, 3),
