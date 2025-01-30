@@ -46,8 +46,12 @@ body {
 
 /*--------------------------------- couleur text toute page --------------------------*/
 
-th, td, .txt, label, ul, li, p, h1, h2 {
+th, td, .txt, label, ul, li, p, h1, h2, h3 {
     color: white;
+}
+
+label {
+    color: black;
 }
 
 /*-------------------------couleur Bouton index---------------------------------*/

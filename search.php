@@ -25,67 +25,47 @@ if (!empty($search)) {
 $resultats = $db->query($request)->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Page_playlist</title>
-    <link rel="stylesheet" href="Style\style.css">
-</head>
+<main>
 
-<body>
+    <form action="search.php" method="GET" class="form-inline">
+        <input id="barreDeRecherche" type="search" name="search" placeholder="Rechercher..." class="form-control mr-sm-2">
+        <button type="submit" class="btn btn-primary" name="recherche_music">Rechercher</button>
+    </form>
 
-    <main>
-
-        <form action="search.php" method="GET" class="form-inline">
-            <input id="barreDeRecherche" type="search" name="search" placeholder="Rechercher..." class="form-control mr-sm-2">
-            <button type="submit" class="btn btn-primary">Rechercher</button>
-        </form>
-
-        <section>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Titre musique :</th>
-                        <th>Temps :</th>
-                        <th>Artiste :</th>
-                        <th>Ajout à une playlist</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php if (count($resultats) > 0): ?>
-                        <?php foreach ($resultats as $resultat): ?>
-                            <tr>
-                                <td><?= htmlentities($resultat['name_title']) ?></td>
-                                <td><?= htmlentities($resultat['time_title']) ?></td>
-                                <td><?= htmlentities($resultat['alias_artist']) ?></td>
-                                <td>
-                                    <form action="">
-                                        <input type="hidden" name="id_title" value="<?= $resultat['id_title'] ?>">
-                                        <input type="button" name="add_title_in_playlist" value="Ajouter à une playlist" class="btn btn-success">
-                                    </form>
-                                    <p>Veuillez choisir la ou les playlists auquelle vous voulez ajouter la musique !</p>
-                                    <?php foreach ($playlists as $playlist): ?>
-                                        <input type="checkbox" name="<?= $playlist['name_playlist'] ?>" id="">
-                                        <label for="<?= $playlist['name_playlist'] ?>"><?= $playlist['name_playlist'] ?></label>
-                                    <?php endforeach ?>
-                                </td>
-                            </tr>
-                        <?php endforeach ?>
-                    <?php else: ?>
-                        <p>Aucun artist, titre ou album trouvé</p>
-                    <?php endif ?>
-                </tbody>
-            </table>
-        </section>
+    <section>
+        <table>
+            <thead>
+                <tr>
+                    <th>Titre musique :</th>
+                    <th>Temps :</th>
+                    <th>Artiste :</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php if (count($resultats) > 0 && (isset($_GET['recherche_music']))): ?>
+                    <?php foreach ($resultats as $resultat): ?>
+                        <tr>
+                            <td><?= htmlentities($resultat['name_title']) ?></td>
+                            <td><?= htmlentities($resultat['time_title']) ?></td>
+                            <td><?= htmlentities($resultat['alias_artist']) ?></td>
+                        </tr>
+                    <?php endforeach ?>
+                <?php else: ?>
+                    <p>Aucun artist, titre ou album trouvé</p>
+                <?php endif ?>
+            </tbody>
+        </table>
+    </section>
 
 
-    </main>
+</main>
 
-    <footer>
-    </footer>
+<footer>
+</footer>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+    crossorigin="anonymous"></script>
 </body>
 
 </html>
