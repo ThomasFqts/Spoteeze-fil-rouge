@@ -71,3 +71,9 @@ function sortirLaPlaylist (nom_) {
 /* php */
     innerhtml
 };
+
+/* Playlists de l'index 
+let modal = document.getElementById("myModal");
+let butCreer = document.getElementById("butCreer");
+let butSup = document.getElementById("butSup");
+let span = document.getElementsByClassName("close")[0];*/

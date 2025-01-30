@@ -30,7 +30,7 @@ $titles = $stmt->fetchAll(PDO::FETCH_ASSOC); //Création du tableau de titres
 <body>
     <main>
         <h1> Playlist - <?= htmlspecialchars($genre) ?></h1> <!-- Affichage du genre dans la page -->
-        <table border="1">
+        <table class="border">
             <thead>
                 <tr>
                     <th>Nom du Titre</th>

@@ -22,7 +22,7 @@ if (isset($_POST['delete_user'])) {
 
         $db->commit();
         header("Location: admin.php?success=1"); // Rediriger après succès
-    } catch (Exception $e) {
+    } catch (Exception $e) { // Attraper l'exception, si l'action demandée ne se réalise pas
         $db->rollBack(); // Annule les modifications en cas d'erreur
         echo "Erreur : " . $e->getMessage();
     }
@@ -53,7 +53,7 @@ if (isset($_POST['delete_artist'])) {
 
         $db->commit(); // Valider la transaction
         header("Location: admin.php?success=1"); // Rediriger après succès
-    } catch (Exception $e) {
+    } catch (Exception $e) { // Attraper l'exception, si l'action demandée ne se réalise pas
         $db->rollBack(); // Annuler les modifications en cas d'erreur
         echo "Erreur : " . $e->getMessage();
     }
@@ -80,7 +80,7 @@ if (isset($_POST['delete_title'])) {
 
         $db->commit();
         header("Location: admin.php?success=1");
-    } catch (Exception $e) {
+    } catch (Exception $e) { // Attraper l'exception, si l'action demandée ne se réalise pas
         $db->rollBack();
         echo "Erreur : " . $e->getMessage();
     }
@@ -103,7 +103,7 @@ if (isset($_POST['delete_album'])) {
 
         $db->commit();
         header("Location: admin.php?success=1");
-    } catch (Exception $e) {
+    } catch (Exception $e) { // Attraper l'exception, si l'action demandée ne se réalise pas
         $db->rollBack();
         echo "Erreur : " . $e->getMessage();
     }
