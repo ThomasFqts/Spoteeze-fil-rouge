@@ -1,7 +1,7 @@
 <?php
 include "header.php";
 
-$db = ConnexionBase();
+$db = ConnexionBase();// Connexion à la base de données
 
 // Récupére le nom de la playlist sélectionné depuis l'URL
 $playlist = $_GET['name_playlist'] ?? '';
@@ -13,16 +13,18 @@ JOIN title t ON t.id_title = pt.id_title
 JOIN production pr ON pr.id_title = t.id_title
 JOIN artist a ON a.id_artist = pr.id_artist
 JOIN album al ON al.id_album = pr.id_album
-WHERE p.name_playlist = ?;");
+WHERE p.name_playlist = ?;"); // Variable qui contient la préparation de la requête SQL
 $stmt->execute([$playlist]);
 $titles = $stmt->fetchAll(PDO::FETCH_ASSOC); //Création du tableau de playlist
 
 
 // Récupére l'id de la playlist séléctionné
-$stmt2 = $db->prepare("SELECT id_playlist FROM playlist WHERE name_playlist = ?;");
+$stmt2 = $db->prepare("SELECT id_playlist FROM playlist WHERE name_playlist = ?;"); // Variable qui contient la préparation de la requête SQL
 $stmt2->execute([$playlist]);
 $id_playlist = $stmt2->fetch(PDO::FETCH_ASSOC)['id_playlist'];
 
+$titles = $stmt->fetchAll(PDO::FETCH_ASSOC); // Récupérer toutes les lignes de l'ensemble des résultats de la requête
+$id_playlist = $stmt2->fetchAll(PDO::FETCH_ASSOC);
 
 // Pour la recherche
 $search = isset($_POST['search']) ? $_POST['search'] : "";
@@ -32,7 +34,7 @@ JOIN artist a ON p.id_artist = a.id_artist
 JOIN album al ON p.id_album = al.id_album
 JOIN title t ON p.id_title = t.id_title ";
 
-if (!empty($search)) {
+if (!empty($search)) { // Si la barre de recherche n'est pas vide
     $request .= "WHERE (name_album LIKE '%$search%') OR 
     (name_title LIKE '%$search%') OR 
     (firstname_artist LIKE '%$search%') OR 
@@ -42,7 +44,7 @@ if (!empty($search)) {
     (CONCAT(lastname_artist , ' ' , firstname_artist) LIKE '%$search%')";
 }
 
-$resultats = $db->query($request)->fetchAll(PDO::FETCH_ASSOC);
+$resultats = $db->query($request)->fetchAll(PDO::FETCH_ASSOC); // Sortir le résultat de la recherche
 
 // Verification si le bouton "Supprimer la musique" à été appuyé et si c'est le cas, ça supprime la musique
 if (isset($_POST['delete_music'])) {
@@ -114,7 +116,7 @@ if (isset($_POST['add_in_playlist'])) {
     </form>
 
     <!-- Affichage de la recherche de l'utilisateur -->
-    <?php if (isset($_POST['recherche_music'])): ?>
+    <?php if (isset($_POST['recherche_music'])): ?>  <!-- Début de la 3éme boucle -->
         <h2 class="text-center">Recherche :</h2>
         <div class="round-rectangle2">
             <table>
@@ -128,8 +130,8 @@ if (isset($_POST['add_in_playlist'])) {
                     </tr>
                 </thead>
                 <tbody>
-                    <?php if (count($resultats) > 0): ?>
-                        <?php foreach ($resultats as $resultat): ?>
+                    <?php if (count($resultats) > 0): ?> <!-- Début de la 2éme boucle -->
+                        <?php foreach ($resultats as $resultat): ?>  <!-- Début de la 3éme boucle -->
                             <tr>
                                 <td><?= htmlentities($resultat['name_title']) ?></td>
                                 <td><?= htmlentities($resultat['time_title']) ?></td>
@@ -142,14 +144,14 @@ if (isset($_POST['add_in_playlist'])) {
                                     </form>
                                 </td>
                             </tr>
-                        <?php endforeach ?>
+                        <?php endforeach ?>  <!-- Sortie de la 3éme boucle -->
                     <?php else: ?>
                         <p>Aucun artist, titre ou album trouvé</p>
-                    <?php endif ?>
+                    <?php endif ?>  <!-- Sortie de la 2éme boucle -->
                 </tbody>
             </table>
         </div>
-    <?php endif ?>
+    <?php endif ?>  <!-- Sortie de la 1ère boucle -->
 
     <!-- Affichage des titres contenu dans la playlist -->
     <div class="round-rectangle1">
@@ -180,7 +182,7 @@ if (isset($_POST['add_in_playlist'])) {
 
                         </td>
                     </tr>
-                <?php endforeach; ?> <!-- Sortie de la boucle  -->
+                <?php endforeach; ?> <!-- Sortie de la boucle -->
             </tbody>
         </table>
     </div>

@@ -10,7 +10,7 @@ if (!isset($_SESSION['user_type']) || $_SESSION['user_type'] !== 'Admin') {
 $db = ConnexionBase(); // Connexion à la base de données
 
 // Types d'utilisateur (Admin, Free, etc.)
-$user_types = $db->query("SELECT * FROM user_type")->fetchAll(PDO::FETCH_ASSOC);
+$user_types = $db->query("SELECT * FROM user_type")->fetchAll(PDO::FETCH_ASSOC); // Récupérer toutes les lignes de l'ensemble des résultats de la requête
 
 // Récupére les genres musicaux et les types d'artistes pour les sélecteurs
 $music_genres = $db->query("SELECT * FROM music_genre")->fetchAll(PDO::FETCH_ASSOC);
@@ -56,11 +56,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $description_artist = $_POST['description_artist'];
         $id_type_artist = $_POST['id_type_artist'];
 
-        $stmt = $db->prepare("UPDATE artist SET firstname_artist = ?, lastname_artist = ?, alias_artist = ?, description_artist = ?, id_type_artist = ? WHERE id_artist = ?"); // Modification des données dans la BDD
-        $stmt->execute([$firstname_artist, $lastname_artist, $alias_artist, $description_artist, $id_type_artist, $artist_id]);
+        $stmt = $db->prepare("UPDATE artist SET firstname_artist = ?, lastname_artist = ?, alias_artist = ?, description_artist = ?, id_type_artist = ? WHERE id_artist = ?"); // Variable qui contient la préparation de la requête SQL
+        $stmt->execute([$firstname_artist, $lastname_artist, $alias_artist, $description_artist, $id_type_artist, $artist_id]); // Modification des données dans la BDD
         echo "Artiste mis à jour avec succès."; // Message de confirmation 
     } 
-    elseif (isset($_POST['update_user'])) {
+    elseif (isset($_POST['update_user'])) { // Utilisateur sélectionné
         $user_id = $_POST['user_id'];
         $username = $_POST['username'];
         $email = $_POST['email'];
@@ -70,28 +70,28 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $id_type_user = $_POST['id_type_user'];
         $sexe_user = $_POST['sexe_user'];
 
-        $stmt = $db->prepare("UPDATE users SET Username = ?, email = ?, password = ?, firstname_user = ?, lastname_user = ?, id_type_user = ?, sexe_user = ? WHERE id_user = ?"); // Modification des données dans la BDD
-        $stmt->execute([$username, $email, $password, $firstname_user, $lastname_user, $id_type_user, $sexe_user, $user_id]);
+        $stmt = $db->prepare("UPDATE users SET Username = ?, email = ?, password = ?, firstname_user = ?, lastname_user = ?, id_type_user = ?, sexe_user = ? WHERE id_user = ?"); // Variable qui contient la préparation de la requête SQL
+        $stmt->execute([$username, $email, $password, $firstname_user, $lastname_user, $id_type_user, $sexe_user, $user_id]); // Modification des données dans la BDD
         echo "Utilisateur mis à jour avec succès."; // Message de confirmation 
     }
-    elseif (isset($_POST['update_title'])) {
+    elseif (isset($_POST['update_title'])) { // Titre sélectionné
         $title_id = $_POST['title_id'];
         $name_title = $_POST['name_title'];
         $time_title = $_POST['time_title'];
         $publication_date_title = $_POST['publication_date_title'];
         $id_genre = $_POST['id_genre'];
 
-        $stmt = $db->prepare("UPDATE title SET name_title = ?, time_title = ?, publication_date_title = ?, id_genre = ? WHERE id_title = ?"); // Modification des données dans la BDD
-        $stmt->execute([$name_title, $time_title, $publication_date_title, $id_genre, $title_id]);
+        $stmt = $db->prepare("UPDATE title SET name_title = ?, time_title = ?, publication_date_title = ?, id_genre = ? WHERE id_title = ?"); // Variable qui contient la préparation de la requête SQL
+        $stmt->execute([$name_title, $time_title, $publication_date_title, $id_genre, $title_id]); // Modification des données dans la BDD
         echo "Titre mis à jour avec succès."; // Message de confirmation 
     }
-    elseif (isset($_POST['update_album'])) {
+    elseif (isset($_POST['update_album'])) { // Album sélectionné
         $album_id = $_POST['album_id'];
         $name_album = $_POST['name_album'];
         $publication_date_album = $_POST['publication_date_album'];
 
-        $stmt = $db->prepare("UPDATE album SET name_album = ?, publication_date_album = ? WHERE id_album = ?"); // Modification des données dans la BDD
-        $stmt->execute([$name_album, $publication_date_album, $album_id]);
+        $stmt = $db->prepare("UPDATE album SET name_album = ?, publication_date_album = ? WHERE id_album = ?"); // Variable qui contient la préparation de la requête SQL
+        $stmt->execute([$name_album, $publication_date_album, $album_id]); // Modification des données dans la BDD
         echo "Album mis à jour avec succès."; // Message de confirmation 
     };
 };
@@ -108,7 +108,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 <body>
     <h1 class="text-center">Modifier une entité</h1>
-
     <hr>
 
     <!-- Formulaire pour modifier un artiste -->

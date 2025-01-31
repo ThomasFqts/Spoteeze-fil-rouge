@@ -12,19 +12,19 @@ $db = ConnexionBase(); // Connexion à la base de données
 
 // Récupération des utilisateurs
 $usersrequest = $db->query("SELECT * FROM users");
-$users = $usersrequest->fetchAll(PDO::FETCH_ASSOC);
+$users = $usersrequest->fetchAll(PDO::FETCH_ASSOC); // Récupérer toutes les lignes de l'ensemble des résultats de la requête
 
 // Récupération des artistes
 $artistsrequest = $db->query("SELECT * FROM artist");
-$artists = $artistsrequest->fetchAll(PDO::FETCH_ASSOC);
+$artists = $artistsrequest->fetchAll(PDO::FETCH_ASSOC); // Récupérer toutes les lignes de l'ensemble des résultats de la requête
 
 // Récupération des titres
 $titlesrequest = $db->query("SELECT * FROM title");
-$titles = $titlesrequest->fetchAll(PDO::FETCH_ASSOC);
+$titles = $titlesrequest->fetchAll(PDO::FETCH_ASSOC); // Récupérer toutes les lignes de l'ensemble des résultats de la requête
 
 // Récupération des albums
 $albumsrequest = $db->query("SELECT * FROM album");
-$albums = $albumsrequest->fetchAll(PDO::FETCH_ASSOC);
+$albums = $albumsrequest->fetchAll(PDO::FETCH_ASSOC); // Récupérer toutes les lignes de l'ensemble des résultats de la requête
 ?>
 
 
@@ -108,7 +108,7 @@ $albums = $albumsrequest->fetchAll(PDO::FETCH_ASSOC);
         </tr>
     </thead>
     <tbody>
-        <?php foreach ($artists as $artist): ?> <!-- On sort les artistes de la BDD -->
+        <?php foreach ($artists as $artist): ?> <!-- On boucle pour sortir les artistes de la BDD -->
             <tr> <!-- Retranscription en HTML -->
                 <td><?= htmlspecialchars($artist['id_artist']) ?></td>
                 <td><?= htmlspecialchars($artist['firstname_artist']) ?></td>
@@ -138,7 +138,7 @@ $albums = $albumsrequest->fetchAll(PDO::FETCH_ASSOC);
         </tr>
     </thead>
     <tbody>
-        <?php foreach ($albums as $album): ?><!-- On sort les albums de la BDD -->
+        <?php foreach ($albums as $album): ?><!-- On boucle pour sortir les albums de la BDD -->
             <tr> <!-- Retranscription en HTML -->
                 <td><?= htmlspecialchars($album['id_album']) ?></td>
                 <td><?= htmlspecialchars($album['name_album']) ?></td>
@@ -167,7 +167,7 @@ $albums = $albumsrequest->fetchAll(PDO::FETCH_ASSOC);
         </tr>
     </thead>
     <tbody>
-        <?php foreach ($titles as $title): ?> <!-- On sort les titres de la BDD -->
+        <?php foreach ($titles as $title): ?> <!-- On boucle pour sortir les titres de la BDD -->
             <tr> <!-- Retranscription en HTML -->
                 <td><?= htmlspecialchars($title['id_title']) ?></td>
                 <td><?= htmlspecialchars($title['name_title']) ?></td>

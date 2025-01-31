@@ -14,8 +14,8 @@
         <div class="texttop">
 
             <h2> Mes Informations </h2>
-            <h2>Préférance de notifications </h2>
-            <h2>Plus</h2>
+            <h2> Préférance de notifications </h2>
+            <h2> Plus</h2>
 
         </div>
     </header>

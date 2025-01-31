@@ -18,7 +18,7 @@ if (isset($_POST['delete_user'])) {
         $db->beginTransaction(); // Fonction native : la transaction permet de tout arreter, et de supprimer ce qui a été commencé, si il y a un probléme qq part
 
         // Supprime l'utilisateur
-        $stmt = $db->prepare("DELETE FROM Users WHERE id_user = :id_user");
+        $stmt = $db->prepare("DELETE FROM Users WHERE id_user = :id_user"); // Variable qui contient la préparation de la requête SQL
         $stmt->execute([':id_user' => $id_user]);
 
         $db->commit();
@@ -37,19 +37,19 @@ if (isset($_POST['delete_artist'])) {
         $db->beginTransaction(); // Fonction native : la transaction permet de tout arreter, et de supprimer ce qui a été commencé, si il y a un probléme qq part
 
         // Supprimer les relations dans `Production` (liens entre titres/albums et artistes)
-        $stmt = $db->prepare("DELETE FROM Production WHERE id_artist = :id_artist");
+        $stmt = $db->prepare("DELETE FROM Production WHERE id_artist = :id_artist"); // Variable qui contient la préparation de la requête SQL
         $stmt->execute([':id_artist' => $id_artist]);
 
         // Supprimer les titres associés à l'artiste
-        $stmt = $db->prepare("DELETE FROM Title WHERE id_title IN (SELECT id_title FROM Production WHERE id_artist = :id_artist)");
+        $stmt = $db->prepare("DELETE FROM Title WHERE id_title IN (SELECT id_title FROM Production WHERE id_artist = :id_artist)"); // Variable qui contient la préparation de la requête SQL
         $stmt->execute([':id_artist' => $id_artist]);
 
         // Supprimer les albums associés à l'artiste
-        $stmt = $db->prepare("DELETE FROM Album WHERE id_album IN (SELECT id_album FROM Production WHERE id_artist = :id_artist)");
+        $stmt = $db->prepare("DELETE FROM Album WHERE id_album IN (SELECT id_album FROM Production WHERE id_artist = :id_artist)"); // Variable qui contient la préparation de la requête SQL
         $stmt->execute([':id_artist' => $id_artist]);
 
         // Supprimer l'artiste
-        $stmt = $db->prepare("DELETE FROM Artist WHERE id_artist = :id_artist");
+        $stmt = $db->prepare("DELETE FROM Artist WHERE id_artist = :id_artist");  // Variable qui contient la préparation de la requête SQL
         $stmt->execute([':id_artist' => $id_artist]);
 
         $db->commit(); // Valider la transaction
@@ -68,15 +68,15 @@ if (isset($_POST['delete_title'])) {
         $db->beginTransaction(); // Fonction native : la transaction permet de tout arreter, et de supprimer ce qui a été commencé, si il y a un probléme qq part
 
         // Supprime le titre dans la table `Production` (relation entre titre, album et artiste)
-        $stmt = $db->prepare("DELETE FROM Production WHERE id_title = :id_title");
+        $stmt = $db->prepare("DELETE FROM Production WHERE id_title = :id_title"); // Variable qui contient la préparation de la requête SQL
         $stmt->execute([':id_title' => $id_title]);
 
         // Supprime les relations dans `title_playlist`
-        $stmt = $db->prepare("DELETE FROM title_playlist WHERE id_title = :id_title");
+        $stmt = $db->prepare("DELETE FROM title_playlist WHERE id_title = :id_title"); // Variable qui contient la préparation de la requête SQL
         $stmt->execute([':id_title' => $id_title]);
 
         // Supprime le titre dans la table `Title`
-        $stmt = $db->prepare("DELETE FROM Title WHERE id_title = :id_title");
+        $stmt = $db->prepare("DELETE FROM Title WHERE id_title = :id_title"); // Variable qui contient la préparation de la requête SQL
         $stmt->execute([':id_title' => $id_title]);
 
         $db->commit();
@@ -95,11 +95,11 @@ if (isset($_POST['delete_album'])) {
         $db->beginTransaction(); // Fonction native : la transaction permet de tout arreter, et de supprimer ce qui a été commencé, si il y a un probléme qq part
 
         // Supprime les relations dans la table `Production` (lien entre titres et albums)
-        $stmt = $db->prepare("DELETE FROM Production WHERE id_album = :id_album");
+        $stmt = $db->prepare("DELETE FROM Production WHERE id_album = :id_album"); // Variable qui contient la préparation de la requête SQL
         $stmt->execute([':id_album' => $id_album]);
 
         // Supprime l'album dans la table `Album`
-        $stmt = $db->prepare("DELETE FROM Album WHERE id_album = :id_album");
+        $stmt = $db->prepare("DELETE FROM Album WHERE id_album = :id_album"); // Variable qui contient la préparation de la requête SQL
         $stmt->execute([':id_album' => $id_album]);
 
         $db->commit();

@@ -1,13 +1,13 @@
 <?php
 include('header.php');
-$db = ConnexionBase();
-$playlists = $db->query("SELECT * FROM playlist")->fetchAll(PDO::FETCH_ASSOC);
+$db = ConnexionBase();// Connexion à la base de données
+$playlists = $db->query("SELECT * FROM playlist")->fetchAll(PDO::FETCH_ASSOC); // Récupérer toutes les lignes de l'ensemble des résultats de la requête
 
 if ($_SERVER['REQUEST_METHOD'] === "GET") {
     if (isset($_GET['playlistsubmit'])) {
         $nomPlaylist = $_GET['nomPlaylist'];
         // Préparer et exécuter la requête SQL
-        $stmt = $db->prepare("INSERT INTO playlist(name_playlist) VALUES (?)");
+        $stmt = $db->prepare("INSERT INTO playlist(name_playlist) VALUES (?)"); // Variable qui contient la préparation de la requête SQL
         $stmt->execute([$nomPlaylist]);
         header("Location: page_playlist.php?name_playlist=$nomPlaylist");
     }
@@ -24,7 +24,7 @@ if ($_SERVER['REQUEST_METHOD'] === "GET") {
     </form>
 
     <article>
-        <div class="colorbuton"> <!-- Boutton playlists par genre  -->
+        <div class="colorbuton"> <!-- Bouttons playlist par genre  -->
             <a href="playlist_default.php?genre=Rock">
                 <button id="boutonMusiqueRock" style="width: 150px; height: 70px;">Rock</button>
             </a>
@@ -89,9 +89,9 @@ if ($_SERVER['REQUEST_METHOD'] === "GET") {
     </section>
 
     <article>
-        <?php foreach($playlists as $playlist): ?>
+        <?php foreach($playlists as $playlist): ?> <!-- Entrée dans la boucle pour sortir les playlists-->
             <a href="page_playlist.php?name_playlist=<?= $playlist['name_playlist']?>"><?= $playlist['name_playlist']?></a>
-        <?php endforeach ?>
+        <?php endforeach ?>  <!-- Sortie de la boucle -->
     </article>
 
 </main>

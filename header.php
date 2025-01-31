@@ -30,7 +30,7 @@ if (isset($_SESSION['user_id'])) {
     $userTypeS = $_SESSION['user_type'];
 
     // Récupération des informations de l'utilisateur
-    $stmtUser = $db->prepare("SELECT * FROM users WHERE id_user = :userId");
+    $stmtUser = $db->prepare("SELECT * FROM users WHERE id_user = :userId"); // Variable qui contient la préparation de la requête SQL
     $stmtUser->execute(['userId' => $userId]);
     $user = $stmtUser->fetch(PDO::FETCH_ASSOC);
 
@@ -75,16 +75,16 @@ $isAdmin = isset($_SESSION['user_type']) && in_array($_SESSION['user_type'], ['A
                             <li class="nav-item">
                                 <a class="nav-link" href="admin.php">Admin Panel</a>
                             </li>
-                        <?php endif; ?>
+                        <?php endif; ?>  <!-- Sortie de la boucle -->
                     </ul>
                     <div class="d-flex">
-                        <?php if ($username) : ?> 
+                        <?php if ($username) : ?> <!-- Si l'utilisateur existe, retranscription en HTML -->
                             <span class="navbar-text me-3">Bienvenue, <?= htmlentities($username) ?>!</span> <!-- Retranscription du pseudo en HTML -->
                             <a href="deconnexion.php" class="btn btn-outline-primary me-2">Se déconnecter</a>
-                        <?php else : ?>
+                        <?php else : ?> <!--  Sinon, connexion ou inscription -->
                             <a href="connexion.php" class="btn btn-outline-primary me-2">Se connecter</a>
                             <a href="inscription.php" class="btn btn-primary">S'inscrire</a>
-                        <?php endif ?>
+                        <?php endif ?>  <!-- Sortie de la boucle -->
                     </div>
                 </div>
             </section>

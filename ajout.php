@@ -12,7 +12,7 @@ $db = ConnexionBase(); // Connexion à la base de données
 $user_types = $db->query("SELECT * FROM user_type")->fetchAll(PDO::FETCH_ASSOC);
 
 // Récupére les genres musicaux et les types d'artistes pour les sélecteurs
-$music_genres = $db->query("SELECT * FROM music_genre")->fetchAll(PDO::FETCH_ASSOC);
+$music_genres = $db->query("SELECT * FROM music_genre")->fetchAll(PDO::FETCH_ASSOC); // Récupérer toutes les lignes de l'ensemble des résultats de la requête
 $type_artists = $db->query("SELECT * FROM type_artist")->fetchAll(PDO::FETCH_ASSOC);
 
 // Récupére les artistes et les albums pour les sélecteurs
@@ -31,7 +31,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         $stmt = $db->prepare("INSERT INTO artist (firstname_artist, lastname_artist, alias_artist, description_artist, id_type_artist) VALUES (?, ?, ?, ?, ?)"); // Variable qui contient la préparation de la requête SQL
         $stmt->execute([$firstname_artist, $lastname_artist, $alias_artist, $description_artist, $id_type_artist]);
-        echo "Artiste ajouté avec succès.";
+        echo "Artiste ajouté avec succès."; // Message de confirmation pour l'utilisateur
     } 
     elseif (isset($_POST['add_user'])) {
         // Déclaration des variables qui contiendront ce que l'admin a entré
@@ -45,7 +45,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         $stmt = $db->prepare("INSERT INTO users (Username, email, password, firstname_user, lastname_user, id_type_user, sexe_user) VALUES (?, ?, ?, ?, ?, ?, ?)");  // Variable qui contient la préparation de la requête SQL
         $stmt->execute([$username, $email, $password, $firstname_user, $lastname_user, $id_type_user, $sexe_user]);
-        echo "Utilisateur ajouté avec succès.";
+        echo "Utilisateur ajouté avec succès."; // Message de confirmation pour l'utilisateur
     } 
     elseif (isset($_POST['add_title'])) {
         $name_title = $_POST['name_title'];
@@ -59,10 +59,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $stmt->execute([$name_title, $time_title, $publication_date_title, $id_genre]);
 
         $id_title = $db->lastInsertId();
-        $stmt = $db->prepare("INSERT INTO Production (id_title, id_album, id_artist) VALUES (?, ?, ?)");
+        $stmt = $db->prepare("INSERT INTO Production (id_title, id_album, id_artist) VALUES (?, ?, ?)"); // Variable qui contient la préparation de la requête SQL
         $stmt->execute([$id_title, $id_album, $id_artist]);
 
-        echo "Titre ajouté avec succès.";
+        echo "Titre ajouté avec succès.";  // Message de confirmation pour l'utilisateur
     } 
     elseif (isset($_POST['add_album'])) {
         $name_album = $_POST['name_album'];
@@ -73,10 +73,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $stmt->execute([$name_album, $publication_date_album]);
 
         $id_album = $db->lastInsertId();
-        $stmt = $db->prepare("INSERT INTO Production (id_title, id_album, id_artist) VALUES (NULL, ?, ?)");
+        $stmt = $db->prepare("INSERT INTO Production (id_title, id_album, id_artist) VALUES (NULL, ?, ?)"); // Variable qui contient la préparation de la requête SQL
         $stmt->execute([$id_album, $id_artist]);
 
-        echo "Album ajouté avec succès.";
+        echo "Album ajouté avec succès."; // Message de confirmation pour l'utilisateur
     }
 }
 ?>
@@ -125,23 +125,28 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <h2>Ajouter un artiste</h2>
         <label for="firstname_artist">Prénom :</label>
         <input type="text" name="firstname_artist" id="firstname_artist" required>
-        <br><br>
+        <br>
+        <br>
         <label for="lastname_artist">Nom :</label>
         <input type="text" name="lastname_artist" id="lastname_artist" required>
-        <br><br>
+        <br>
+        <br>
         <label for="alias_artist">Alias :</label>
         <input type="text" name="alias_artist" id="alias_artist">
-        <br><br>
+        <br>
+        <br>
         <label for="description_artist">Description :</label>
         <textarea name="description_artist" id="description_artist" required></textarea>
-        <br><br>
+        <br>
+        <br>
         <label for="id_type_artist">Type d'artiste :</label>
         <select name="id_type_artist" id="id_type_artist" required>
              <?php foreach ($type_artists as $type_artist): ?> <!-- Boucle pour rajouter un type d'artiste -->
-                <option value="<?= $type_artist['id_type_artist'] ?>"><?= htmlspecialchars($type_artist['libelle_type_artist']) ?></option>
-            <?php endforeach; ?>
+                <option value="<?= $type_artist['id_type_artist'] ?>"><?= htmlspecialchars($type_artist['libelle_type_artist']) ?></option> <!-- Retranscription en HTML -->
+            <?php endforeach; ?> <!-- Sortie de la boucle -->
         </select>
-        <br><br>
+        <br>
+        <br>
         <button type="submit" name="add_artist">Ajouter l'artiste</button>
     </form>
 
@@ -150,29 +155,36 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <h2>Ajouter un utilisateur</h2>
         <label for="username"> Nom d'utilisateur :</label>
         <input type="text" name="username" id="username" required>
-        <br><br>
+        <br>
+        <br>
         <label for="email"> Email :</label>
         <input type="email" name="email" id="email" required>
-        <br><br>
+        <br>
+        <br>
         <label for="password"> Mot de passe :</label>
         <input type="password" name="password" id="password" required>
-        <br><br>
+        <br>
+        <br>
         <label for="firstname_user"> Prénom :</label>
         <input type="text" name="firstname_user" id="firstname_user" required>
-        <br><br>
+        <br>
+        <br>
         <label for="lastname_user"> Nom :</label>
         <input type="text" name="lastname_user" id="lastname_user" required>
-        <br><br>
+        <br>
+        <br>
         <label for="id_type_user"> Type d'utilisateur :</label>
         <select name="id_type_user" id="id_type_user" required>
             <?php foreach ($user_types as $type_user): ?> <!-- Boucle pour rajouter un type d'utilisateur -->
-                <option value="<?= $type_user['id_type_user'] ?>"><?= htmlspecialchars($type_user['name_type_user']) ?></option>
-            <?php endforeach; ?>
+                <option value="<?= $type_user['id_type_user'] ?>"><?= htmlspecialchars($type_user['name_type_user']) ?></option> <!-- Retranscription en HTML -->
+            <?php endforeach; ?> <!-- Sortie de la boucle -->
         </select>
-        <br><br>
+        <br>
+        <br>
         <label for="sexe_user">Sexe :</label>
         <input type="text" name="sexe_user" id="sexe_user">
-        <br><br>
+        <br>
+        <br>
         <button type="submit" name="add_user">Ajouter l'utilisateur</button>
     </form>
 
@@ -181,34 +193,40 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <h2>Ajouter un titre</h2>
         <label for="name_title">Nom du titre :</label>
         <input type="text" name="name_title" id="name_title" required>
-        <br><br>
+        <br>
+        <br>
         <label for="time_title">Durée :</label>
         <input type="text" name="time_title" id="time_title" required>
-        <br><br>
+        <br>
+        <br>
         <label for="publication_date_title">Date de publication :</label>
         <input type="date" name="publication_date_title" id="publication_date_title" required>
-        <br><br>
+        <br>
+        <br>
         <label for="id_genre">Genre :</label>
         <select name="id_genre" id="id_genre" required>
             <?php foreach ($music_genres as $genre): ?> <!-- Boucle pour rajouter un genre de musique -->
-                <option value="<?= $genre['id_genre'] ?>"><?= htmlspecialchars($genre['name_genre']) ?></option>
-            <?php endforeach; ?>
+                <option value="<?= $genre['id_genre'] ?>"><?= htmlspecialchars($genre['name_genre']) ?></option> <!-- Retranscription en HTML -->
+            <?php endforeach; ?> <!-- Sortie de la boucle -->
         </select>
-        <br><br>
+        <br>
+        <br>
         <label for="id_artist">Artiste :</label>
         <select name="id_artist" id="id_artist" required>
-            <?php foreach ($artists as $artist): ?>
-                <option value="<?= $artist['id_artist'] ?>"><?= htmlspecialchars($artist['alias_artist'] ?: $artist['firstname_artist'] . ' ' . $artist['lastname_artist']) ?></option>
-            <?php endforeach; ?>
+            <?php foreach ($artists as $artist): ?>  <!-- Boucle pour rajouter un artiste -->
+                <option value="<?= $artist['id_artist'] ?>"><?= htmlspecialchars($artist['alias_artist'] ?: $artist['firstname_artist'] . ' ' . $artist['lastname_artist']) ?></option> <!-- Retranscription en HTML -->
+            <?php endforeach; ?> <!-- Sortie de la boucle -->
         </select>
-        <br><br>
+        <br>
+        <br>
         <label for="id_album">Album :</label>
         <select name="id_album" id="id_album" required>
-            <?php foreach ($albums as $album): ?>
-                <option value="<?= $album['id_album'] ?>"><?= htmlspecialchars($album['name_album']) ?></option>
-            <?php endforeach; ?>
+            <?php foreach ($albums as $album): ?> <!-- Boucle pour rajouter un album -->
+                <option value="<?= $album['id_album'] ?>"><?= htmlspecialchars($album['name_album']) ?></option> <!-- Retranscription en HTML -->
+            <?php endforeach; ?> <!-- Sortie de la boucle -->
         </select>
-        <br><br>
+        <br>
+        <br>
         <button type="submit" name="add_title">Ajouter le titre</button>
     </form>
 
@@ -220,14 +238,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <br><br>
         <label for="publication_date_album">Date de publication :</label>
         <input type="date" name="publication_date_album" id="publication_date_album" required>
-        <br><br>
+        <br>
+        <br>
         <label for="id_artist">Artiste :</label>
         <select name="id_artist" id="id_artist" required>
-            <?php foreach ($artists as $artist): ?>
-                <option value="<?= $artist['id_artist'] ?>"><?= htmlspecialchars($artist['alias_artist'] ?: $artist['firstname_artist'] . ' ' . $artist['lastname_artist']) ?></option>
-            <?php endforeach; ?>
+            <?php foreach ($artists as $artist): ?> <!-- Boucle pour rajouter un artiste -->
+                <option value="<?= $artist['id_artist'] ?>"><?= htmlspecialchars($artist['alias_artist'] ?: $artist['firstname_artist'] . ' ' . $artist['lastname_artist']) ?></option> <!-- Retranscription en HTML -->
+            <?php endforeach; ?> <!-- Sortie de la boucle -->
         </select>
-        <br><br>
+        <br>
+        <br>
         <button type="submit" name="add_album">Ajouter l'album</button>
     </form>
 
