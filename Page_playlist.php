@@ -12,15 +12,17 @@ JOIN playlist p ON p.id_playlist = pt.id_playlist
 JOIN title t ON t.id_title = pt.id_title
 JOIN production pr ON pr.id_title = t.id_title
 JOIN artist a ON a.id_artist = pr.id_artist
+JOIN album al ON al.id_album = pr.id_album
 WHERE p.name_playlist = ?;");
 $stmt->execute([$playlist]);
+$titles = $stmt->fetchAll(PDO::FETCH_ASSOC); //Création du tableau de playlist
+
 
 // Récupére l'id de la playlist séléctionné
 $stmt2 = $db->prepare("SELECT id_playlist FROM playlist WHERE name_playlist = ?;");
 $stmt2->execute([$playlist]);
+$id_playlist = $stmt2->fetch(PDO::FETCH_ASSOC)['id_playlist'];
 
-$titles = $stmt->fetchAll(PDO::FETCH_ASSOC); //Création du tableau de playlist
-$id_playlist = $stmt2->fetchAll(PDO::FETCH_ASSOC);
 
 // Pour la recherche
 $search = isset($_POST['search']) ? $_POST['search'] : "";
@@ -81,6 +83,20 @@ if (isset($_POST['delete_playlist'])) {
         echo "Erreur : " . $e->getMessage();
     }
 }
+
+// Verification si le bouton "Ajouter à la playlist" a été appuyé et si c'est le cas, ça ajoute la musique
+if (isset($_POST['add_in_playlist'])) {
+    $id_music = $_POST['id_music'];
+
+    try {
+        $stmt = $db->prepare("INSERT INTO playlist_title (id_playlist, id_title) VALUES (?, ?)");
+        $stmt->execute([$id_playlist, $id_music]);
+
+        header("Location: page_playlist.php?name_playlist=$playlist"); // Rediriger après succès
+    } catch (Exception $e) {
+        echo "Erreur : " . $e->getMessage();
+    }
+}
 ?>
 
 <main>
@@ -93,10 +109,8 @@ if (isset($_POST['delete_playlist'])) {
 
     <!-- Formulaire de suppression de playlist -->
     <form method="POST">
-        <?php foreach ($id_playlist as $playlist): ?>
-            <input type="hidden" name="delete_id" value="<?= $playlist['id_playlist'] ?>">
-            <button type="submit" name="delete_playlist" class="btn btn-danger">Supprimer la playlist</button>
-        <?php endforeach; ?>
+        <input type="hidden" name="delete_id" value="<?= $id_playlist ?>">
+        <button type="submit" name="delete_playlist" class="btn btn-danger">Supprimer la playlist</button>
     </form>
 
     <!-- Affichage de la recherche de l'utilisateur -->
@@ -106,9 +120,10 @@ if (isset($_POST['delete_playlist'])) {
             <table>
                 <thead>
                     <tr>
-                        <th>Titre musique :</th>
-                        <th>Temps :</th>
-                        <th>Artiste :</th>
+                        <th>Titre musique</th>
+                        <th>Temps</th>
+                        <th>Artiste</th>
+                        <th>Album</th>
                         <th></th>
                     </tr>
                 </thead>
@@ -119,9 +134,10 @@ if (isset($_POST['delete_playlist'])) {
                                 <td><?= htmlentities($resultat['name_title']) ?></td>
                                 <td><?= htmlentities($resultat['time_title']) ?></td>
                                 <td><?= htmlentities($resultat['alias_artist']) ?></td>
+                                <td><?= htmlentities($resultat['name_album']) ?></td>
                                 <td>
-                                    <form method="get">
-                                        <input type="hidden" name="id_music" value="<?= $title['id_title'] ?>">
+                                    <form method="POST">
+                                        <input type="hidden" name="id_music" value="<?= $resultat['id_title'] ?>">
                                         <button type="submit" class="btn btn-success" name="add_in_playlist">Ajouter à la playlist</button>
                                     </form>
                                 </td>
@@ -144,6 +160,7 @@ if (isset($_POST['delete_playlist'])) {
                     <th>Durée</th>
                     <th>Date de Publication</th>
                     <th>Artiste</th>
+                    <th>Album</th>
                     <th></th>
                 </tr>
             </thead>
@@ -154,6 +171,7 @@ if (isset($_POST['delete_playlist'])) {
                         <td><?= htmlspecialchars($title['time_title']) ?></td>
                         <td><?= htmlspecialchars($title['publication_date_title']) ?></td>
                         <td><?= htmlspecialchars($title['alias_artist'] ?: $title['firstname_artist'] . ' ' . $title['lastname_artist']) ?></td> <!-- Gère le cas où il n'y a pas d'alias en mettant le nom et prénom de l'artiste à la place -->
+                        <td><?= htmlentities($title['name_album']) ?></td>
                         <td>
                             <form method="POST">
                                 <input type="hidden" name="id_music" value="<?= $title['id_title'] ?>">
@@ -165,11 +183,7 @@ if (isset($_POST['delete_playlist'])) {
                 <?php endforeach; ?> <!-- Sortie de la boucle  -->
             </tbody>
         </table>
-
-
     </div>
-
-
 </main>
 
 <footer>
