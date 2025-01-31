@@ -62,7 +62,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         <article>
             <label for="createmdp">Mot de passe</label>
-            <input type="text" name="createmdp" id="">
+            <input type="password" name="createmdp" id="">
             <p>Votre mot de passe doit comporter au moins :
             <ul>
                 <li>10 caractères</li>

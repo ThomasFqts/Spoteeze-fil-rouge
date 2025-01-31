@@ -47,11 +47,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <p class="txt">Connection :</p>
             <p class="txt">Email :</p>
             <article class="">
-                <input type="text" class="form-control" placeholder="Email" name="email">
+                <input type="email" class="form-control" placeholder="Email" name="email">
             </article>
             <p class="txt">Mot de passe :</p>
             <article class="">
-                <input type="text" class="form-control" placeholder="Mot de passe" name="password">
+                <input type="password" class="form-control" placeholder="Mot de passe" name="password">
             </article>
         </section>
         <br>

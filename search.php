@@ -37,9 +37,10 @@ $resultats = $db->query($request)->fetchAll(PDO::FETCH_ASSOC);
         <table>
             <thead>
                 <tr>
-                    <th>Titre musique :</th>
-                    <th>Temps :</th>
-                    <th>Artiste :</th>
+                    <th>Titre musique</th>
+                    <th>Temps</th>
+                    <th>Artiste</th>
+                    <th>Album</th>
                 </tr>
             </thead>
             <tbody>
@@ -49,6 +50,7 @@ $resultats = $db->query($request)->fetchAll(PDO::FETCH_ASSOC);
                             <td><?= htmlentities($resultat['name_title']) ?></td>
                             <td><?= htmlentities($resultat['time_title']) ?></td>
                             <td><?= htmlentities($resultat['alias_artist']) ?></td>
+                            <td><?= htmlentities($resultat['name_album']) ?></td>
                         </tr>
                     <?php endforeach ?>
                 <?php else: ?>
