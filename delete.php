@@ -10,6 +10,7 @@ if (!isset($_SESSION['user_type']) || $_SESSION['user_type'] !== 'Admin') {
 
 $db = ConnexionBase(); // Connexion à la base de données
 
+// Suppression d'un utilisateur seulement
 if (isset($_POST['delete_user'])) {
     $id_user = intval($_POST['id_user']); // ID de l'utilisateur à supprimer
 
