@@ -1,7 +1,6 @@
 <?php 
 include "header.php";
-?>
-<?php
+
 // Vérification si l'utilisateur est déjà connecté
 if (isset($_SESSION['user_id'])) {
 	header('Location: index.php'); // Redirection vers la page d'accueil si l'utilisateur est déjà connecté
@@ -23,9 +22,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         // Hachage du mot de passe
         $hashed_password = password_hash($mdp, PASSWORD_DEFAULT);
 
-        // Connexion à la base de données
-        $db = ConnexionBase();
-
+        $db = ConnexionBase(); // Connexion à la base de données
+        
         // Préparation de la requête d'insertion
         $stmt = $db->prepare("INSERT INTO Users (Username, email, password, firstname_user, lastname_user, id_type_user, sexe_user)
             VALUES (:pseudo, :email, :password, :firstname, :lastname, 1, :sexe)");
@@ -48,7 +46,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         echo "<p>Veuillez remplir correctement tous les champs et accepter les conditions.</p>"; // Message d'erreur
     }
 }
-?>
+?> 
+<!-- Formulaire d'inscription  -->
 <form action="inscription.php" method="POST">
     <section>
         <p>Inscrivez-vous pour commencer à écouter</p>
@@ -57,9 +56,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <label for="email">Email :</label>
             <input type="email" name="email" id="">
         </article>
-
         <br>
-
         <article>
             <label for="createmdp">Mot de passe</label>
             <input type="text" name="createmdp" id="">
@@ -75,8 +72,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <br>
 
     <section>
-        <article>
-            <p>2. Veuillez saisir vos données personnel</p>
+        <article> <!-- Saisie du nom et du prénom par l'utilisateur -->
+            <p>2. Veuillez saisir vos données personnelles</p>
             <p>Veuillez saisir votre nom et prenom</p>
             <label for="nom">Nom : </label>
             <input type="text" name="nom" id="">
@@ -85,23 +82,25 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <br>
 
         <article>
-            <label for="prenom">Prenom : </label>
+            <label for="prenom">Prénom : </label>
             <input type="text" name="prenom" id="">
         </article>
         <br>
         <br>
 
-        <article>
-            <p>Veuillez saisir le pseudo que vous voulez utilisé.</p>
+        <article> <!-- Saisie du pseudo par l'utilisateur  -->
+            <p>Veuillez saisir le pseudo que vous voulez utiliser.</p>
             <p>Ce pseudo apparaîtra sur votre profil</p>
             <label for="pseudo">Pseudo :</label>
             <input type="text" name="pseudo" id="">
-        </article><br><br>
+        </article>
+        <br>
+        <br>
 
         <article>
             <label for="sexe">Votre sexe :</label>
 
-            <select name="sexe">
+            <select name="sexe"> <!-- Choix du genre  -->
                 <option value="" selected disabled hidden>Vous êtes...</option>
                 <option value="homme">Homme</option>
                 <option value="Femme">Femme</option>

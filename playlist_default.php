@@ -12,9 +12,9 @@ $stmt = $db->prepare("SELECT t.name_title, t.time_title, t.publication_date_titl
     JOIN Production p ON t.id_title = p.id_title
     JOIN Artist a ON p.id_artist = a.id_artist
     WHERE t.id_genre = (SELECT id_genre FROM Music_Genre WHERE name_genre = ?)
-");
+"); // Variable qui contient la préparation de la requête SQL
 $stmt->execute([$genre]);
-$titles = $stmt->fetchAll(PDO::FETCH_ASSOC); //Création du tableau de titres
+$titles = $stmt->fetchAll(PDO::FETCH_ASSOC); // Récupérer toutes les lignes de l'ensemble des résultats de la requête
 ?>
 
 <!DOCTYPE html>
@@ -41,13 +41,13 @@ $titles = $stmt->fetchAll(PDO::FETCH_ASSOC); //Création du tableau de titres
             </thead>
             <tbody>
                  <?php foreach ($titles as $title): ?> <!-- Affichage des titres  -->
-                    <tr>
+                    <tr>      <!-- Retranscription en HTML -->
                         <td><?= htmlspecialchars($title['name_title']) ?></td>
                         <td><?= htmlspecialchars($title['time_title']) ?></td>
                         <td><?= htmlspecialchars($title['publication_date_title']) ?></td>
                         <td><?= htmlspecialchars($title['alias_artist'] ?: $title['firstname_artist'] . ' ' . $title['lastname_artist']) ?></td> <!-- Gère le cas où il n'y a pas d'alias en mettant le nom et prénom de l'artiste à la place -->
                     </tr>
-                 <?php endforeach; ?> <!-- Sortie de la boucle  -->
+                 <?php endforeach; ?> <!-- Sortie de la boucle -->
             </tbody>
         </table>
     </main>

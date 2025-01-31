@@ -4,7 +4,7 @@ include "header.php";
 $db = ConnexionBase(); // Connexion à la base de données
 
 $search = isset($_GET['search']) ? $_GET['search'] : "";
-$playlists = $db->query("SELECT * FROM playlist")->fetchAll(PDO::FETCH_ASSOC);
+$playlists = $db->query("SELECT * FROM playlist")->fetchAll(PDO::FETCH_ASSOC); // Récupérer toutes les lignes de l'ensemble des résultats de la requête
 
 // Récupére les artistes, les titres et les albums
 $request = "SELECT * FROM production p 
@@ -22,7 +22,7 @@ if (!empty($search)) { // Recherche
     (CONCAT(lastname_artist , ' ' , firstname_artist) LIKE '%$search%')";
 }
 
-$resultats = $db->query($request)->fetchAll(PDO::FETCH_ASSOC);
+$resultats = $db->query($request)->fetchAll(PDO::FETCH_ASSOC); // Récupérer toutes les lignes de l'ensemble des résultats de la requête
 ?>
 
 
@@ -45,15 +45,15 @@ $resultats = $db->query($request)->fetchAll(PDO::FETCH_ASSOC);
             <tbody>
                 <?php if (count($resultats) > 0 && (isset($_GET['recherche_music']))): ?>
                     <?php foreach ($resultats as $resultat): ?>
-                        <tr>
+                        <tr>      <!-- Retranscription en HTML -->
                             <td><?= htmlentities($resultat['name_title']) ?></td>
                             <td><?= htmlentities($resultat['time_title']) ?></td>
                             <td><?= htmlentities($resultat['alias_artist']) ?></td>
                         </tr>
-                    <?php endforeach ?>
+                    <?php endforeach ?> <!-- Sortie de la 2nde boucle -->
                 <?php else: ?>
                     <p>Aucun artist, titre ou album trouvé</p>
-                <?php endif ?>
+                <?php endif ?> <!-- Sortie de la 1ére boucle -->
             </tbody>
         </table>
     </section>
