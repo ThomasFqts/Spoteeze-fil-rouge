@@ -1,7 +1,7 @@
 <?php
 include "header.php";
 
-$db = ConnexionBase();// Connexion à la base de données
+$db = ConnexionBase(); // Connexion à la base de données
 
 // Récupére le nom de la playlist sélectionné depuis l'URL
 $playlist = $_GET['name_playlist'] ?? '';
@@ -116,7 +116,7 @@ if (isset($_POST['add_in_playlist'])) {
     </form>
 
     <!-- Affichage de la recherche de l'utilisateur -->
-    <?php if (isset($_POST['recherche_music'])): ?>  <!-- Début de la 3éme boucle -->
+    <?php if (isset($_POST['recherche_music'])): ?> <!-- Début de la 3éme boucle -->
         <h2 class="text-center">Recherche :</h2>
         <div class="round-rectangle2">
             <table>
@@ -131,7 +131,7 @@ if (isset($_POST['add_in_playlist'])) {
                 </thead>
                 <tbody>
                     <?php if (count($resultats) > 0): ?> <!-- Début de la 2éme boucle -->
-                        <?php foreach ($resultats as $resultat): ?>  <!-- Début de la 3éme boucle -->
+                        <?php foreach ($resultats as $resultat): ?> <!-- Début de la 3éme boucle -->
                             <tr>
                                 <td><?= htmlentities($resultat['name_title']) ?></td>
                                 <td><?= htmlentities($resultat['time_title']) ?></td>
@@ -144,14 +144,14 @@ if (isset($_POST['add_in_playlist'])) {
                                     </form>
                                 </td>
                             </tr>
-                        <?php endforeach ?>  <!-- Sortie de la 3éme boucle -->
+                        <?php endforeach ?> <!-- Sortie de la 3éme boucle -->
                     <?php else: ?>
                         <p>Aucun artist, titre ou album trouvé</p>
-                    <?php endif ?>  <!-- Sortie de la 2éme boucle -->
+                    <?php endif ?> <!-- Sortie de la 2éme boucle -->
                 </tbody>
             </table>
         </div>
-    <?php endif ?>  <!-- Sortie de la 1ère boucle -->
+    <?php endif ?> <!-- Sortie de la 1ère boucle -->
 
     <!-- Affichage des titres contenu dans la playlist -->
     <div class="round-rectangle1">
@@ -163,6 +163,13 @@ if (isset($_POST['add_in_playlist'])) {
                     <th>Date de Publication</th>
                     <th>Artiste</th>
                     <th>Album</th>
+                    <th>Lecture</th>
+                    <td>
+                        <audio controls>
+                            <source src="path/to/music/<?= htmlspecialchars($title['id_title']) ?>.mp3" type="audio/mpeg">
+                            Votre navigateur ne supporte pas l'élément audio.
+                        </audio>
+                    </td>
                     <th></th>
                 </tr>
             </thead>

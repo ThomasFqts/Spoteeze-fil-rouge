@@ -41,16 +41,23 @@ $resultats = $db->query($request)->fetchAll(PDO::FETCH_ASSOC); // Récupérer to
                     <th>Temps</th>
                     <th>Artiste</th>
                     <th>Album</th>
+                    <th>Lecture</th>
                 </tr>
             </thead>
             <tbody>
                 <?php if (count($resultats) > 0 && (isset($_GET['recherche_music']))): ?>
                     <?php foreach ($resultats as $resultat): ?>
-                        <tr>      <!-- Retranscription en HTML -->
+                        <tr> <!-- Retranscription en HTML -->
                             <td><?= htmlentities($resultat['name_title']) ?></td>
                             <td><?= htmlentities($resultat['time_title']) ?></td>
                             <td><?= htmlentities($resultat['alias_artist']) ?></td>
                             <td><?= htmlentities($resultat['name_album']) ?></td>
+                            <td>
+                                <audio controls>
+                                    <source src="path/to/music/<?= htmlspecialchars($title['id_title']) ?>.mp3" type="audio/mpeg">
+                                    Votre navigateur ne supporte pas l'élément audio.
+                                </audio>
+                            </td>
                         </tr>
                     <?php endforeach ?> <!-- Sortie de la 2nde boucle -->
                 <?php else: ?>
