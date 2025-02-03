@@ -23,7 +23,6 @@ $stmt2 = $db->prepare("SELECT id_playlist FROM playlist WHERE name_playlist = ?;
 $stmt2->execute([$playlist]);
 $id_playlist = $stmt2->fetch(PDO::FETCH_ASSOC)['id_playlist'];
 
-$titles = $stmt->fetchAll(PDO::FETCH_ASSOC); // Récupérer toutes les lignes de l'ensemble des résultats de la requête
 $id_playlist = $stmt2->fetchAll(PDO::FETCH_ASSOC);
 
 // Pour la recherche
