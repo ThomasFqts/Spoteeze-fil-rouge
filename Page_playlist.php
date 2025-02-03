@@ -163,12 +163,6 @@ if (isset($_POST['add_in_playlist'])) {
                     <th>Artiste</th>
                     <th>Album</th>
                     <th>Lecture</th>
-                    <td>
-                        <audio controls>
-                            <source src="path/to/music/<?= htmlspecialchars($title['id_title']) ?>.mp3" type="audio/mpeg">
-                            Votre navigateur ne supporte pas l'élément audio.
-                        </audio>
-                    </td>
                     <th></th>
                 </tr>
             </thead>
@@ -180,6 +174,12 @@ if (isset($_POST['add_in_playlist'])) {
                         <td><?= htmlspecialchars($title['publication_date_title']) ?></td>
                         <td><?= htmlspecialchars($title['alias_artist'] ?: $title['firstname_artist'] . ' ' . $title['lastname_artist']) ?></td> <!-- Gère le cas où il n'y a pas d'alias en mettant le nom et prénom de l'artiste à la place -->
                         <td><?= htmlentities($title['name_album']) ?></td>
+                        <td>
+                            <audio controls>
+                                <source src="music/<?= htmlspecialchars($title['id_title']) ?>.mp3" type="audio/mpeg">
+                                Votre navigateur ne supporte pas l'élément audio.
+                            </audio>
+                        </td>
                         <td>
                             <form method="POST">
                                 <input type="hidden" name="id_music" value="<?= $title['id_title'] ?>">
