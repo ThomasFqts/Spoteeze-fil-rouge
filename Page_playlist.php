@@ -23,8 +23,6 @@ $stmt2 = $db->prepare("SELECT id_playlist FROM playlist WHERE name_playlist = ?;
 $stmt2->execute([$playlist]);
 $id_playlist = $stmt2->fetch(PDO::FETCH_ASSOC)['id_playlist'];
 
-$id_playlist = $stmt2->fetchAll(PDO::FETCH_ASSOC);
-
 // Pour la recherche
 $search = isset($_POST['search']) ? $_POST['search'] : "";
 // Récupére les artistes, les titres et les albums
