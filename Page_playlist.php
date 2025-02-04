@@ -176,7 +176,7 @@ if (isset($_POST['add_in_playlist'])) {
                         <td><?= htmlentities($title['name_album']) ?></td>
                         <td>
                             <audio controls>
-                                <source src="music/<?= htmlspecialchars($title['id_title']) ?>.mp3" type="audio/mpeg">
+                                <source src="music/<?= htmlspecialchars($title['name_title']) ?>.mp3" type="audio/mpeg">
                                 Votre navigateur ne supporte pas l'élément audio.
                             </audio>
                         </td>
