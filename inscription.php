@@ -26,7 +26,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         
         // Préparation de la requête d'insertion
         $stmt = $db->prepare("INSERT INTO Users (Username, email, password, firstname_user, lastname_user, id_type_user, sexe_user)
-            VALUES (:pseudo, :email, :password, :firstname, :lastname, 1, :sexe)");
+            VALUES (:pseudo, :email, :password, :firstname, :lastname, 3, :sexe)");
 
         // Exécution de la requête avec les données du formulaire
         $stmt->execute([
