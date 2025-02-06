@@ -173,6 +173,7 @@ if (isset($_POST['add_in_playlist'])) {
                         <td><?= htmlspecialchars($title['alias_artist'] ?: $title['firstname_artist'] . ' ' . $title['lastname_artist']) ?></td> <!-- Gère le cas où il n'y a pas d'alias en mettant le nom et prénom de l'artiste à la place -->
                         <td><?= htmlentities($title['name_album']) ?></td>
                         <td>
+                            <!-- Balise audio, permettant la lecture audio de media -->
                             <audio controls>
                                 <source src="music/<?= htmlspecialchars($title['name_title']) ?>.mp3" type="audio/mpeg">
                                 Votre navigateur ne supporte pas l'élément audio.
