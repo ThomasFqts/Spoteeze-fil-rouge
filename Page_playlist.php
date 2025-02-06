@@ -99,7 +99,7 @@ if (isset($_POST['add_in_playlist'])) {
 ?>
 
 <main>
-    <h1> Playlist - <?= htmlspecialchars($playlist) ?></h1> <!-- Affichage du nom de la playlist dans la page -->
+    <h1 class="titre_playlist"> Playlist - <?= htmlspecialchars($playlist) ?></h1> <!-- Affichage du nom de la playlist dans la page -->
     <!-- Formulaire de recherche -->
     <form method="POST" class="form-inline">
         <input id="barreDeRecherche" type="search" name="search" placeholder="Rechercher..." class="form-control mr-sm-2">

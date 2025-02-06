@@ -5,16 +5,23 @@ $db = ConnexionBase(); // Connexion à la base de données
 // Vérifie si l'utilisateur est connecté
 if (isset($_SESSION['user_id'])) {
     $userId = $_SESSION['user_id'];
+    $userType = $_SESSION['user_type'];
+
     // Récupére les playlists de l'utilisateur connecté
     $stmt = $db->prepare("SELECT * FROM playlist p JOIN playlist_users pu ON p.id_playlist = pu.id_playlist WHERE pu.id_user = ?");
     $stmt->execute([$userId]);
     $playlists = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+    // Limite pour les utilisateurs "Free"
+    $maxPlaylistsFree = 5;
+    $canCreatePlaylist = ($userType !== 'Free') || (count($playlists) < $maxPlaylistsFree);
 } else {
     $playlists = [];
+    $canCreatePlaylist = false;
 }
 
 if ($_SERVER['REQUEST_METHOD'] === "GET") {
-    if (isset($_GET['playlistsubmit'])) {
+    if (isset($_GET['playlistsubmit']) && $canCreatePlaylist) {
         $nomPlaylist = $_GET['nomPlaylist'];
         // Préparer et exécuter la requête SQL
         $stmt = $db->prepare("INSERT INTO playlist(name_playlist) VALUES (?)"); // Variable qui contient la préparation de la requête SQL
@@ -34,6 +41,7 @@ if ($_SERVER['REQUEST_METHOD'] === "GET") {
 
     <form action="search.php" method="GET" class="form-inline">
         <input id="barreDeRecherche" type="search" name="search" placeholder="Rechercher..." class="form-control mr-sm-2">
+        <input type="hidden" name="recherche_music" value="Rechercher">
         <button type="submit" class="btn btn-primary">Rechercher</button>
     </form>
 
@@ -74,7 +82,11 @@ if ($_SERVER['REQUEST_METHOD'] === "GET") {
         <h3>Vos playlists</h3>
         <article>
             <form>
-                <button id="butCreer" class="Enregister" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modale"> Créer playlist </button>
+                <?php if ($canCreatePlaylist): ?>
+                    <button id="butCreer" class="Enregister" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modale"> Créer playlist </button>
+                <?php else: ?>
+                    <p>Vous avez atteint la limite de playlists pour votre abonnement</p>
+                <?php endif ?>
             </form>
         </article>
         <section> <!-- Modale pour création de playlist -->

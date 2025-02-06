@@ -23,8 +23,29 @@ if (!empty($search)) { // Recherche
 }
 
 $resultats = $db->query($request)->fetchAll(PDO::FETCH_ASSOC); // Récupérer toutes les lignes de l'ensemble des résultats de la requête
-?>
 
+// Récupérer les playlists de l'utilisateur connecté
+$userId = $_SESSION['user_id'] ?? null;
+$userPlaylists = [];
+if ($userId) {
+    $stmt = $db->prepare("SELECT * FROM playlist p JOIN playlist_users pu ON p.id_playlist = pu.id_playlist WHERE pu.id_user = ?");
+    $stmt->execute([$userId]);
+    $userPlaylists = $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
+
+// Ajouter la musique à la playlist
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add_to_playlist'])) {
+    $id_title = $_POST['id_title'];
+    $selectedPlaylists = $_POST['playlists'] ?? [];
+
+    foreach ($selectedPlaylists as $id_playlist) {
+        $stmt = $db->prepare("INSERT INTO playlist_title (id_playlist, id_title) VALUES (?, ?)");
+        $stmt->execute([$id_playlist, $id_title]);
+    }
+    header("Location: search.php?search=$search&recherche_music=Rechercher");
+    exit();
+}
+?>
 
 <main>
 
@@ -42,6 +63,7 @@ $resultats = $db->query($request)->fetchAll(PDO::FETCH_ASSOC); // Récupérer to
                     <th>Artiste</th>
                     <th>Album</th>
                     <th>Lecture</th>
+                    <th>Ajouter à la playlist</th>
                 </tr>
             </thead>
             <tbody>
@@ -53,10 +75,25 @@ $resultats = $db->query($request)->fetchAll(PDO::FETCH_ASSOC); // Récupérer to
                             <td><?= htmlentities($resultat['alias_artist']) ?></td>
                             <td><?= htmlentities($resultat['name_album']) ?></td>
                             <td>
-                                <audio controls>
-                                    <source src="path/to/music/<?= htmlspecialchars($title['id_title']) ?>.mp3" type="audio/mpeg">
-                                    Votre navigateur ne supporte pas l'élément audio.
-                                </audio>
+                            <audio controls>
+                                <source src="music/<?= htmlspecialchars($resultat['name_title']) ?>.mp3" type="audio/mpeg">
+                                Votre navigateur ne supporte pas l'élément audio.
+                            </audio>
+                            </td>
+                            <td>
+                                <?php if ($userId && count($userPlaylists) > 0): ?>
+                                    <form method="POST">
+                                        <input type="hidden" name="id_title" value="<?= $resultat['id_title'] ?>">
+                                        <select name="playlists[]" multiple class="form-control">
+                                            <?php foreach ($userPlaylists as $playlist): ?>
+                                                <option value="<?= $playlist['id_playlist'] ?>"><?= htmlentities($playlist['name_playlist']) ?></option>
+                                            <?php endforeach; ?>
+                                        </select>
+                                        <button type="submit" name="add_to_playlist" class="btn btn-primary mt-2">Ajouter</button>
+                                    </form>
+                                <?php else: ?>
+                                    <p>Connectez-vous pour ajouter à une playlist</p>
+                                <?php endif; ?>
                             </td>
                         </tr>
                     <?php endforeach ?> <!-- Sortie de la 2nde boucle -->
@@ -66,7 +103,6 @@ $resultats = $db->query($request)->fetchAll(PDO::FETCH_ASSOC); // Récupérer to
             </tbody>
         </table>
     </section>
-
 
 </main>
 
