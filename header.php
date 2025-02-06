@@ -84,6 +84,7 @@ $isAdmin = isset($_SESSION['user_type']) && in_array($_SESSION['user_type'], ['A
                     <div class="d-flex">
                         <?php if ($username) : ?> <!-- Si l'utilisateur existe, retranscription en HTML -->
                             <span class="navbar-text me-3">Bienvenue, <?= htmlentities($username) ?>!</span> <!-- Retranscription du pseudo en HTML -->
+                            <a href="profil.php" class="btn btn-secondary me-2">Profil</a>
                             <a href="deconnexion.php" class="btn btn-outline-primary me-2">Se déconnecter</a>
                         <?php else : ?> <!--  Sinon, connexion ou inscription -->
                             <a href="connexion.php" class="btn btn-outline-primary me-2">Se connecter</a>

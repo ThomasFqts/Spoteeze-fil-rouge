@@ -104,7 +104,7 @@ if ($_SERVER['REQUEST_METHOD'] === "GET") {
 
         <article>
             <?php foreach ($playlists as $playlist): ?> <!-- Entrée dans la boucle pour sortir les playlists-->
-                <a href="page_playlist.php?name_playlist=<?= $playlist['name_playlist'] ?>"><?= $playlist['name_playlist'] ?></a>
+                <a href="page_playlist.php?name_playlist=<?= $playlist['name_playlist'] ?>" class="btn btn-primary me-2"><?= $playlist['name_playlist'] ?></a>
             <?php endforeach ?> <!-- Sortie de la boucle -->
         </article>
     <?php endif ?>
