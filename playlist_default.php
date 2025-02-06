@@ -52,5 +52,4 @@ $titles = $stmt->fetchAll(PDO::FETCH_ASSOC); // Récupérer toutes les lignes de
         </table>
     </main>
 </body>
-
 </html>

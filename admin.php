@@ -4,9 +4,8 @@ include "header.php";
 // Vérifie si l'utilisateur est connecté et s'il a le rôle d'administrateur
 if (!isset($_SESSION['user_type']) || $_SESSION['user_type'] !== 'Admin') {
     header('Location: index.php'); // Redirection pour les utilisateurs non autorisés
-    exit();
+    exit(); // Sortie de la boucle
 }
-
 
 $db = ConnexionBase(); // Connexion à la base de données
 
@@ -26,7 +25,6 @@ $titles = $titlesrequest->fetchAll(PDO::FETCH_ASSOC); // Récupérer toutes les 
 $albumsrequest = $db->query("SELECT * FROM album");
 $albums = $albumsrequest->fetchAll(PDO::FETCH_ASSOC); // Récupérer toutes les lignes de l'ensemble des résultats de la requête
 ?>
-
 
 <h1>Admin Panel</h1>
 
@@ -68,16 +66,16 @@ $albums = $albumsrequest->fetchAll(PDO::FETCH_ASSOC); // Récupérer toutes les 
             <th>Nom Utilisateur</th>
             <th>Email</th>
             <th>ID Type User</th>
-            <th></th>
+            <th></th> <!-- Bouttons bootstrap -->
         </tr>
     </thead>
     <tbody>
         <?php foreach ($users as $user): ?> <!-- On sort les utilisateurs de la BDD -->
             <!-- Afficher les utilisateurs et leurs infos -->
-            <tr>
+            <tr>  <!-- Retranscription en HTML -->
                 <td><?= htmlspecialchars($user['id_user']) ?></td>
                 <td><?= htmlspecialchars($user['Username']) ?></td>
-                <td><?= htmlspecialchars($user['firstname_user']) ?></td>
+                <td><?= htmlspecialchars($user['firstname_user']) ?></td> 
                 <td><?= htmlspecialchars($user['lastname_user']) ?></td>
                 <td><?= htmlspecialchars($user['email']) ?></td>
                 <td><?= htmlspecialchars($user['id_type_user']) ?></td>
@@ -183,6 +181,6 @@ $albums = $albumsrequest->fetchAll(PDO::FETCH_ASSOC); // Récupérer toutes les 
         <?php endforeach; ?> <!-- Sortir de la boucle une fois le tableau terminé -->
     </tbody>
 </table>
-</body>
 
+</body>
 </html>

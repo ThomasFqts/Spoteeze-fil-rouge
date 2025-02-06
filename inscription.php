@@ -135,5 +135,4 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </section>
 </form>
 </body>
-
 </html>

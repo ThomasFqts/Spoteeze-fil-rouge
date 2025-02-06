@@ -7,7 +7,6 @@ if (!isset($_SESSION['user_type']) || $_SESSION['user_type'] !== 'Admin') {
     exit();
 }
 
-
 $db = ConnexionBase(); // Connexion à la base de données
 
 // Suppression d'un utilisateur seulement

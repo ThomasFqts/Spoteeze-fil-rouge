@@ -60,5 +60,4 @@
         <button class="SuprimerMonCompte">Suprimer mon compte</button>
     </footer>
 </body>
-
 </html>

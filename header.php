@@ -84,7 +84,7 @@ $isAdmin = isset($_SESSION['user_type']) && in_array($_SESSION['user_type'], ['A
                         <?php else : ?> <!--  Sinon, connexion ou inscription -->
                             <a href="connexion.php" class="btn btn-outline-primary me-2">Se connecter</a>
                             <a href="inscription.php" class="btn btn-primary">S'inscrire</a>
-                        <?php endif ?>  <!-- Sortie de la boucle -->
+                        <?php endif ?> <!-- Sortie de la boucle -->
                     </div>
                 </div>
             </section>

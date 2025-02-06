@@ -111,5 +111,4 @@ if ($_SERVER['REQUEST_METHOD'] === "GET") {
 <script src="Script/scripts.js"></script>
 
 </body>
-
 </html>
