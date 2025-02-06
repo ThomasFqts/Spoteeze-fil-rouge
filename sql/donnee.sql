@@ -80,14 +80,14 @@ INSERT INTO Artist (firstname_artist, lastname_artist, alias_artist, description
 
 -- Insertion des données dans la table Users
 INSERT INTO Users (Username, email, password, firstname_user, lastname_user, id_type_user, sexe_user) VALUES
-('john_doe', 'john.doe@example.com', 'password1', 'John', 'Doe', 1, 'Homme'),
-('jane_smith', 'jane.smith@example.com', 'password2', 'Jane', 'Smith', 2, 'Femme'),
-('bob_jazz', 'bob.jazz@example.com', 'password3', 'Bob', 'Jazz', 3, 'Homme'),
-('alice_rock', 'alice.rock@example.com', 'password4', 'Alice', 'Rock', 4, 'Femme'),
-('charlie_hiphop', 'charlie.hiphop@example.com', 'password5', 'Charlie', 'HipHop', 5, 'Homme'),
-('dave_electro', 'dave.electro@example.com', 'password6', 'Dave', 'Electro', 3, 'Homme'),
-('eve_country', 'eve.country@example.com', 'password7', 'Eve', 'Country', 3, 'Femme'),
-('frank_reggae', 'frank.reggae@example.com', 'password8', 'Frank', 'Reggae', 4, 'Homme');
+('john_doe', 'john.doe@example.com', '$2y$12$TBwhz59iX7LdWqKB.q94EOF5b8eBWSPAHNEJ6AG/jmg1k.4LyBlGa', 'John', 'Doe', 1, 'Homme'),
+('jane_smith', 'jane.smith@example.com', '$2y$12$TBwhz59iX7LdWqKB.q94EOF5b8eBWSPAHNEJ6AG/jmg1k.4LyBlGa', 'Jane', 'Smith', 2, 'Femme'),
+('bob_jazz', 'bob.jazz@example.com', '$2y$12$TBwhz59iX7LdWqKB.q94EOF5b8eBWSPAHNEJ6AG/jmg1k.4LyBlGa', 'Bob', 'Jazz', 3, 'Homme'),
+('alice_rock', 'alice.rock@example.com', '$2y$12$TBwhz59iX7LdWqKB.q94EOF5b8eBWSPAHNEJ6AG/jmg1k.4LyBlGa', 'Alice', 'Rock', 4, 'Femme'),
+('charlie_hiphop', 'charlie.hiphop@example.com', '$2y$12$TBwhz59iX7LdWqKB.q94EOF5b8eBWSPAHNEJ6AG/jmg1k.4LyBlGa', 'Charlie', 'HipHop', 5, 'Homme'),
+('dave_electro', 'dave.electro@example.com', '$2y$12$TBwhz59iX7LdWqKB.q94EOF5b8eBWSPAHNEJ6AG/jmg1k.4LyBlGa', 'Dave', 'Electro', 3, 'Homme'),
+('eve_country', 'eve.country@example.com', '$2y$12$TBwhz59iX7LdWqKB.q94EOF5b8eBWSPAHNEJ6AG/jmg1k.4LyBlGa', 'Eve', 'Country', 3, 'Femme'),
+('frank_reggae', 'frank.reggae@example.com', '$2y$12$TBwhz59iX7LdWqKB.q94EOF5b8eBWSPAHNEJ6AG/jmg1k.4LyBlGa', 'Frank', 'Reggae', 4, 'Homme');
 
 -- Insertion des données dans la table title_playlist
 INSERT INTO playlist_title (id_title, id_playlist) VALUES

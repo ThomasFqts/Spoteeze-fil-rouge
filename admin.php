@@ -12,19 +12,19 @@ $db = ConnexionBase(); // Connexion à la base de données
 
 // Récupération des utilisateurs
 $usersrequest = $db->query("SELECT * FROM users");
-$users = $usersrequest->fetchAll(PDO::FETCH_ASSOC); // Récupérer toutes les lignes de l'ensemble des résultats de la requête
+$users = $usersrequest->fetchAll(PDO::FETCH_ASSOC); // Récupére toutes les lignes de l'ensemble des résultats de la requête
 
 // Récupération des artistes
 $artistsrequest = $db->query("SELECT * FROM artist");
-$artists = $artistsrequest->fetchAll(PDO::FETCH_ASSOC); // Récupérer toutes les lignes de l'ensemble des résultats de la requête
+$artists = $artistsrequest->fetchAll(PDO::FETCH_ASSOC); // Récupére toutes les lignes de l'ensemble des résultats de la requête
 
 // Récupération des titres
 $titlesrequest = $db->query("SELECT * FROM title");
-$titles = $titlesrequest->fetchAll(PDO::FETCH_ASSOC); // Récupérer toutes les lignes de l'ensemble des résultats de la requête
+$titles = $titlesrequest->fetchAll(PDO::FETCH_ASSOC); // Récupére toutes les lignes de l'ensemble des résultats de la requête
 
 // Récupération des albums
 $albumsrequest = $db->query("SELECT * FROM album");
-$albums = $albumsrequest->fetchAll(PDO::FETCH_ASSOC); // Récupérer toutes les lignes de l'ensemble des résultats de la requête
+$albums = $albumsrequest->fetchAll(PDO::FETCH_ASSOC); // Récupére toutes les lignes de l'ensemble des résultats de la requête
 ?>
 
 
@@ -53,7 +53,7 @@ $albums = $albumsrequest->fetchAll(PDO::FETCH_ASSOC); // Récupérer toutes les 
     <input type="text" name="entity_id" id="entity_id" required> <!-- Nom de l'entité -->
     <br>
     <br>
-    <button type="submit">Modifier</button> <!--  Récupérer les infos de la BDD pour les envoyer sur la bonne page  -->
+    <button type="submit">Modifier</button> <!--  Récupére les infos de la BDD pour les envoyer sur la bonne page  -->
 </form>
 <br>
 
@@ -73,7 +73,7 @@ $albums = $albumsrequest->fetchAll(PDO::FETCH_ASSOC); // Récupérer toutes les 
     </thead>
     <tbody>
         <?php foreach ($users as $user): ?> <!-- On sort les utilisateurs de la BDD -->
-            <!-- Afficher les utilisateurs et leurs infos -->
+            <!-- Affiche les utilisateurs et leurs infos -->
             <tr>
                 <td><?= htmlspecialchars($user['id_user']) ?></td>
                 <td><?= htmlspecialchars($user['Username']) ?></td>
@@ -88,7 +88,7 @@ $albums = $albumsrequest->fetchAll(PDO::FETCH_ASSOC); // Récupérer toutes les 
                     </form>
                 </td>
             </tr>
-        <?php endforeach; ?> <!-- Sortir de la boucle une fois le tableau terminé -->
+        <?php endforeach; ?> <!-- Sorti de la boucle une fois le tableau terminé -->
     </tbody>
 </table>
 <br>
@@ -117,7 +117,7 @@ $albums = $albumsrequest->fetchAll(PDO::FETCH_ASSOC); // Récupérer toutes les 
                 <td><?= htmlspecialchars($artist['id_type_artist']) ?></td>
                 <td>
                     <form action="delete.php" method="POST" style="display:inline;">
-                        <input type="hidden" name="id_artist" value="<?= $artist['id_artist'] ?>"> <!-- Masquer l'input pour les autres utilisateurs  -->
+                        <input type="hidden" name="id_artist" value="<?= $artist['id_artist'] ?>"> <!-- Masque l'input pour les autres utilisateurs  -->
                         <button type="submit" name="delete_artist" class="btn btn-danger">Supprimer</button>
                     </form>
                 </td>

@@ -1,7 +1,17 @@
 <?php
 include('header.php');
-$db = ConnexionBase();// Connexion à la base de données
-$playlists = $db->query("SELECT * FROM playlist")->fetchAll(PDO::FETCH_ASSOC); // Récupérer toutes les lignes de l'ensemble des résultats de la requête
+$db = ConnexionBase(); // Connexion à la base de données
+
+// Vérifie si l'utilisateur est connecté
+if (isset($_SESSION['user_id'])) {
+    $userId = $_SESSION['user_id'];
+    // Récupére les playlists de l'utilisateur connecté
+    $stmt = $db->prepare("SELECT * FROM playlist p JOIN playlist_users pu ON p.id_playlist = pu.id_playlist WHERE pu.id_user = ?");
+    $stmt->execute([$userId]);
+    $playlists = $stmt->fetchAll(PDO::FETCH_ASSOC);
+} else {
+    $playlists = [];
+}
 
 if ($_SERVER['REQUEST_METHOD'] === "GET") {
     if (isset($_GET['playlistsubmit'])) {
@@ -9,6 +19,10 @@ if ($_SERVER['REQUEST_METHOD'] === "GET") {
         // Préparer et exécuter la requête SQL
         $stmt = $db->prepare("INSERT INTO playlist(name_playlist) VALUES (?)"); // Variable qui contient la préparation de la requête SQL
         $stmt->execute([$nomPlaylist]);
+        $playlistId = $db->lastInsertId();
+        // Associer la playlist à l'utilisateur connecté
+        $stmt = $db->prepare("INSERT INTO playlist_users(id_user, id_playlist) VALUES (?, ?)");
+        $stmt->execute([$userId, $playlistId]);
         header("Location: page_playlist.php?name_playlist=$nomPlaylist");
     }
 }
@@ -56,43 +70,44 @@ if ($_SERVER['REQUEST_METHOD'] === "GET") {
     </article>
 
     <!-- Liste playlists perso -->
-    <h3>Vos playlists</h3>
-    <article>
-        <form>
-            <button id="butCreer" class="Enregister" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modale"> Créer playlist </button>
-        </form>
-    </article>
-    <section> <!-- Modale pour création de playlist -->
-        <div class="modal fade" id="modale" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="exampleModalLabel"> Créer une playlist </h1>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <form method="GET">
-                        <div class="modal-body">
-                            <p>Veuillez saisir le nom que vous voulez donner à votre playlist :</p>
-                            
+    <?php if (isset($_SESSION['user_id'])): ?>
+        <h3>Vos playlists</h3>
+        <article>
+            <form>
+                <button id="butCreer" class="Enregister" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modale"> Créer playlist </button>
+            </form>
+        </article>
+        <section> <!-- Modale pour création de playlist -->
+            <div class="modal fade" id="modale" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="exampleModalLabel"> Créer une playlist </h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <form method="GET">
+                            <div class="modal-body">
+                                <p>Veuillez saisir le nom que vous voulez donner à votre playlist :</p>
+
                                 <input type="text" name="nomPlaylist" id="">
-                                <!-- php l.95 -->
-                            
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"> Fermer </button>
-                            <button type="submit" class="btn btn-primary" name="playlistsubmit"> Créer </button>
-                        </div>
-                    </form>
+
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"> Fermer </button>
+                                <button type="submit" class="btn btn-primary" name="playlistsubmit"> Créer </button>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
-        </div> 
-    </section>
+        </section>
 
-    <article>
-        <?php foreach($playlists as $playlist): ?> <!-- Entrée dans la boucle pour sortir les playlists-->
-            <a href="page_playlist.php?name_playlist=<?= $playlist['name_playlist']?>"><?= $playlist['name_playlist']?></a>
-        <?php endforeach ?>  <!-- Sortie de la boucle -->
-    </article>
+        <article>
+            <?php foreach ($playlists as $playlist): ?> <!-- Entrée dans la boucle pour sortir les playlists-->
+                <a href="page_playlist.php?name_playlist=<?= $playlist['name_playlist'] ?>"><?= $playlist['name_playlist'] ?></a>
+            <?php endforeach ?> <!-- Sortie de la boucle -->
+        </article>
+    <?php endif ?>
 
 </main>
 
