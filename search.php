@@ -75,20 +75,32 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add_to_playlist'])) {
                             <td><?= htmlentities($resultat['alias_artist']) ?></td>
                             <td><?= htmlentities($resultat['name_album']) ?></td>
                             <td>
-                            <audio controls>
-                                <source src="music/<?= htmlspecialchars($resultat['name_title']) ?>.mp3" type="audio/mpeg">
-                                Votre navigateur ne supporte pas l'élément audio.
-                            </audio>
+                                <audio controls>
+                                    <source src="music/<?= htmlspecialchars($resultat['name_title']) ?>.mp3" type="audio/mpeg">
+                                    Votre navigateur ne supporte pas l'élément audio.
+                                </audio>
                             </td>
                             <td>
                                 <?php if ($userId && count($userPlaylists) > 0): ?>
                                     <form method="POST">
                                         <input type="hidden" name="id_title" value="<?= $resultat['id_title'] ?>">
-                                        <select name="playlists[]" multiple class="form-control">
-                                            <?php foreach ($userPlaylists as $playlist): ?>
-                                                <option value="<?= $playlist['id_playlist'] ?>"><?= htmlentities($playlist['name_playlist']) ?></option>
-                                            <?php endforeach; ?>
-                                        </select>
+
+                                        <div class="nav-item dropdown">
+                                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                                Playlists
+                                            </a>
+                                                <ul class="dropdown-menu">
+                                                <?php foreach ($userPlaylists as $playlist): ?>
+                                                    <li>
+                                                        <input class="form-check-input" type="checkbox" name="playlists[]" value="<?= $playlist['id_playlist'] ?>" id="playlist_<?= $playlist['id_playlist'] ?>">
+                                                        <label class="form-check-label labelplaylistname" for="playlist_<?= $playlist['id_playlist'] ?>">
+                                                            <?= htmlentities($playlist['name_playlist']) ?>
+                                                        </label>
+                                                    </li>
+                                                <?php endforeach; ?>
+                                                </ul>
+                                        </div>
+
                                         <button type="submit" name="add_to_playlist" class="btn btn-primary mt-2">Ajouter</button>
                                     </form>
                                 <?php else: ?>

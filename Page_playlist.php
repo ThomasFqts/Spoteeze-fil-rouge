@@ -50,9 +50,9 @@ if (isset($_POST['delete_music'])) {
     try {
         $db->beginTransaction();
 
-        // Supprime la musique
-        $stmt = $db->prepare("DELETE FROM playlist_title WHERE id_title = :id_music");
-        $stmt->execute([':id_music' => $id_music]);
+        // Supprime la musique de la playlist spécifique
+        $stmt = $db->prepare("DELETE FROM playlist_title WHERE id_title = :id_music AND id_playlist = :id_playlist");
+        $stmt->execute([':id_music' => $id_music, ':id_playlist' => $id_playlist]);
 
         $db->commit();
         header("Location: page_playlist.php?name_playlist=$playlist"); // Rediriger après succès

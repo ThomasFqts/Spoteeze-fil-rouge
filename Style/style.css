@@ -50,6 +50,10 @@ th, td, .txt, label, ul, li, p, h1, h2, h3 {
     color: white;
 }
 
+.labelplaylistname {
+    color: black;
+}
+
 /*-------------------------couleur Bouton index---------------------------------*/
 
 .colorbuton {
