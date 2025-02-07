@@ -17,6 +17,10 @@ body {
     background-image: url(/Style/img/background.png);
 }
 
+.phrase_modal_playlist {
+    color: black;
+}
+
 /*------------------------------ header ----------------------*/
 
 #logo {

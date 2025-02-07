@@ -81,7 +81,7 @@ INSERT INTO Artist (firstname_artist, lastname_artist, alias_artist, description
 -- Insertion des données dans la table Users
 INSERT INTO Users (Username, email, password, firstname_user, lastname_user, id_type_user, sexe_user) VALUES
 ('john_doe', 'john.doe@example.com', '$2y$12$TBwhz59iX7LdWqKB.q94EOF5b8eBWSPAHNEJ6AG/jmg1k.4LyBlGa', 'John', 'Doe', 1, 'Homme'),
-('jane_smith', 'jane.smith@example.com', '$2y$12$TBwhz59iX7LdWqKB.q94EOF5b8eBWSPAHNEJ6AG/jmg1k.4LyBlGa', 'Jane', 'Smith', 2, 'Femme'),
+('jane_smith', 'jane.smith@example.com', '$2y$12$TBwhz59iX7LdWqKB.q94EOF5b8eBWSPAHNEJ6AG/jmg1k.4LyBlGa', 'Jane', 'Smith', 3, 'Femme'),
 ('bob_jazz', 'bob.jazz@example.com', '$2y$12$TBwhz59iX7LdWqKB.q94EOF5b8eBWSPAHNEJ6AG/jmg1k.4LyBlGa', 'Bob', 'Jazz', 3, 'Homme'),
 ('alice_rock', 'alice.rock@example.com', '$2y$12$TBwhz59iX7LdWqKB.q94EOF5b8eBWSPAHNEJ6AG/jmg1k.4LyBlGa', 'Alice', 'Rock', 4, 'Femme'),
 ('charlie_hiphop', 'charlie.hiphop@example.com', '$2y$12$TBwhz59iX7LdWqKB.q94EOF5b8eBWSPAHNEJ6AG/jmg1k.4LyBlGa', 'Charlie', 'HipHop', 5, 'Homme'),

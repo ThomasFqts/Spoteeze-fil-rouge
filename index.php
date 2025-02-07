@@ -94,12 +94,12 @@ if ($_SERVER['REQUEST_METHOD'] === "GET") {
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h1 class="modal-title fs-5" id="exampleModalLabel"> Créer une playlist </h1>
+                            <h1 class="modal-title fs-5 phrase_modal_playlist" id="exampleModalLabel"> Créer une playlist </h1>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <form method="GET">
                             <div class="modal-body">
-                                <p>Veuillez saisir le nom que vous voulez donner à votre playlist :</p>
+                                <p class="phrase_modal_playlist">Veuillez saisir le nom que vous voulez donner à votre playlist :</p>
 
                                 <input type="text" name="nomPlaylist" id="">
 
