@@ -19,15 +19,19 @@
             <h2>Préférance de notifications </h2> <label for="plus" style="font-size:30px"></label>
 
             <!--faire un menu hover -->
-            <select name="plus" id="plus" style="width: 200px; height: 70px; font-size:20px;">
-                <option value="plus">Plus</option>
-                <option value="">Mes appareils connectés</option>
-                <option value="">Mes Applications</option>
-                <option value="">Paramètres d'affichage</option>
-                <option value="">Préférence de partage</option>
-                <option value="">Sélection du pays</option>
-                <option value="">Importe tes playlists</option>
-            </select>
+            
+            <div class="dropdown">
+                <button class="dropbtn">Plus</button>
+                <div class="dropdown-content">
+                    <a href="#">Mes appareils connectés</a>
+                    <a href="#">Mes Applications</a>
+                    <a href="#">Paramètres d'affichage</a>
+                    <a href="#">Préférence de partage</a>
+                    <a href="#">Sélection du pays</a>
+                    <a href="#">Importe tes playlists</a>
+                </div>
+            </div>
+            
         </div>
     </header>
 

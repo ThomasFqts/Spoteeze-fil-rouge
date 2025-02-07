@@ -2,13 +2,13 @@
 session_start();
 
 if (isset($_POST["upload"])) {
-    
-    // Vérification si un fichier est envoyé
+
+    // Check if a file is uploaded
     if (isset($_FILES["profile_image"]) && $_FILES["profile_image"]["error"] == 0) {
         $file = $_FILES["profile_image"];
         $uploadDir = "uploads/";
 
-        // Vérification de l'extension du fichier
+        // Check file extension
         $allowedExtensions = ["jpg", "jpeg", "png", "gif"];
         $fileExtension = strtolower(pathinfo($file["name"], PATHINFO_EXTENSION));
 
@@ -17,20 +17,20 @@ if (isset($_POST["upload"])) {
             exit;
         }
 
-        // Vérification de la taille (max 2 Mo)
+        // Check file size (max 2MB)
         if ($file["size"] > 2 * 1024 * 1024) {
             echo "Le fichier est trop volumineux (max 2 Mo).";
             exit;
         }
 
-        // Générer un nom unique pour l'image
+        // Generate a unique file name
         $newFileName = uniqid("profile_", true) . "." . $fileExtension;
         $uploadPath = $uploadDir . $newFileName;
 
-        // Déplacer l'image téléchargée vers le dossier "uploads/"
+        // Move the uploaded file to the "uploads/" folder
         if (move_uploaded_file($file["tmp_name"], $uploadPath)) {
 
-            // Stocker le nom de l'image dans la session
+            // Store the image name in the session
             $_SESSION["image"] = $newFileName;
             header("Location: profil.php");
             exit;
