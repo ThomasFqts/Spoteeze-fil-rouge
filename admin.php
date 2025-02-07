@@ -41,7 +41,7 @@ $albums = $albumsrequest->fetchAll(PDO::FETCH_ASSOC); // Récupére toutes les l
 <h2>Modifier une entité</h2>
 <form action="edit.php" method="GET">
     <label for="entity_type">Type d'entité :</label>
-    <select name="entity_type" id="entity_type"> <!-- Sélecteur d'entité  -->
+    <select name="entity_type" id="entity_type" onchange="updateEntityOptions()"> <!-- Sélecteur d'entité  -->
         <option value="user">Utilisateur</option>
         <option value="artist">Artiste</option>
         <option value="title">Titre</option>
@@ -50,7 +50,9 @@ $albums = $albumsrequest->fetchAll(PDO::FETCH_ASSOC); // Récupére toutes les l
     <br>
     <br>
     <label for="entity_id">ID de l'entité :</label>
-    <input type="text" name="entity_id" id="entity_id" required> <!-- Nom de l'entité -->
+    <select name="entity_id" id="entity_id" required> <!-- Sélecteur d'ID de l'entité -->
+        <!-- Les options seront ajoutées dynamiquement par JavaScript -->
+    </select>
     <br>
     <br>
     <button type="submit">Modifier</button> <!--  Récupére les infos de la BDD pour les envoyer sur la bonne page  -->
@@ -183,6 +185,33 @@ $albums = $albumsrequest->fetchAll(PDO::FETCH_ASSOC); // Récupére toutes les l
         <?php endforeach; ?> <!-- Sortir de la boucle une fois le tableau terminé -->
     </tbody>
 </table>
+<script>
+    const users = <?= json_encode($users) ?>;
+    const artists = <?= json_encode($artists) ?>;
+    const titles = <?= json_encode($titles) ?>;
+    const albums = <?= json_encode($albums) ?>;
+
+    function updateEntityOptions() {
+        const entityType = document.getElementById('entity_type').value;
+        const entityIdSelect = document.getElementById('entity_id');
+        entityIdSelect.innerHTML = ''; // Clear existing options
+
+        let options = [];
+        if (entityType === 'user') {
+            options = users.map(user => `<option value="${user.id_user}">${user.id_user} - ${user.Username}</option>`);
+        } else if (entityType === 'artist') {
+            options = artists.map(artist => `<option value="${artist.id_artist}">${artist.id_artist} - ${artist.firstname_artist} ${artist.lastname_artist}</option>`);
+        } else if (entityType === 'title') {
+            options = titles.map(title => `<option value="${title.id_title}">${title.id_title} - ${title.name_title}</option>`);
+        } else if (entityType === 'album') {
+            options = albums.map(album => `<option value="${album.id_album}">${album.id_album} - ${album.name_album}</option>`);
+        }
+
+        entityIdSelect.innerHTML = options.join('');
+    }
+
+    updateEntityOptions();
+</script>
 </body>
 
 </html>

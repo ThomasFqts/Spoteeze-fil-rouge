@@ -1,5 +1,5 @@
 logo = getElementById('logo');               /* header */
-butConnection = getElementById('seCo');       
+butConnection = getElementById('seCo');
 butPlaylist = getElementById('taPlaylist');
 butPop = getElementById('boutonMusiquePop'); /* playlists prédéfinies */
 butRock = getElementById('boutonMusiqueRock');
@@ -11,64 +11,64 @@ butFunk = getElementById('boutonMusiqueFunk');
 butLofi = getElementById('boutonMusiqueLofi');
 butElectro = getElementById('boutonMusiqueElectro');
 
-addEventListener (click, logo,  /* revenir à l'accueil */);
-addEventListener (click, butConnection,  /* page connection */);
-addEventListener (click, butPlaylist,  /* ? */);
+addEventListener(click, logo,  /* revenir à l'accueil */);
+addEventListener(click, butConnection,  /* page connection */);
+addEventListener(click, butPlaylist,  /* ? */);
 
-addEventListener (click, butPop, [sortirPlaylistPop]);
-addEventListener (click, butRock, [sortirPlaylistRock]);
-addEventListener (click, butRap, [sortirPlaylistRap]);
-addEventListener (click, butWorkout, [sortirPlaylistWorkout]);
-addEventListener (click, butRapUs, [sortirPlaylistRapUs]);
-addEventListener (click, butDance, [sortirPlaylistDance]);
-addEventListener (click, butFunk, [sortirPlaylistFunk]);
-addEventListener (click, butLofi, [sortirPlaylistLofi]);
+addEventListener(click, butPop, [sortirPlaylistPop]);
+addEventListener(click, butRock, [sortirPlaylistRock]);
+addEventListener(click, butRap, [sortirPlaylistRap]);
+addEventListener(click, butWorkout, [sortirPlaylistWorkout]);
+addEventListener(click, butRapUs, [sortirPlaylistRapUs]);
+addEventListener(click, butDance, [sortirPlaylistDance]);
+addEventListener(click, butFunk, [sortirPlaylistFunk]);
+addEventListener(click, butLofi, [sortirPlaylistLofi]);
 
 /* Playlists par défauts */
 
-function sortirPlaylistPop (nom) {
+function sortirPlaylistPop(nom) {
     let nom = "pop";
-    sortirLaPlaylist (nom);
+    sortirLaPlaylist(nom);
 };
 
-function sortirPlaylistRock (nom) {
+function sortirPlaylistRock(nom) {
     let nom = "rock";
-    sortirLaPlaylist (nom);
+    sortirLaPlaylist(nom);
 };
 
-function sortirPlaylistRap (nom) {
+function sortirPlaylistRap(nom) {
     let nom = "rap";
-    sortirLaPlaylist (nom);
+    sortirLaPlaylist(nom);
 };
 
-function sortirPlaylistWorkout (nom) {
+function sortirPlaylistWorkout(nom) {
     let nom = "workout";
-    sortirLaPlaylist (nom);
+    sortirLaPlaylist(nom);
 };
 
-function sortirPlaylistRapUs (nom) {
+function sortirPlaylistRapUs(nom) {
     let nom = "rapus";
-    sortirLaPlaylist (nom);
+    sortirLaPlaylist(nom);
 };
 
-function sortirPlaylistDance (nom) {
+function sortirPlaylistDance(nom) {
     let nom = "dance";
-    sortirLaPlaylist (nom);
+    sortirLaPlaylist(nom);
 };
 
-function sortirPlaylistFunk (nom) {
+function sortirPlaylistFunk(nom) {
     let nom = "funk";
-    sortirLaPlaylist (nom);
+    sortirLaPlaylist(nom);
 };
 
-function sortirPlaylistLofi (nom) {
+function sortirPlaylistLofi(nom) {
     let nom = "lofi";
-    sortirLaPlaylist (nom);
+    sortirLaPlaylist(nom);
 };
 
-function sortirLaPlaylist (nom_) {
+function sortirLaPlaylist(nom_) {
     fetch
-/* php */
+    /* php */
     innerhtml
 };
 
