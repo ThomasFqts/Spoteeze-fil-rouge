@@ -15,7 +15,7 @@ function ConnexionBase()
         );
         $connexion->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION); // Juste pour une erreur 
         return $connexion;
-    } catch (Exception $e) { // Attraper l'exception, si ça ne se connecte pas à la BDD
+    } catch (Exception $e) { // Attrape l'exception, si ça ne se connecte pas à la BDD
         echo "Erreur : " . $e->getMessage() . "<br>";
         echo "N° : " . $e->getCode();
         die("Fin du script");
@@ -37,6 +37,10 @@ if (isset($_SESSION['user_id'])) {
     if ($user) {
         $username = $user['firstname_user'];
     }
+} else {
+    // Défini le rôle d'utilisateur comme "Invité" si l'utilisateur n'est pas connecté
+    $_SESSION['user_type'] = 'Invite';
+    $_SESSION['user_id'] = null;
 }
 
 // Vérifie si l'utilisateur est admin
@@ -71,15 +75,16 @@ $isAdmin = isset($_SESSION['user_type']) && in_array($_SESSION['user_type'], ['A
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <a class="nav-link" href="search.php">Rechercher</a>
-                         <?php if ($isAdmin): ?> <!-- Variable créée l.43 -->
+                        <?php if ($isAdmin): ?>
                             <li class="nav-item">
                                 <a class="nav-link" href="admin.php">Admin Panel</a>
                             </li>
-                        <?php endif; ?>  <!-- Sortie de la boucle -->
+                        <?php endif; ?> <!-- Sortie de la boucle -->
                     </ul>
                     <div class="d-flex">
                         <?php if ($username) : ?> <!-- Si l'utilisateur existe, retranscription en HTML -->
                             <span class="navbar-text me-3">Bienvenue, <?= htmlentities($username) ?>!</span> <!-- Retranscription du pseudo en HTML -->
+                            <a href="profil.php" class="btn btn-secondary me-2">Profil</a>
                             <a href="deconnexion.php" class="btn btn-outline-primary me-2">Se déconnecter</a>
                         <?php else : ?> <!--  Sinon, connexion ou inscription -->
                             <a href="connexion.php" class="btn btn-outline-primary me-2">Se connecter</a>

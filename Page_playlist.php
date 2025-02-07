@@ -1,7 +1,7 @@
 <?php
 include "header.php";
 
-$db = ConnexionBase();// Connexion à la base de données
+$db = ConnexionBase(); // Connexion à la base de données
 
 // Récupére le nom de la playlist sélectionné depuis l'URL
 $playlist = $_GET['name_playlist'] ?? '';
@@ -22,8 +22,6 @@ $titles = $stmt->fetchAll(PDO::FETCH_ASSOC); //Création du tableau de playlist
 $stmt2 = $db->prepare("SELECT id_playlist FROM playlist WHERE name_playlist = ?;"); // Variable qui contient la préparation de la requête SQL
 $stmt2->execute([$playlist]);
 $id_playlist = $stmt2->fetch(PDO::FETCH_ASSOC)['id_playlist'];
-
-$id_playlist = $stmt2->fetchAll(PDO::FETCH_ASSOC);
 
 // Pour la recherche
 $search = isset($_POST['search']) ? $_POST['search'] : "";
@@ -52,9 +50,9 @@ if (isset($_POST['delete_music'])) {
     try {
         $db->beginTransaction();
 
-        // Supprime la musique
-        $stmt = $db->prepare("DELETE FROM playlist_title WHERE id_title = :id_music");
-        $stmt->execute([':id_music' => $id_music]);
+        // Supprime la musique de la playlist spécifique
+        $stmt = $db->prepare("DELETE FROM playlist_title WHERE id_title = :id_music AND id_playlist = :id_playlist");
+        $stmt->execute([':id_music' => $id_music, ':id_playlist' => $id_playlist]);
 
         $db->commit();
         header("Location: page_playlist.php?name_playlist=$playlist"); // Rediriger après succès
@@ -101,7 +99,7 @@ if (isset($_POST['add_in_playlist'])) {
 ?>
 
 <main>
-    <h1> Playlist - <?= htmlspecialchars($playlist) ?></h1> <!-- Affichage du nom de la playlist dans la page -->
+    <h1 class="titre_playlist"> Playlist - <?= htmlspecialchars($playlist) ?></h1> <!-- Affichage du nom de la playlist dans la page -->
     <!-- Formulaire de recherche -->
     <form method="POST" class="form-inline">
         <input id="barreDeRecherche" type="search" name="search" placeholder="Rechercher..." class="form-control mr-sm-2">
@@ -115,7 +113,7 @@ if (isset($_POST['add_in_playlist'])) {
     </form>
 
     <!-- Affichage de la recherche de l'utilisateur -->
-    <?php if (isset($_POST['recherche_music'])): ?>  <!-- Début de la 3éme boucle -->
+    <?php if (isset($_POST['recherche_music'])): ?> <!-- Début de la 3éme boucle -->
         <h2 class="text-center">Recherche :</h2>
         <div class="round-rectangle2">
             <table>
@@ -130,7 +128,7 @@ if (isset($_POST['add_in_playlist'])) {
                 </thead>
                 <tbody>
                     <?php if (count($resultats) > 0): ?> <!-- Début de la 2éme boucle -->
-                        <?php foreach ($resultats as $resultat): ?>  <!-- Début de la 3éme boucle -->
+                        <?php foreach ($resultats as $resultat): ?> <!-- Début de la 3éme boucle -->
                             <tr>
                                 <td><?= htmlentities($resultat['name_title']) ?></td>
                                 <td><?= htmlentities($resultat['time_title']) ?></td>
@@ -143,14 +141,14 @@ if (isset($_POST['add_in_playlist'])) {
                                     </form>
                                 </td>
                             </tr>
-                        <?php endforeach ?>  <!-- Sortie de la 3éme boucle -->
+                        <?php endforeach ?> <!-- Sortie de la 3éme boucle -->
                     <?php else: ?>
                         <p>Aucun artist, titre ou album trouvé</p>
-                    <?php endif ?>  <!-- Sortie de la 2éme boucle -->
+                    <?php endif ?> <!-- Sortie de la 2éme boucle -->
                 </tbody>
             </table>
         </div>
-    <?php endif ?>  <!-- Sortie de la 1ère boucle -->
+    <?php endif ?> <!-- Sortie de la 1ère boucle -->
 
     <!-- Affichage des titres contenu dans la playlist -->
     <div class="round-rectangle1">
@@ -162,6 +160,7 @@ if (isset($_POST['add_in_playlist'])) {
                     <th>Date de Publication</th>
                     <th>Artiste</th>
                     <th>Album</th>
+                    <th>Lecture</th>
                     <th></th>
                 </tr>
             </thead>
@@ -173,6 +172,13 @@ if (isset($_POST['add_in_playlist'])) {
                         <td><?= htmlspecialchars($title['publication_date_title']) ?></td>
                         <td><?= htmlspecialchars($title['alias_artist'] ?: $title['firstname_artist'] . ' ' . $title['lastname_artist']) ?></td> <!-- Gère le cas où il n'y a pas d'alias en mettant le nom et prénom de l'artiste à la place -->
                         <td><?= htmlentities($title['name_album']) ?></td>
+                        <td>
+                            <!-- Balise audio, permettant la lecture audio de media -->
+                            <audio controls>
+                                <source src="music/<?= htmlspecialchars($title['name_title']) ?>.mp3" type="audio/mpeg">
+                                Votre navigateur ne supporte pas l'élément audio.
+                            </audio>
+                        </td>
                         <td>
                             <form method="POST">
                                 <input type="hidden" name="id_music" value="<?= $title['id_title'] ?>">
